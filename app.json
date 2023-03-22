@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "school_project-haehre",
-    "slug": "school_project-haehre",
+    "slug": "school-project-haehre",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "55ea4e28-cd26-4214-8293-6846cd119423"
+      }
+    },
+    "owner": "mortenlokkemoen"
   }
 }
