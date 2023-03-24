@@ -1,11 +1,12 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, Alert } from "react-native";
+// import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View } from "react-native";
+import RegisterEventsScreen from "./screens/RegisterEventsScreen";
 
-export default function App() {
+export default function App(): JSX.Element {
   return (
     <View style={styles.container}>
-      <Text>Time to get started with our project at Hæhre!</Text>
-      <StatusBar style="auto" />
+      <RegisterEventsScreen />
+      {/* <StatusBar style="auto" /> */}
     </View>
   );
 }
