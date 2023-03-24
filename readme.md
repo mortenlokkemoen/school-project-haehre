@@ -10,4 +10,4 @@ installation process
 
 For backend we need to set up some dependencies
 
-1: npm install react-native-express
+For routing we are installing React native router for all our routing needs
