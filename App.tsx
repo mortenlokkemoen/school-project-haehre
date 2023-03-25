@@ -6,7 +6,6 @@ export default function App(): JSX.Element {
   return (
     <View style={styles.container}>
       <RegisterEventsScreen />
-      {/* <StatusBar style="auto" /> */}
     </View>
   );
 }
