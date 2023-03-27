@@ -7,16 +7,14 @@ import {
   PressableStateCallbackType,
   ViewStyle,
 } from "react-native";
+// import { useNavigation } from "@react-navigation/native";
 
 interface PrimaryButtonProps {
   children: React.ReactNode;
+  onPress: () => void;
 }
 
-function PrimaryButton({ children }: PrimaryButtonProps): JSX.Element {
-  function pressHandler() {
-    console.log("Pressed!");
-  }
-
+function PrimaryButton({ children, onPress }: PrimaryButtonProps): JSX.Element {
   const getButtonInnerContainerStyle = ({
     pressed,
   }: PressableStateCallbackType): ViewStyle => {
@@ -29,8 +27,8 @@ function PrimaryButton({ children }: PrimaryButtonProps): JSX.Element {
     <View style={styles.buttonOuterContainer}>
       <Pressable
         style={getButtonInnerContainerStyle}
-        onPress={pressHandler}
         android_ripple={{ color: "#640233" }}
+        onPress={onPress}
       >
         <Text style={styles.buttonText}>{children}</Text>
       </Pressable>

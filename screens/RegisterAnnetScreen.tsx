@@ -1,18 +1,18 @@
 import { View, StyleSheet, Text } from "react-native";
 
-function RegisterHmsScreen(): JSX.Element {
+function RegisterAnnetScreen(): JSX.Element {
   return (
     <View style={styles.inputContainer}>
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
-          <Text>HMS</Text>
+          <Text>ANNET</Text>
         </View>
       </View>
     </View>
   );
 }
 
-export default RegisterHmsScreen;
+export default RegisterAnnetScreen;
 
 const styles = StyleSheet.create({
   inputContainer: {

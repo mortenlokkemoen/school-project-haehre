@@ -1,18 +1,18 @@
 import { View, StyleSheet, Text } from "react-native";
 
-function RegisterHmsScreen(): JSX.Element {
+function RegisterKvalitetScreen(): JSX.Element {
   return (
     <View style={styles.inputContainer}>
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
-          <Text>HMS</Text>
+          <Text>KVALITET</Text>
         </View>
       </View>
     </View>
   );
 }
 
-export default RegisterHmsScreen;
+export default RegisterKvalitetScreen;
 
 const styles = StyleSheet.create({
   inputContainer: {
