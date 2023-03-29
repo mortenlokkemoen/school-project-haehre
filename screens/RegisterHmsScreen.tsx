@@ -16,17 +16,17 @@ export default RegisterHmsScreen;
 
 const styles = StyleSheet.create({
   inputContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 100,
-    marginHorizontal: 24,
-    padding: 16,
+    // justifyContent: "center",
+    // alignItems: "center",
+    // marginTop: 100,
+    // marginHorizontal: 24,
+    // padding: 16,
   },
 
   buttonsContainer: {
-    flexDirection: "row",
+    // flexDirection: "row",
   },
   buttonContainer: {
-    flex: 1,
+    // flex: 1,
   },
 });

@@ -14,13 +14,13 @@ const Stack = createNativeStackNavigator();
 export default function App(): JSX.Element {
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar />
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            headerStyle: { backgroundColor: "#351401" },
+            headerStyle: { backgroundColor: "#003D6A" },
             headerTintColor: "white",
-            contentStyle: { backgroundColor: "#3f2f25" },
+            contentStyle: { backgroundColor: "#DCE0E6" },
           }}
         >
           <Stack.Screen
@@ -47,11 +47,11 @@ export default function App(): JSX.Element {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#fff",
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+// });
