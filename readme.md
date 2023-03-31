@@ -28,3 +28,10 @@ For routing we are installing React native router for all our routing needs
 Make sure to add an import statement aswell to the top of the file
 
 # import android.os.Bundle
+
+5. It's important that we can take photos or add from gallery and ask permission to do so,
+   so we use expo picture picker combined with expo picture manipulator to make sure we get the right
+   size, and ratio. It also has a built in function for asking permission to use the users camera which is important.
+
+- npm install expo-image-manipulator
+- npx expo install expo-image-picker

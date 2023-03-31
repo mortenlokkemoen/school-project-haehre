@@ -7,21 +7,22 @@ import {
     TextInput,
     SafeAreaView,
     TouchableOpacity,
+    Image
 } from 'react-native';
-//import logo from svg file
 import { IStackScreenProps } from '../../../src/library/StackScreenProps';
 
 
 const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     const { navigation, route, nameProp} = props;
+    console.log({navigation, route, nameProp})
 
     return (
         <SafeAreaView style={styles.main}>
           <View style={styles.container}>
             <View style={styles.wFull}>
+            <Image source={require('../../../assets/Logo_Haehre_HiRes.png')} 
+                style={{width: 200, height: 200, resizeMode: 'contain', alignSelf: 'center'}}/>
             <View style={styles.row}>
-            {/*Logo here*/}
-            <Text style={styles.compTitle}>Hæhre Entrepeneur</Text>
             </View>
 
             <Text style={styles.logToContinueTxt}>Login to Continue</Text>
@@ -31,7 +32,7 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
           <View style={styles.btnWrapper}>
             {/* LOGIN BUTTON*/}
             <TouchableOpacity
-             onPress={() => navigation.navigate('Login')}
+             onPress={() => navigation.navigate('HomeScreen')}
              activeOpacity={0.7}
              style={styles.loginBtn}    
             >
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#ecedee',
     },
     input: {
         borderWidth: 1,

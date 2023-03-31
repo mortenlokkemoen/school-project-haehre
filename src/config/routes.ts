@@ -3,10 +3,11 @@ import HomeScreen from "../../App/screens/Home";
 import ForgotPasswordScreen from "../../App/screens/auth/ForgotPassword";
 import LoginScreen from "../../App/screens/auth/Login";
 import RegisterScreen from "../../App/screens/auth/Register";
+import ImageScreen from "../../App/screens/Image";
 
 const routes: IRouteProps[] = [
     {
-        name: 'Home',
+        name: 'HomeScreen',
         component: HomeScreen
     },
     {
@@ -20,6 +21,10 @@ const routes: IRouteProps[] = [
     {
         name: 'Register',
         component: RegisterScreen
+    },
+    {
+        name: 'ImageScreen',
+        component: ImageScreen
     }
 ]
 
