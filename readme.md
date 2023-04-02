@@ -35,3 +35,9 @@ Make sure to add an import statement aswell to the top of the file
 
 - npm install expo-image-manipulator
 - npx expo install expo-image-picker
+
+6. Our application needs a MAP component that sends data from device.
+   In order to do so we can install some expo packages that makes it easier for us to ask permission and show a map.
+
+- npx expo install expo-location
+- npx expo install react-native-maps

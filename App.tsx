@@ -11,7 +11,7 @@ export default function App(): JSX.Element {
 {/* isAuth comes here */}
   return (
     <NavigationContainer>
-     <Stack.Navigator initialRouteName={'HomeScreen'}>
+     <Stack.Navigator initialRouteName={'ImageScreen'}>
         {routes.map((r, i) => (
           <Stack.Screen key={i} name={r.name}>
             {(props) => <r.component nameProp={r.name} {...props} />}

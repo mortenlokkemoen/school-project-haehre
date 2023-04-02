@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Button, Image, View, Text, StyleSheet, Pressable } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as ImageManipulator from 'expo-image-manipulator';
+import Geolocation from '../../components/Geolocation';
+import Map from '../../components/Map';
 
 
 
@@ -93,6 +95,8 @@ const ImageScreen: React.FunctionComponent = () => {
             <Pressable style ={styles.btnStyle} onPress={selectCamera}>
                 <Text style={styles.btnText}>Take a picture</Text> 
             </Pressable>
+            <Geolocation  />
+            <Map />
           </View>
         )
     }
