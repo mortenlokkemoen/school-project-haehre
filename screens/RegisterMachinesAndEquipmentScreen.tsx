@@ -1,18 +1,18 @@
 import { View, StyleSheet, Text } from "react-native";
 
-function RegisterYtreMiljoScreen(): JSX.Element {
+function RegisterMachinesAndEquipmentScreen(): JSX.Element {
   return (
     <View style={styles.inputContainer}>
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
-          <Text>YTRE MILJØ</Text>
+          <Text>MASKINER OG UTSTYR</Text>
         </View>
       </View>
     </View>
   );
 }
 
-export default RegisterYtreMiljoScreen;
+export default RegisterMachinesAndEquipmentScreen;
 
 const styles = StyleSheet.create({
   inputContainer: {

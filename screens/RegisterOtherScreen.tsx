@@ -1,18 +1,22 @@
 import { View, StyleSheet, Text } from "react-native";
+import RadioButtons from "../components/RadioButtons";
 
-function RegisterAnnetScreen(): JSX.Element {
+function RegisterOtherScreen(): JSX.Element {
   return (
     <View style={styles.inputContainer}>
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
           <Text>ANNET</Text>
         </View>
+        <View>
+          <RadioButtons />
+        </View>
       </View>
     </View>
   );
 }
 
-export default RegisterAnnetScreen;
+export default RegisterOtherScreen;
 
 const styles = StyleSheet.create({
   inputContainer: {

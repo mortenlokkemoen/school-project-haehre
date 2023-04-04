@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import RegisterEventsScreen from "./screens/RegisterEventsScreen";
-import RegisterMaskinerOgUtstyrScreen from "./screens/RegisterMaskinerOgUtstyrScreen";
+import RegisterMachinesAndEquipmentScreen from "./screens/RegisterMachinesAndEquipmentScreen";
 import RegisterHmsScreen from "./screens/RegisterHmsScreen";
-import RegisterYtreMiljoScreen from "./screens/RegisterYtreMiljoScreen";
-import RegisterRegisterKvalitetScreen from "./screens/RegisterKvalitetScreen";
-import RegisterAnnetScreen from "./screens/RegisterAnnetScreen";
+import RegisterEnvironmentalScreen from "./screens/RegisterEnvironmentalScreen";
+import RegisterQualityScreen from "./screens/RegisterQualityScreen";
+import RegisterOtherScreen from "./screens/RegisterOtherScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -26,21 +26,33 @@ export default function App(): JSX.Element {
           <Stack.Screen
             name="RegisterEvents"
             component={RegisterEventsScreen}
-          />
-          <Stack.Screen name="RegisterHms" component={RegisterHmsScreen} />
-          <Stack.Screen
-            name="RegisterYtreMiljo"
-            component={RegisterYtreMiljoScreen}
+            options={{ title: "Registrer hendelser" }}
           />
           <Stack.Screen
-            name="RegisterKvalitet"
-            component={RegisterRegisterKvalitetScreen}
+            name="RegisterHms"
+            component={RegisterHmsScreen}
+            options={{ title: "HMS" }}
           />
           <Stack.Screen
-            name="RegisterMaskinerOgUtstyr"
-            component={RegisterMaskinerOgUtstyrScreen}
+            name="RegisterEnvironmental"
+            component={RegisterEnvironmentalScreen}
+            options={{ title: "Ytre miljø" }}
           />
-          <Stack.Screen name="RegisterAnnet" component={RegisterAnnetScreen} />
+          <Stack.Screen
+            name="RegisterQuality"
+            component={RegisterQualityScreen}
+            options={{ title: "Kvalitet" }}
+          />
+          <Stack.Screen
+            name="RegisterMachinesAndEquipment"
+            component={RegisterMachinesAndEquipmentScreen}
+            options={{ title: "Maskiner og utstyr" }}
+          />
+          <Stack.Screen
+            name="RegisterOther"
+            component={RegisterOtherScreen}
+            options={{ title: "Annet" }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>

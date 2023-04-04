@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text } from "react-native";
 
-function RegisterKvalitetScreen(): JSX.Element {
+function RegisterQualityScreen(): JSX.Element {
   return (
     <View style={styles.inputContainer}>
       <View style={styles.buttonsContainer}>
@@ -12,7 +12,7 @@ function RegisterKvalitetScreen(): JSX.Element {
   );
 }
 
-export default RegisterKvalitetScreen;
+export default RegisterQualityScreen;
 
 const styles = StyleSheet.create({
   inputContainer: {

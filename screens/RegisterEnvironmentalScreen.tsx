@@ -1,18 +1,18 @@
 import { View, StyleSheet, Text } from "react-native";
 
-function RegisterMaskinerOgUtstyrScreen(): JSX.Element {
+function RegisterEnvironmentalScreen(): JSX.Element {
   return (
     <View style={styles.inputContainer}>
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
-          <Text>MASKINER OG UTSTYR</Text>
+          <Text>YTRE MILJØ</Text>
         </View>
       </View>
     </View>
   );
 }
 
-export default RegisterMaskinerOgUtstyrScreen;
+export default RegisterEnvironmentalScreen;
 
 const styles = StyleSheet.create({
   inputContainer: {

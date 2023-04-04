@@ -1,5 +1,0 @@
-[
-    {"EmployeeId": "emp101", "EmployeeName": "Jens Svendsen", "EmployeePassword": "Jens123", "EmployeeJobTitle": "Driftsleder", "EmployeeEmail": "jensSvendsen@haehre.no", "currentProjectId": "101"},
-    {"EmployeeId": "emp102", "EmployeeName": "Lise Gullhell", "EmployeePassword": "Lise123", "EmployeeJobTitle": "Maskinfører", "EmployeeEmail": "liseGullhell@haehre.no", "currentProjectId": "101"},
-    {"EmployeeId": "emp103", "EmployeeName": "Kristian Janhaug", "EmployeePassword": "Kristian123", "EmployeeJobTitle": "Betongarbeider", "EmployeeEmail": "kristianJanhaug@haehre.no", "currentProjectId": "101"}
-]
