@@ -11,10 +11,10 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = props => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Hei "navn"</Text>
-            <Pressable style ={styles.btnStyle} onPress={() => navigation.navigate('Register')}>
+            <Pressable style ={styles.btnStyle} onPress={() => navigation.navigate('Events')}>
                 <Text style={styles.btnText}>Registrer hendelse</Text> 
             </Pressable>
-            <Pressable style ={styles.btnStyle} onPress={() => navigation.navigate('Register')}>
+            <Pressable style ={styles.btnStyle} onPress={() => navigation.navigate('Checklist')}>
                 <Text style={styles.btnText}>Sjekklister</Text> 
             </Pressable>
             <Text style={styles.dateStyle}>{Date()}</Text>

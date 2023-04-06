@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Image, View, Text, StyleSheet, Pressable } from 'react-native';
+import { Image, View, Text, StyleSheet, Pressable } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as ImageManipulator from 'expo-image-manipulator';
 import Geolocation from '../../components/Geolocation';

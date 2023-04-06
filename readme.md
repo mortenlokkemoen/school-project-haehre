@@ -41,3 +41,12 @@ Make sure to add an import statement aswell to the top of the file
 
 - npx expo install expo-location
 - npx expo install react-native-maps
+
+# React Drawer Navigator
+
+For our project we wanted the hamburger style menu with some navigation options and expo Drawer does that job very well.
+First we need to install some packages from the website and set it up.
+
+npm install @react-navigation/drawer
+-npx expo install react-native-gesture-handler
+-npx expo install react-native reanimated
