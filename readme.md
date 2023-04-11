@@ -50,3 +50,10 @@ First we need to install some packages from the website and set it up.
 npm install @react-navigation/drawer
 -npx expo install react-native-gesture-handler
 -npx expo install react-native reanimated
+
+# React Native Datetime Picker
+
+We need to be able to select between different dates in our project and to handle our logic we can use React Native Datetime picker
+We install the package by typing
+
+- expo install react-native-modal-datetime-picker @react-native-community/datetimepicker

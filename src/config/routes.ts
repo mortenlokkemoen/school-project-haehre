@@ -4,14 +4,20 @@ import ForgotPasswordScreen from "../../App/screens/auth/ForgotPassword";
 import LoginScreen from "../../App/screens/auth/Login";
 import RegisterScreen from "../../App/screens/auth/Register";
 import ImageScreen from "../../App/screens/Image";
-import EventScreen from "../../App/screens/Events";
+import RegisterEventScreen from "../../App/screens/register/RegisterEvents";
 import ChecklistScreen from "../../App/screens/Checklist";
+import RegisterEnvironmentScreen from "../../App/screens/register/RegisterEnvironment";
+import RegisterHmsScreen from "../../App/screens/register/RegisterHms";
+import RegMachinesAndEquipScreen from "../../App/screens/register/RegisterMachinesAndEquip";
+import RegisterOtherScreen from "../../App/screens/register/RegisterOther";
+import RegisterQualityScreen from "../../App/screens/register/RegisterQuality";
+import PrevEventScreen from "../../App/screens/PreviousEvents";
 
 const routes: IRouteProps[] = [
     {
         name: 'HomeScreen',
         component: HomeScreen
-    },/*
+    },
     {
         name:'Login',
         component: LoginScreen
@@ -24,18 +30,42 @@ const routes: IRouteProps[] = [
         name: 'Register',
         component: RegisterScreen
     },
-    */
+    
     {
         name: 'ImageScreen',
         component: ImageScreen
     },
     {
-        name: 'Events',
-        component: EventScreen
+        name: 'RegisterEvents',
+        component: RegisterEventScreen
     },
     {
         name: 'Checklist',
         component: ChecklistScreen
+    },
+    {
+        name: 'RegisterEnvironment',
+        component: RegisterEnvironmentScreen
+    },
+    {
+        name: 'RegisterHms',
+        component: RegisterHmsScreen
+    },
+    {
+        name: 'RegMachAndEquip',
+        component: RegMachinesAndEquipScreen
+    },
+    {
+        name: 'RegisterOther',
+        component: RegisterOtherScreen
+    },
+    {
+        name: 'RegisterQuality',
+        component: RegisterQualityScreen
+    },
+    {
+        name: 'PreviousEvent',
+        component: PrevEventScreen
     }
 ]
 
