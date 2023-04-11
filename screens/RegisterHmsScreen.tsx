@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import RadioButtons from "../components/RadioButtons";
+import DatetimePicker from "../components/DatetimePicker";
 import Title from "../components/title";
 
 function RegisterHmsScreen(): JSX.Element {
@@ -12,6 +13,9 @@ function RegisterHmsScreen(): JSX.Element {
             <Text style={styles.paragraph}>HMS hendelse</Text>
             <View style={styles.textinputContainer}>
               <TextInput>Beskriv hendelse</TextInput>
+            </View>
+            <View style={styles.dateContainer}>
+              <DatetimePicker />
             </View>
             <View style={styles.paragraphContainer}>
               <Text style={styles.paragraph}>
@@ -59,6 +63,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   textinputContainer: {
+    backgroundColor: "white",
+    width: "100%",
+    height: 100,
+    padding: 15,
+  },
+
+  dateContainer: {
     backgroundColor: "white",
     width: "100%",
     height: 100,
