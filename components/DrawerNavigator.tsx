@@ -46,8 +46,9 @@ export default DrawerNavigator;
 const styles = StyleSheet.create({
   logoContainer: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+
+    // alignItems: "flex-start",
+    // justifyContent: "flex-start",
   },
   logo: {
     width: 100,
