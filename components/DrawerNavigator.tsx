@@ -1,11 +1,15 @@
 import React from "react";
 import { View, Image, StyleSheet } from "react-native";
-import { DrawerContent, createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  DrawerContent,
+  createDrawerNavigator,
+  DrawerToggleButton,
+} from "@react-navigation/drawer";
 import routes from "../src/config/routes";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = () => {
+const DrawerNavigator = (navigation: any) => {
   const excludedRoutes = ["Login", "Register", "ForgotPassword", "ImageScreen"];
 
   const filteredRoutes = routes.filter(
@@ -18,9 +22,11 @@ const DrawerNavigator = () => {
       drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={{
         headerStyle: { backgroundColor: "#003D6A", height: 120 },
-        headerTintColor: "white",
+        headerTintColor: "#003d6a",
+
         drawerContentContainerStyle: { backgroundColor: "#DCE0E6" },
         drawerPosition: "right",
+        headerRight: () => <DrawerToggleButton tintColor="white" />,
         headerTitle: () => (
           <View style={styles.logoContainer}>
             <Image
@@ -46,9 +52,8 @@ export default DrawerNavigator;
 const styles = StyleSheet.create({
   logoContainer: {
     flex: 1,
-
-    // alignItems: "flex-start",
-    // justifyContent: "flex-start",
+    alignItems: "center",
+    justifyContent: "center",
   },
   logo: {
     width: 100,

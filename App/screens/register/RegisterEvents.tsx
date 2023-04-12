@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
@@ -11,6 +11,12 @@ const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
   console.log({ navigation, route, nameProp });
   return (
     <View style={styles.inputContainer}>
+      <View style={styles.triangleContainer}>
+        <Image
+          source={require("../../../assets/TriangleDown.png")}
+          style={styles.triangle}
+        />
+      </View>
       <View style={styles.textContainer}>
         <Title>Hei Morten</Title>
         <Text style={styles.paragraph}>Registrer hendelser og avvik</Text>
@@ -57,6 +63,16 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginHorizontal: 24,
     padding: 16,
+  },
+  triangleContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  triangle: {
+    width: 100,
+    height: 100,
+    resizeMode: "contain",
   },
 
   paragraph: {
