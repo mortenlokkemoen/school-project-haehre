@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from 'react';
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
+import PrimaryButton from "../../components/PrimaryButton";
+import Title from "../../components/Title";
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = props => {
 
@@ -10,13 +12,13 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = props => {
     //console.log({navigation, route, nameProp})
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Hei "navn"</Text>
-            <Pressable style ={styles.btnStyle} onPress={() => navigation.navigate('RegisterEvents')}>
-                <Text style={styles.btnText}>Registrer hendelse</Text> 
-            </Pressable>
-            <Pressable style ={styles.btnStyle} onPress={() => navigation.navigate('Checklist')}>
-                <Text style={styles.btnText}>Sjekklister</Text> 
-            </Pressable>
+            <Title>Hei "navn"</Title>
+            <PrimaryButton  onPress={() => navigation.navigate('RegisterEvents')}>
+                <Text>Registrer hendelse</Text> 
+            </PrimaryButton>
+            <PrimaryButton  onPress={() => navigation.navigate('Checklist')}>
+                <Text>Sjekklister</Text> 
+            </PrimaryButton>
             <Text style={styles.dateStyle}>{Date()}</Text>
         </View>
     )
@@ -36,21 +38,6 @@ const styles = StyleSheet.create({
         fontSize: 26,
         color: '#003d6a',
         marginBottom: 50,
-    },
-    btnText: {
-        color: '#ffff',
-        fontWeight: '900',
-        fontSize: 16,
-        textTransform: 'uppercase',
-    },
-    btnStyle: {
-        textAlign: 'center',
-        alignItems: 'center',
-        width: '70%',
-        borderRadius: 12,
-        padding: 16,
-        backgroundColor: '#003d6a',
-        marginBottom: 30,
     },
     dateStyle: {
         color: '#003d6a',

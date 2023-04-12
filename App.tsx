@@ -6,7 +6,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DrawerNavigator from './components/DrawerNavigator';
 
 
-
 const Stack = createNativeStackNavigator()
 
 
@@ -18,4 +17,4 @@ export default function App(): JSX.Element {
       <DrawerNavigator />
     </NavigationContainer>
   );
-}
+} 

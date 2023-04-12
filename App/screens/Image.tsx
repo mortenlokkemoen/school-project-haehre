@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Image, View, Text, StyleSheet, Pressable } from 'react-native';
+import { Image, View, Text, StyleSheet, ScrollView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as ImageManipulator from 'expo-image-manipulator';
 import Geolocation from '../../components/Geolocation';
 import Map from '../../components/Map';
+import PrimaryButton from '../../components/PrimaryButton';
 
 
 
@@ -83,21 +84,23 @@ const ImageScreen: React.FunctionComponent = () => {
 
     
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
+                <View style={styles.maincontainer}>
                 <View>
                     <Image source={require('../../assets/Logo_Haehre_HiRes.png')} 
-                    style={{width: 200, height: 200, resizeMode: 'contain', alignSelf: 'center'}}/>
+                    style={{width: 150, height: 150, resizeMode: 'contain', alignSelf: 'center'}}/>
                 </View>
             <Image source={{ uri: image }} style={styles.img} />
-            <Pressable style ={styles.btnStyle} onPress={gallerySelect}>
-                <Text style={styles.btnText}>Upload from gallery</Text> 
-            </Pressable>
-            <Pressable style ={styles.btnStyle} onPress={selectCamera}>
-                <Text style={styles.btnText}>Take a picture</Text> 
-            </Pressable>
+            <PrimaryButton onPress={gallerySelect}>
+                <Text>Upload from gallery</Text> 
+            </PrimaryButton>
+            <PrimaryButton onPress={selectCamera}>
+                <Text>Take a picture</Text> 
+            </PrimaryButton>
             <Geolocation  />
             <Map />
-          </View>
+            </View>
+          </ScrollView>
         )
     }
 
@@ -106,13 +109,16 @@ export default ImageScreen;
 const styles = StyleSheet.create({
     container: {
         flex:1,
+    },
+    maincontainer: {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#ecedee',
+        height: '100%',
     },
     img: {
-        width: 300,
-        height: 250,
+        width: 200,
+        height: 150,
         borderRadius: 8,
         alignSelf: 'center',
         margin: 20,

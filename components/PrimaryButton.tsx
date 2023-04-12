@@ -40,21 +40,25 @@ export default PrimaryButton;
 
 const styles = StyleSheet.create({
   buttonOuterContainer: {
-    borderRadius: 10,
-    margin: 6,
+    borderRadius: 5,
+    margin: 10,
+    alignItems: 'center',
     overflow: "hidden",
+    width: '80%',
   },
   buttonInnerContainer: {
-    backgroundColor: "#003D6A",
-    height: 80,
-    paddingVertical: 30,
-    // paddingHorizontal: 16,
-    // elevation: 2,
+    textAlign: 'center',
+    alignItems: 'center',
+    width: '85%',
+    borderRadius: 5,
+    padding: 20,
+    backgroundColor: '#003d6a',
   },
   buttonText: {
-    color: "white",
-    fontSize: 18,
-    textAlign: "center",
+    color: '#ffff',
+      fontWeight: '900',
+      fontSize: 16,
+      textTransform: 'uppercase',
   },
   pressed: {
     backgroundColor: "#64c4ae",
