@@ -3,6 +3,7 @@ import React from "react";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import Title from "../../../components/Title";
+import { TriangleDown } from "../../../components/TriangleDown";
 
 const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
   props
@@ -11,12 +12,13 @@ const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
   console.log({ navigation, route, nameProp });
   return (
     <View style={styles.inputContainer}>
-      <View style={styles.triangleContainer}>
+      <TriangleDown />
+      {/* <View style={styles.triangleContainer}>
         <Image
           source={require("../../../assets/TriangleDown.png")}
           style={styles.triangle}
         />
-      </View>
+      </View> */}
       <View style={styles.textContainer}>
         <Title>Hei Morten</Title>
         <Text style={styles.paragraph}>Registrer hendelser og avvik</Text>

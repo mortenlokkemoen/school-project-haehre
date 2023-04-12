@@ -3,6 +3,7 @@ import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import RadioButtons from "../../../components/RadioButtons";
 import DatetimePicker from "../../../components/DatetimePicker";
 import Title from "../../../components/Title";
+import { TriangleDown } from "../../../components/TriangleDown";
 
 const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   props
@@ -12,6 +13,7 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
 
   return (
     <ScrollView style={styles.container}>
+      <TriangleDown />
       <View style={styles.maincontainer}>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
@@ -53,6 +55,9 @@ export default RegisterHmsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 8,
+    backgroundColor: "#ecedee",
+    // alignItems: "center",
   },
   maincontainer: {
     justifyContent: "center",
