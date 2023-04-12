@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from 'react';
+import React from "react";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import Title from "../../../components/Title";
 
-const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = props => {
-
-const { navigation, route, nameProp } = props;
-console.log({navigation, route, nameProp})
-return (
+const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
+  props
+) => {
+  const { navigation, route, nameProp } = props;
+  console.log({ navigation, route, nameProp });
+  return (
     <View style={styles.inputContainer}>
       <View style={styles.textContainer}>
         <Title>Hei Morten</Title>
@@ -19,15 +20,15 @@ return (
           <PrimaryButton onPress={() => navigation.navigate("RegisterHms")}>
             <Text>HMS</Text>
           </PrimaryButton>
-          <PrimaryButton onPress={() => navigation.navigate("RegisterEnvironment")}>
+          <PrimaryButton
+            onPress={() => navigation.navigate("RegisterEnvironment")}
+          >
             <Text>YTRE MILJØ</Text>
           </PrimaryButton>
           <PrimaryButton onPress={() => navigation.navigate("RegisterQuality")}>
             <Text>KVALITET</Text>
           </PrimaryButton>
-          <PrimaryButton
-            onPress={() => navigation.navigate("RegMachAndEquip")}
-          >
+          <PrimaryButton onPress={() => navigation.navigate("RegMachAndEquip")}>
             <Text>MASKINER OG UTSTYR</Text>
           </PrimaryButton>
           <PrimaryButton onPress={() => navigation.navigate("RegisterOther")}>
@@ -37,7 +38,7 @@ return (
       </View>
     </View>
   );
-}
+};
 
 export default RegisterEventScreen;
 
