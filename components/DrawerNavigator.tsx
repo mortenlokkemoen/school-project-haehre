@@ -1,11 +1,13 @@
 import React from "react";
 import { View, Image, StyleSheet } from "react-native";
-import { DrawerContent, createDrawerNavigator } from "@react-navigation/drawer";
+import { DrawerContent, createDrawerNavigator, DrawerToggleButton } from "@react-navigation/drawer";
 import routes from '../src/config/routes';
+import { Ionicons } from "@expo/vector-icons";
+
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = () => {
+const DrawerNavigator = ( navigation: any ) => {
 
     const excludedRoutes = ["Login", "Register", "ForgotPassword", "ImageScreen"];
 
@@ -17,10 +19,14 @@ const DrawerNavigator = () => {
         <Drawer.Navigator initialRouteName={'HomeScreen'}
             drawerContent={(props) => <DrawerContent {...props} />}
             screenOptions={{
-                    headerStyle: { backgroundColor: "#003D6A", height: 120, },
-                    headerTintColor: "white",
-                    drawerContentContainerStyle: { backgroundColor: "#DCE0E6" },
+                    headerStyle: { backgroundColor: "#003D6A", height: 120,},
+                    headerTintColor: "#003d6a",
+                    
+                    drawerContentContainerStyle: { backgroundColor: "#DCE0E6"},
                     drawerPosition: "right",
+                    headerRight: () => (
+                        <DrawerToggleButton tintColor="white"/>
+                    ),
                     headerTitle: () => (
                         <View style={styles.logoContainer}>
                             <Image source={require('../assets/Logo_Haehre_HiRes.png')} 
