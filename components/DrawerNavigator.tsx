@@ -50,14 +50,14 @@ const DrawerNavigator = ( navigation: any ) => {
 export default DrawerNavigator;
 
 const styles = StyleSheet.create({
-    logoContainer: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    logo: {
-      width: 100,
-      height: 100,
-      resizeMode: 'contain',
-    },
-  });
+  logoContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    resizeMode: "contain",
+  },
+});
