@@ -11,12 +11,20 @@ import RadioButtons from "../../../components/RadioButtons";
 import DatetimePicker from "../../../components/DatetimePicker";
 import Title from "../../../components/Title";
 import PrimaryButton from "../../../components/PrimaryButton";
+import { useEffect, useState } from "react";
 
 const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
+  const [noSelected, setNoSelected] = useState(false);
   const { navigation, route, nameProp } = props;
   console.log({ navigation, route, nameProp });
+  useEffect(() => {
+    setNoSelected(false);
+  }, []);
+  const showSendButton = () => {
+    setNoSelected(true);
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -46,13 +54,15 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
             <Text style={styles.radioButtonText}>Ja</Text>
             <Pressable
               style={styles.roundButton}
-              onPress={() => navigation.navigate("ImageScreen")}
+              onPress={() => showSendButton()}
             />
             <Text style={styles.radioButtonText}>Nei</Text>
           </View>
-          <PrimaryButton onPress={() => alert("report has been sent")}>
-            <Text>Send</Text>
-          </PrimaryButton>
+          {noSelected ? (
+            <PrimaryButton onPress={() => alert("report has been sent")}>
+              <Text>Send</Text>
+            </PrimaryButton>
+          ) : null}
         </View>
       </View>
     </ScrollView>
