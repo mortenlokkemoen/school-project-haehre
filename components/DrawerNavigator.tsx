@@ -6,7 +6,6 @@ import {
   DrawerToggleButton,
 } from "@react-navigation/drawer";
 import routes from "../src/config/routes";
-import { Ionicons } from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
 
@@ -31,7 +30,7 @@ const DrawerNavigator = (navigation: any) => {
         headerTitle: () => (
           <View style={styles.logoContainer}>
             <Image
-              source={require("../assets/Logo_Haehre_HiRes.png")}
+              source={require("../assets/hæhrelogo-hvit.png")}
               style={styles.logo}
             />
           </View>
