@@ -1,8 +1,16 @@
-import { View, StyleSheet, Text, TextInput, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import RadioButtons from "../../../components/RadioButtons";
 import DatetimePicker from "../../../components/DatetimePicker";
 import Title from "../../../components/Title";
+import PrimaryButton from "../../../components/PrimaryButton";
 
 const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   props
@@ -13,35 +21,26 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   return (
     <ScrollView style={styles.container}>
       <View style={styles.maincontainer}>
-        <View style={styles.buttonsContainer}>
-          <View style={styles.buttonContainer}>
-            <View style={styles.textContainer}>
-              <Title>Dato kommer her</Title>
-              <Text style={styles.paragraph}>HMS hendelse</Text>
-              <View style={styles.textinputContainer}>
-                <TextInput>Beskriv hendelse</TextInput>
-              </View>
-              <View style={styles.dateContainer}>
-                <DatetimePicker />
-              </View>
-              <View style={styles.paragraphContainer}>
-                <Text style={styles.paragraph}>
-                  Er det gjennomført strakstiltak?
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-        <View style={styles.radioButtonsContainer}>
-          <RadioButtons />
-        </View>
-      </View>
-      <View>
+        <Title>Dato kommer her</Title>
+        <Text style={styles.paragraph}>HMS hendelse</Text>
+
+        <TextInput
+          style={styles.textinputContainer}
+          placeholder="Beskrive Hendelse"
+          multiline
+          numberOfLines={4}
+        />
+
+        <DatetimePicker />
+
         <View style={styles.paragraphContainer}>
-          <Text style={styles.paragraph}>Vil du ta bilde?</Text>
-        </View>
-        <View style={styles.radioButtonsContainer}>
+          <Text style={styles.paragraph}>Er det gjennomført strakstiltak?</Text>
           <RadioButtons />
+          <Text style={styles.paragraph}>Vil du ta bilde?</Text>
+          <RadioButtons />
+          <PrimaryButton onPress={() => alert("report has been sent")}>
+            <Text>Send</Text>
+          </PrimaryButton>
         </View>
       </View>
     </ScrollView>
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   paragraphContainer: {
-    width: "140%",
+    // width: "140%",
     justifyContent: "center",
     alignItems: "center",
     borderBottomColor: "black",
@@ -89,14 +88,15 @@ const styles = StyleSheet.create({
   },
   textinputContainer: {
     backgroundColor: "white",
-    width: "100%",
+    width: "70%",
     height: 100,
-    padding: 15,
+    padding: 10,
+    marginBottom: 15,
   },
 
   dateContainer: {
     backgroundColor: "white",
-    width: "100%",
+    // width: "100%",
     height: 100,
     padding: 15,
   },
