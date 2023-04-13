@@ -4,7 +4,7 @@ import {
   Text,
   TextInput,
   ScrollView,
-  SafeAreaView,
+  Pressable,
 } from "react-native";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import RadioButtons from "../../../components/RadioButtons";
@@ -37,7 +37,19 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
           <Text style={styles.paragraph}>Er det gjennomført strakstiltak?</Text>
           <RadioButtons />
           <Text style={styles.paragraph}>Vil du ta bilde?</Text>
-          <RadioButtons />
+
+          <View style={styles.radioButtonsContainer}>
+            <Pressable
+              style={styles.roundButton}
+              onPress={() => navigation.navigate("ImageScreen")}
+            />
+            <Text style={styles.radioButtonText}>Ja</Text>
+            <Pressable
+              style={styles.roundButton}
+              onPress={() => navigation.navigate("ImageScreen")}
+            />
+            <Text style={styles.radioButtonText}>Nei</Text>
+          </View>
           <PrimaryButton onPress={() => alert("report has been sent")}>
             <Text>Send</Text>
           </PrimaryButton>
@@ -103,16 +115,19 @@ const styles = StyleSheet.create({
 
   radioButtonsContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
-    // marginTop: 10,
-    // marginBottom: 25,
+    marginBottom: 10,
   },
-
-  buttonsContainer: {
-    // flexDirection: "row",
+  roundButton: {
+    height: 30,
+    width: 30,
+    borderRadius: 15,
+    backgroundColor: "#fff",
+    borderWidth: 2,
+    borderColor: "#003d6a",
   },
-  buttonContainer: {
-    // flex: 1,
+  radioButtonText: {
+    margin: 15,
   },
 });
