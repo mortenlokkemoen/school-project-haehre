@@ -31,7 +31,7 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
     <ScrollView style={styles.container}>
       <TriangleDown />
       <View style={styles.maincontainer}>
-        <Title>Dato kommer her</Title>
+        <Text style={styles.dateStyle}>{Date()}</Text>
         <Text style={styles.paragraph}>HMS hendelse</Text>
 
         <TextInput
@@ -76,7 +76,6 @@ export default RegisterHmsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 8,
     backgroundColor: "#ecedee",
   },
   maincontainer: {
@@ -137,5 +136,8 @@ const styles = StyleSheet.create({
   },
   radioButtonText: {
     margin: 15,
+  },
+  dateStyle: {
+    fontSize: 16,
   },
 });
