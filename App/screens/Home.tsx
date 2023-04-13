@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
 import PrimaryButton from "../../components/PrimaryButton";
-// import { TriangleDown } from "../../components/TriangleDown";
+import { TriangleDown } from "../../components/TriangleDown";
 import Title from "../../components/Title";
 import colors from "../../src/constants/colors";
 
@@ -12,7 +12,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   return (
     <>
       <View style={styles.container}>
-        {/* <TriangleDown /> */}
+        <TriangleDown />
         <Title>Hei "navn"</Title>
         <PrimaryButton onPress={() => navigation.navigate("RegisterEvents")}>
           <Text>Registrer hendelse</Text>
@@ -31,8 +31,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    top: 50,
-    marginTop: 50,
     backgroundColor: "#dce0e6",
   },
   title: {
