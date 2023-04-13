@@ -5,6 +5,7 @@ import PrimaryButton from "../../components/PrimaryButton";
 import { TriangleDown } from "../../components/TriangleDown";
 import Title from "../../components/Title";
 import colors from "../../src/constants/colors";
+import Map from "../../components/Map";
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { navigation, route, nameProp } = props;
@@ -21,6 +22,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
           <Text>Sjekklister</Text>
         </PrimaryButton>
         <Text style={styles.dateStyle}>{Date()}</Text>
+        <Map />
       </View>
     </>
   );
