@@ -11,38 +11,30 @@ const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
   const { navigation, route, nameProp } = props;
   console.log({ navigation, route, nameProp });
   return (
-    <View style={styles.inputContainer}>
+    <View>
       <TriangleDown />
-      {/* <View style={styles.triangleContainer}>
-        <Image
-          source={require("../../../assets/TriangleDown.png")}
-          style={styles.triangle}
-        />
-      </View> */}
       <View style={styles.textContainer}>
         <Title>Hei Morten</Title>
         <Text style={styles.paragraph}>Registrer hendelser og avvik</Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={() => navigation.navigate("RegisterHms")}>
-            <Text>HMS</Text>
-          </PrimaryButton>
-          <PrimaryButton
-            onPress={() => navigation.navigate("RegisterEnvironment")}
-          >
-            <Text>YTRE MILJØ</Text>
-          </PrimaryButton>
-          <PrimaryButton onPress={() => navigation.navigate("RegisterQuality")}>
-            <Text>KVALITET</Text>
-          </PrimaryButton>
-          <PrimaryButton onPress={() => navigation.navigate("RegMachAndEquip")}>
-            <Text>MASKINER OG UTSTYR</Text>
-          </PrimaryButton>
-          <PrimaryButton onPress={() => navigation.navigate("RegisterOther")}>
-            <Text>ANNET</Text>
-          </PrimaryButton>
-        </View>
+        <PrimaryButton onPress={() => navigation.navigate("RegisterHms")}>
+          <Text>HMS</Text>
+        </PrimaryButton>
+        <PrimaryButton
+          onPress={() => navigation.navigate("RegisterEnvironment")}
+        >
+          <Text>YTRE MILJØ</Text>
+        </PrimaryButton>
+        <PrimaryButton onPress={() => navigation.navigate("RegisterQuality")}>
+          <Text>KVALITET</Text>
+        </PrimaryButton>
+        <PrimaryButton onPress={() => navigation.navigate("RegMachAndEquip")}>
+          <Text>MASKINER OG UTSTYR</Text>
+        </PrimaryButton>
+        <PrimaryButton onPress={() => navigation.navigate("RegisterOther")}>
+          <Text>ANNET</Text>
+        </PrimaryButton>
       </View>
     </View>
   );
@@ -51,30 +43,9 @@ const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
 export default RegisterEventScreen;
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    // justifyContent: "center",
-    // alignItems: "center",
-    // marginTop: 100,
-    // marginHorizontal: 24,
-    // padding: 16,
-  },
-
   textContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 40,
-    marginHorizontal: 24,
-    padding: 16,
-  },
-  triangleContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  triangle: {
-    width: 100,
-    height: 100,
-    resizeMode: "contain",
   },
 
   paragraph: {
@@ -82,11 +53,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 25,
   },
-
   buttonsContainer: {
-    // flexDirection: "row",
-  },
-  buttonContainer: {
-    // flex: 1,
+    width: "95%",
   },
 });
