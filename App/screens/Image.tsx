@@ -92,17 +92,6 @@ const ImageScreen: React.FunctionComponent = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.maincontainer}>
-        <View>
-          <Image
-            source={require("../../assets/Logo_Haehre_HiRes.png")}
-            style={{
-              width: 150,
-              height: 150,
-              resizeMode: "contain",
-              alignSelf: "center",
-            }}
-          />
-        </View>
         <Image source={{ uri: image }} style={styles.img} />
         <PrimaryButton onPress={gallerySelect}>
           <Text>Upload from gallery</Text>
@@ -134,6 +123,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignSelf: "center",
     margin: 20,
+    backgroundColor: "#fff",
   },
   btnStyle: {
     textAlign: "center",

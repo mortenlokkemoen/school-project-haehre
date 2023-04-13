@@ -10,7 +10,7 @@ import routes from "../src/config/routes";
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = (navigation: any) => {
-  const excludedRoutes = ["Login", "Register", "ForgotPassword"];
+  const excludedRoutes = ["Register", "ForgotPassword"];
 
   const filteredRoutes = routes.filter(
     (route) => !excludedRoutes.includes(route.name)

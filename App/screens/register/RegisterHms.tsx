@@ -78,21 +78,14 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 8,
     backgroundColor: "#ecedee",
-    // alignItems: "center",
   },
   maincontainer: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#ecedee",
-    height: "100%",
+    height: "auto",
   },
-  inputContainer: {
-    // justifyContent: "center",
-    // alignItems: "center",
-    // marginTop: 100,
-    // marginHorizontal: 24,
-    // padding: 16,
-  },
+
   textContainer: {
     justifyContent: "center",
     alignItems: "center",
