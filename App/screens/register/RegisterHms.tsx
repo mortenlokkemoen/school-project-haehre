@@ -4,7 +4,7 @@ import {
   Text,
   TextInput,
   ScrollView,
-  SafeAreaView,
+  Pressable,
 } from "react-native";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import RadioButtons from "../../../components/RadioButtons";
@@ -12,12 +12,20 @@ import DatetimePicker from "../../../components/DatetimePicker";
 import Title from "../../../components/Title";
 import { TriangleDown } from "../../../components/TriangleDown";
 import PrimaryButton from "../../../components/PrimaryButton";
+import { useEffect, useState } from "react";
 
 const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
+  const [noSelected, setNoSelected] = useState(false);
   const { navigation, route, nameProp } = props;
   console.log({ navigation, route, nameProp });
+  useEffect(() => {
+    setNoSelected(false);
+  }, []);
+  const showSendButton = () => {
+    setNoSelected(true);
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -39,10 +47,24 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
           <Text style={styles.paragraph}>Er det gjennomført strakstiltak?</Text>
           <RadioButtons />
           <Text style={styles.paragraph}>Vil du ta bilde?</Text>
-          <RadioButtons />
-          <PrimaryButton onPress={() => alert("report has been sent")}>
-            <Text>Send</Text>
-          </PrimaryButton>
+
+          <View style={styles.radioButtonsContainer}>
+            <Pressable
+              style={styles.roundButton}
+              onPress={() => navigation.navigate("ImageScreen")}
+            />
+            <Text style={styles.radioButtonText}>Ja</Text>
+            <Pressable
+              style={styles.roundButton}
+              onPress={() => showSendButton()}
+            />
+            <Text style={styles.radioButtonText}>Nei</Text>
+          </View>
+          {noSelected ? (
+            <PrimaryButton onPress={() => alert("report has been sent")}>
+              <Text>Send</Text>
+            </PrimaryButton>
+          ) : null}
         </View>
       </View>
     </ScrollView>
@@ -108,16 +130,19 @@ const styles = StyleSheet.create({
 
   radioButtonsContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
-    // marginTop: 10,
-    // marginBottom: 25,
+    marginBottom: 10,
   },
-
-  buttonsContainer: {
-    // flexDirection: "row",
+  roundButton: {
+    height: 30,
+    width: 30,
+    borderRadius: 15,
+    backgroundColor: "#fff",
+    borderWidth: 2,
+    borderColor: "#003d6a",
   },
-  buttonContainer: {
-    // flex: 1,
+  radioButtonText: {
+    margin: 15,
   },
 });
