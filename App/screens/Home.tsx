@@ -29,15 +29,8 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
         alignItems: 'center',
-        top: 50,
-        marginTop: 50,
+        paddingTop: 50,
         backgroundColor: '#ecedee',
-    },
-    title: {
-        fontWeight: "bold",
-        fontSize: 26,
-        color: '#003d6a',
-        marginBottom: 50,
     },
     dateStyle: {
         color: '#003d6a',

@@ -21,7 +21,6 @@ const DrawerNavigator = ( navigation: any ) => {
             screenOptions={{
                     headerStyle: { backgroundColor: "#003D6A", height: 120,},
                     headerTintColor: "#003d6a",
-                    
                     drawerContentContainerStyle: { backgroundColor: "#DCE0E6"},
                     drawerPosition: "right",
                     headerRight: () => (
