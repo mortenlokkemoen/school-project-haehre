@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     fontSize: 26,
-    color: "colors.primary",
+    color: "#003d6a",
     marginBottom: 50,
   },
   dateStyle: {
-    color: "colors.primary",
+    color: "#003d6a",
     fontWeight: "600",
     fontSize: 16,
   },

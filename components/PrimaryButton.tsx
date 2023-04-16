@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#003d6a",
   },
   buttonText: {
+    fontFamily:'Barlow_600SemiBold',
     color: "#ffff",
     fontWeight: "900",
     fontSize: 16,

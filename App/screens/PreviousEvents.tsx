@@ -1,17 +1,17 @@
-import { SafeAreaView, StyleSheet, Text, View, FlatList, Pressable} from "react-native";
+import { SafeAreaView, StyleSheet, Text, View, FlatList} from "react-native";
 import React, {useState, useEffect } from 'react';
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
-import { SearchBar } from "react-native-screens";
+import { SearchBar } from 'react-native-elements';
 import EventCard from "../../components/EventCard";
 
 type EventType = {
-    id: number,
-    title: string,
-    img: string,
-    date: string,
-    description: string,
-    location: string
-  }
+  id: number,
+  title: string,
+  img: string,
+  date: string,
+  description: string,
+  location: string
+}
 
 
 const PrevEventScreen: React.FunctionComponent<IStackScreenProps> = props => {
@@ -21,7 +21,7 @@ console.log({navigation, route, nameProp})
 
 
 
-const [search, setSearch] = useState('');
+const [search, setSearch] = useState<string>('');;
 const [events, setEvents] = useState<EventType[]>([
     { id: 1, title: 'Event - Bamle Miljoprosjekt', img: 'https://res.cloudinary.com/dvfczxum7/image/upload/v1680794099/testimg_fnzfqy.png', date: '05/01/2023', description: 'Stein falt av dumper', location: 'Bamle - Telemark' },
     { id: 2, title: 'Event - Svea MiljoProsjekt', img: 'https://res.cloudinary.com/dvfczxum7/image/upload/v1680794099/testimg_fnzfqy.png', date: '20/01/2023', description: 'Yre hendelse, tre veltet', location: 'Svea' },
@@ -35,16 +35,24 @@ const [events, setEvents] = useState<EventType[]>([
     return <EventCard event={item} />;
   };
 
-
+const updateSearch = (search: string) => {
+  setSearch(search)
+}
 
 return (
     <SafeAreaView style={{flex: 1}}>
         <View style={styles.container}>
-        <Text style={styles.title}>Tidligere hendelser</Text>
-      <SearchBar
-        placeholder={`Search events (${search})`}
-        onChangeText={(event) => setSearch(event.nativeEvent.text)}
-      />
+     <SearchBar
+     placeholder="Søk etter hendelser.."
+     lightTheme
+     value={search}
+     onChangeText={updateSearch}
+     platform="android"
+     containerStyle={styles.searchbarContainer}
+     inputContainerStyle={styles.inputContainer}
+     inputStyle={styles.inputStyle}
+
+     />
       <FlatList
         data={filteredEvents}
         renderItem={showPreviousEvents}
@@ -60,22 +68,25 @@ const styles = StyleSheet.create({
 container: {
     flex:1,
     alignItems: 'center',
-    top: 50,
-    marginTop: 50,
+    marginTop: 25,
     backgroundColor: '#ecedee',
-},
-title: {
-    fontWeight: "bold",
-    fontSize: 26,
-    color: '#003d6a',
-    marginBottom: 50,
 },
 itemStyle: {
     padding: 10,
   },
-  flatlistStyle: {
-    padding: 10,
-    height: 200,
+  searchbarContainer: {
+    width: "80%",
+    borderRadius: 2, 
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10, 
+  },
+  inputContainer: {
+  },
+  inputStyle:{
+    fontFamily:'Barlow_600SemiBold',
+    padding: 1,
+    borderColor: 'gray',
   }
  
 });

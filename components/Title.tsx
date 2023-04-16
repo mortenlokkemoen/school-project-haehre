@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     color: "#003d6a",
     textAlign: "center",
     padding: 12,
+    fontFamily:'Barlow_600SemiBold',
   },
 });
 

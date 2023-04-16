@@ -57,3 +57,11 @@ We need to be able to select between different dates in our project and to handl
 We install the package by typing
 
 - expo install react-native-modal-datetime-picker @react-native-community/datetimepicker
+
+# Fonts and custom styling
+
+We needed a easily solution to the styling of of our project aswell as fonts. There were a few ways to go about it, but we ended up using
+Expo google fonts paired with its app-loading component which handles logic when the font is loading into our project.
+
+- npx expo install expo-app-loading
+-
