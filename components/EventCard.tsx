@@ -1,18 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, Pressable} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import { Image } from 'expo-image';
+import { IStackScreenProps } from '../src/library/StackScreenProps';
+import { EventType } from '../src/types/EventType';
 
-type EventType = {
-    id: number,
-    title: string,
-    img: string,
-    date: string,
-    description: string,
-    location: string
 
-  }
 
 const EventCard = ({ event }: { event: EventType }) => {
+ 
   return (
     <View style={styles.card}>
       <View style={styles.imageContainer}>
@@ -26,9 +21,6 @@ const EventCard = ({ event }: { event: EventType }) => {
         <Text style={styles.description}>{event.description}</Text>
         <Text style={styles.date}>{event.date}</Text>
         <Text style={styles.description}>{event.location}</Text>
-        <Pressable>
-          <Text style={{left:80, color: "red", fontWeight:"bold", fontFamily:'Barlow_600SemiBold'}}> Under behandling</Text>
-        </Pressable>
       </View>
     </View>
   );
@@ -57,7 +49,7 @@ const styles = StyleSheet.create({
   title: {
     color: "#003d6a",
     fontSize: 18,
-    fontWeight: 800,
+    fontWeight: "800",
     marginBottom: 5,
     fontFamily: 'Barlow_600SemiBold',
   },

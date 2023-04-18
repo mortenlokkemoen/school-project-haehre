@@ -11,15 +11,14 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 
 
+
+
+// Async font to load in before app
 const Drawer = createDrawerNavigator();
 SplashScreen.preventAutoHideAsync();
 
 const DrawerNavigator = () => {
   const excludedRoutes = ["Register", "ForgotPassword"];
-
-  const filteredRoutes = routes.filter(
-    (route) => !excludedRoutes.includes(route.name)
-  );
 
   const [fontsLoaded] = useFonts({
     Barlow_600SemiBold,
@@ -30,10 +29,17 @@ const DrawerNavigator = () => {
       await SplashScreen.hideAsync();
     }
   },[fontsLoaded])
+  
+  if(!fontsLoaded) {
+    return null
+  }
 
-if(!fontsLoaded) {
-  return null
-}
+
+  const filteredRoutes = routes.filter(
+    (route) => !excludedRoutes.includes(route.name)
+  );
+  
+  
   return (
     <Drawer.Navigator
       initialRouteName={"HomeScreen"}
@@ -57,7 +63,15 @@ if(!fontsLoaded) {
     >
       {filteredRoutes.map((r, i) => (
         <Drawer.Screen key={i} name={r.name}>
-          {(props) => <r.component nameProp={r.name} {...props} />}
+          {(props) => {
+            const route = {
+              ...props.route,
+              params: {
+                event: props.route?.params || undefined,
+              },
+            };
+            return <r.component nameProp={r.name} navigation={props.navigation} route={route} />;
+          }}
         </Drawer.Screen>
       ))}
     </Drawer.Navigator>
