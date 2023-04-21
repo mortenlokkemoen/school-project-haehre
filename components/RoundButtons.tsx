@@ -9,7 +9,7 @@ type RoundButtonProps = {
   textColor?: string;
 };
 
-const RoundButtons: React.FC<RoundButtonProps> = ({
+const RoundButton: React.FC<RoundButtonProps> = ({
   onPress,
   label,
   backgroundColor = "#fff",
@@ -19,7 +19,7 @@ const RoundButtons: React.FC<RoundButtonProps> = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.buttonContainer, { backgroundColor, borderColor }]}
+      style={[styles.roundButtons, { backgroundColor, borderColor }]}
     >
       <View style={styles.labelContainer}>
         <Text style={[styles.labelText, { color: textColor }]}>{label}</Text>
@@ -28,16 +28,17 @@ const RoundButtons: React.FC<RoundButtonProps> = ({
   );
 };
 
-export default RoundButtons;
+export default RoundButton;
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    borderRadius: 20,
-    borderWidth: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    minWidth: 80,
+  roundButtons: {
+    borderWidth: 2,
+    borderColor: "#003d6a",
+    borderRadius: 50,
+    width: 30,
+    height: 30,
     alignItems: "center",
+    justifyContent: "center",
   },
   labelContainer: {
     alignItems: "center",
