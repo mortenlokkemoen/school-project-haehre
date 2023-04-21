@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -12,19 +13,34 @@ import DatetimePicker from "../../../components/DatetimePicker";
 import Title from "../../../components/Title";
 import { TriangleDown } from "../../../components/TriangleDown";
 import PrimaryButton from "../../../components/PrimaryButton";
-import { useEffect, useState } from "react";
+import RoundButtons from "../../../components/RoundButtons";
 
-const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
-  props
-) => {
-  const [noSelected, setNoSelected] = useState(false);
+type RegisterHmsScreenProps = IStackScreenProps & {
+  nameProp: string;
+};
+
+const RegisterHmsScreen: React.FC<RegisterHmsScreenProps> = (props) => {
+  const [selectedYes, setSelectedYes] = useState(false);
+  const [selectedNo, setSelectedNo] = useState(false);
+  const [showSendButton, setShowSendButton] = useState(false);
   const { navigation, route, nameProp } = props;
-  console.log({ navigation, route, nameProp });
-  useEffect(() => {
-    setNoSelected(false);
-  }, []);
-  const showSendButton = () => {
-    setNoSelected(true);
+
+  const handleYesPress = () => {
+    setSelectedYes(true);
+    setSelectedNo(false);
+    navigation.navigate("ImageScreen");
+  };
+
+  const handleNoPress = () => {
+    setSelectedYes(false);
+    setSelectedNo(true);
+    setShowSendButton(true);
+  };
+
+  const resetButtons = () => {
+    setSelectedYes(false);
+    setSelectedNo(false);
+    setShowSendButton(false);
   };
 
   return (
@@ -49,19 +65,31 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
           <Text style={styles.paragraph}>Vil du ta bilde?</Text>
 
           <View style={styles.radioButtonsContainer}>
-            <Pressable
-              style={styles.roundButton}
-              onPress={() => navigation.navigate("ImageScreen")}
+            <RoundButtons
+              onPress={handleYesPress}
+              label=""
+              backgroundColor={selectedYes ? "#003d6a" : "#ffffff"}
+              borderColor="#003d6a"
+              textColor={selectedYes ? "#ffffff" : "#003d6a"}
             />
-            <Text style={styles.radioButtonText}>Ja</Text>
-            <Pressable
-              style={styles.roundButton}
-              onPress={() => showSendButton()}
+            <Text>Ja</Text>
+            <RoundButtons
+              onPress={handleNoPress}
+              label=""
+              backgroundColor={selectedNo ? "#003d6a" : "#ffffff"}
+              borderColor="#003d6a"
+              textColor={selectedNo ? "#ffffff" : "#003d6a"}
             />
-            <Text style={styles.radioButtonText}>Nei</Text>
+            <Text>Nei</Text>
           </View>
-          {noSelected ? (
-            <PrimaryButton onPress={() => alert("report has been sent")}>
+
+          {showSendButton ? (
+            <PrimaryButton
+              onPress={() => {
+                alert("report has been sent");
+                resetButtons();
+              }}
+            >
               <Text>Send</Text>
             </PrimaryButton>
           ) : null}
@@ -99,7 +127,6 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   paragraphContainer: {
-    // width: "140%",
     justifyContent: "center",
     alignItems: "center",
     borderBottomColor: "black",
@@ -115,7 +142,6 @@ const styles = StyleSheet.create({
 
   dateContainer: {
     backgroundColor: "white",
-    // width: "100%",
     height: 100,
     padding: 15,
   },
@@ -126,17 +152,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 10,
   },
-  roundButton: {
-    height: 30,
-    width: 30,
-    borderRadius: 15,
-    backgroundColor: "#fff",
-    borderWidth: 2,
-    borderColor: "#003d6a",
-  },
-  radioButtonText: {
-    margin: 15,
-  },
+
   dateStyle: {
     fontSize: 16,
   },
