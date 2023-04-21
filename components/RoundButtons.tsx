@@ -9,7 +9,7 @@ type RoundButtonProps = {
   textColor?: string;
 };
 
-const RoundButton: React.FC<RoundButtonProps> = ({
+const RoundButtons: React.FC<RoundButtonProps> = ({
   onPress,
   label,
   backgroundColor = "#fff",
@@ -28,7 +28,7 @@ const RoundButton: React.FC<RoundButtonProps> = ({
   );
 };
 
-export default RoundButton;
+export default RoundButtons;
 
 const styles = StyleSheet.create({
   buttonContainer: {
