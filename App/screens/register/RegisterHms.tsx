@@ -79,6 +79,7 @@ const RegisterHmsScreen: React.FC<RegisterHmsScreenProps> = (props) => {
               backgroundColor={selectedNo ? "#003d6a" : "#ffffff"}
               borderColor="#003d6a"
               textColor={selectedNo ? "#ffffff" : "#003d6a"}
+              showSendButton={true}
             />
             <Text>Nei</Text>
           </View>

@@ -1,5 +1,11 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  Pressable,
+} from "react-native";
 
 type RoundButtonProps = {
   onPress: () => void;
@@ -7,28 +13,55 @@ type RoundButtonProps = {
   backgroundColor?: string;
   borderColor?: string;
   textColor?: string;
+  showSendButton?: boolean;
 };
 
-const RoundButton: React.FC<RoundButtonProps> = ({
-  onPress,
-  label,
-  backgroundColor = "#fff",
-  borderColor = "#003d6a",
-  textColor = "#003d6a",
-}) => {
+const RoundButtons: React.FC<RoundButtonProps> = ({ props }) => {
+  const [selectedYes, setSelectedYes] = useState(false);
+  const [selectedNo, setSelectedNo] = useState(false);
+  const { navigation } = props;
+  const handleNoPress = () => {
+    setSelectedYes(false);
+    setSelectedNo(true);
+    setShowSendButton(true);
+  };
+  const handleYesPress = () => {
+    setSelectedYes(true);
+    setSelectedNo(false);
+    navigation.navigate("ImageScreen");
+  };
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[styles.roundButtons, { backgroundColor, borderColor }]}
-    >
-      <View style={styles.labelContainer}>
-        <Text style={[styles.labelText, { color: textColor }]}>{label}</Text>
-      </View>
-    </TouchableOpacity>
+    <View style={styles.radioButtonsContainer}>
+      <Pressable
+        onPress={handleYesPress}
+        label=""
+        backgroundColor={selectedYes ? "#003d6a" : "#ffffff"}
+        borderColor="#003d6a"
+        textColor={selectedYes ? "#ffffff" : "#003d6a"}
+      />
+      <Text>Ja</Text>
+      <Pressable
+        onPress={handleNoPress}
+        label=""
+        backgroundColor={selectedNo ? "#003d6a" : "#ffffff"}
+        borderColor="#003d6a"
+        textColor={selectedNo ? "#ffffff" : "#003d6a"}
+        showSendButton={true}
+      />
+      <Text>Nei</Text>
+    </View>
+    // <TouchableOpacity
+    //   onPress={onPress}
+    //   style={[styles.roundButtons, { backgroundColor, borderColor }]}
+    // >
+    //   <View style={styles.labelContainer}>
+    //     <Text style={[styles.labelText, { color: textColor }]}>{label}</Text>
+    //   </View>
+    // </TouchableOpacity>
   );
 };
 
-export default RoundButton;
+export default RoundButtons;
 
 const styles = StyleSheet.create({
   roundButtons: {
@@ -39,6 +72,13 @@ const styles = StyleSheet.create({
     height: 30,
     alignItems: "center",
     justifyContent: "center",
+  },
+
+  radioButtonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 10,
   },
   labelContainer: {
     alignItems: "center",
