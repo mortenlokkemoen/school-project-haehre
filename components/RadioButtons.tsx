@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   textInput: {
+    fontFamily:'Barlow_600SemiBold',
     backgroundColor: "white",
     width: "150%",
     height: 100,
