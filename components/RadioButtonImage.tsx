@@ -17,6 +17,8 @@ export default function RadioButtonImage(props: {
   useEffect(() => {
     navigation.addListener("focus", () => {
       setNoSelected(false);
+      setIsChecked(false);
+      setIsNoChecked(false);
     });
   }, [navigation]);
 
