@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -8,6 +8,11 @@ export default function RadioButtons() {
   const [isNoChecked, setIsNoChecked] = useState(false);
   const [textInputValue, setTextInputValue] = useState("");
 
+  useEffect(() => {
+    console.log("useeffect called");
+    setIsChecked(false);
+    setIsNoChecked(false);
+  }, []);
   const handlePress = (newValue: string) => {
     setValue(newValue);
     setIsChecked(newValue === "yes");
@@ -83,7 +88,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   textInput: {
-    fontFamily:'Barlow_600SemiBold',
+    fontFamily: "Barlow_600SemiBold",
     backgroundColor: "white",
     width: "150%",
     height: 100,

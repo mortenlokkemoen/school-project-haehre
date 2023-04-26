@@ -1,31 +1,16 @@
-import {
-  View,
-  StyleSheet,
-  Text,
-  TextInput,
-  ScrollView,
-  Pressable,
-} from "react-native";
+import { View, StyleSheet, Text, TextInput, ScrollView } from "react-native";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import RadioButtons from "../../../components/RadioButtons";
 import DatetimePicker from "../../../components/DatetimePicker";
-import Title from "../../../components/Title";
+
 import { TriangleDown } from "../../../components/TriangleDown";
-import PrimaryButton from "../../../components/PrimaryButton";
-import { useEffect, useState } from "react";
+import RadioButtonImage from "../../../components/RadioButtonImage";
 
 const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
-  const [noSelected, setNoSelected] = useState(false);
   const { navigation, route, nameProp } = props;
   console.log({ navigation, route, nameProp });
-  useEffect(() => {
-    setNoSelected(false);
-  }, []);
-  const showSendButton = () => {
-    setNoSelected(true);
-  };
 
   return (
     <ScrollView style={styles.container}>
@@ -47,24 +32,11 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
           <Text style={styles.paragraph}>Er det gjennomført strakstiltak?</Text>
           <RadioButtons />
           <Text style={styles.paragraph}>Vil du ta bilde?</Text>
-
-          <View style={styles.radioButtonsContainer}>
-            <Pressable
-              style={styles.roundButton}
-              onPress={() => navigation.navigate("ImageScreen")}
-            />
-            <Text style={styles.radioButtonText}>Ja</Text>
-            <Pressable
-              style={styles.roundButton}
-              onPress={() => showSendButton()}
-            />
-            <Text style={styles.radioButtonText}>Nei</Text>
-          </View>
-          {noSelected ? (
-            <PrimaryButton onPress={() => alert("report has been sent")}>
-              <Text>Send</Text>
-            </PrimaryButton>
-          ) : null}
+          <RadioButtonImage
+            navigation={navigation}
+            route={route}
+            nameProp={nameProp}
+          />
         </View>
       </View>
     </ScrollView>
@@ -118,24 +90,6 @@ const styles = StyleSheet.create({
     // width: "100%",
     height: 100,
     padding: 15,
-  },
-
-  radioButtonsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  roundButton: {
-    height: 30,
-    width: 30,
-    borderRadius: 15,
-    backgroundColor: "#fff",
-    borderWidth: 2,
-    borderColor: "#003d6a",
-  },
-  radioButtonText: {
-    margin: 15,
   },
   dateStyle: {
     fontSize: 16,
