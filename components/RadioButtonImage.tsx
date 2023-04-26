@@ -8,29 +8,44 @@ export default function RadioButtonImage(props: {
   nameProp: any;
 }) {
   const [noSelected, setNoSelected] = useState(false);
+  const [value, setValue] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  const [isNoChecked, setIsNoChecked] = useState(false);
   const { navigation, route, nameProp } = props;
 
   //not resseting the radio buttons
   useEffect(() => {
     navigation.addListener("focus", () => {
-      console.log("useeffect called");
       setNoSelected(false);
     });
   }, [navigation]);
-  const showSendButton = () => {
-    setNoSelected(true);
+
+  const handlePress = (newValue: string) => {
+    setValue(newValue);
+    if (newValue === "yes") {
+      setIsChecked(true);
+      setIsNoChecked(false);
+      navigation.navigate("ImageScreen");
+    } else if (newValue === "no") {
+      setIsNoChecked(true);
+      setIsChecked(false);
+      setNoSelected(true);
+    }
   };
+  // const showSendButton = () => {
+  //   setNoSelected(true);
+  // };
   return (
     <View>
       <View style={styles.radioButtonsContainer}>
         <Pressable
-          style={styles.roundButton}
-          onPress={() => navigation.navigate("ImageScreen")}
+          style={[styles.roundButton, isChecked && styles.roundButtonChecked]}
+          onPress={() => handlePress("yes")}
         />
         <Text style={styles.radioButtonText}>Ja</Text>
         <Pressable
-          style={styles.roundButton}
-          onPress={() => showSendButton()}
+          style={[styles.roundButton, isNoChecked && styles.roundButtonChecked]}
+          onPress={() => handlePress("no")}
         />
         <Text style={styles.radioButtonText}>Nei</Text>
       </View>
@@ -59,6 +74,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderWidth: 2,
     borderColor: "#003d6a",
+  },
+  roundButtonChecked: {
+    backgroundColor: "#003d6a",
+    borderRadius: 50,
   },
   radioButtonText: {
     margin: 15,
