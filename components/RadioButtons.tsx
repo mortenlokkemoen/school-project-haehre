@@ -11,7 +11,6 @@ export default function RadioButtons() {
   const navigation = useNavigation();
   useEffect(() => {
     navigation.addListener("focus", () => {
-      console.log("useeffect called");
       setIsChecked(false);
       setIsNoChecked(false);
       setValue("");

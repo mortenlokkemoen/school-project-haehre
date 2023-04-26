@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Text,
@@ -11,11 +11,18 @@ import {
 } from "react-native";
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { useNavigation } from "@react-navigation/native";
 
 const DatetimePicker: React.FC = () => {
   const [isDatePickerVisible, setDatePickerVisibility] =
     useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      setSelectedDate(new Date());
+    });
+  });
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
