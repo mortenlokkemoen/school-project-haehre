@@ -5,13 +5,23 @@ import DatetimePicker from "../../../components/DatetimePicker";
 
 import { TriangleDown } from "../../../components/TriangleDown";
 import RadioButtonImage from "../../../components/RadioButtonImage";
+import { useEffect, useState } from "react";
 
 const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
   const { navigation, route, nameProp } = props;
-  console.log({ navigation, route, nameProp });
+  const [descriptionText, setDescriptionText] = useState("");
 
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      setDescriptionText("");
+    });
+  });
+
+  const handleTextInput = (text: string) => {
+    setDescriptionText(text);
+  };
   return (
     <ScrollView style={styles.container}>
       <TriangleDown />
@@ -24,6 +34,8 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
           placeholder="Beskrive Hendelse"
           multiline
           numberOfLines={4}
+          onChangeText={handleTextInput}
+          value={descriptionText}
         />
 
         <DatetimePicker />

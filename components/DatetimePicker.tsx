@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Text,
@@ -11,11 +11,18 @@ import {
 } from "react-native";
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { useNavigation } from "@react-navigation/native";
 
 const DatetimePicker: React.FC = () => {
   const [isDatePickerVisible, setDatePickerVisibility] =
     useState<boolean>(false);
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      setSelectedDate(new Date());
+    });
+  });
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -26,10 +33,14 @@ const DatetimePicker: React.FC = () => {
   };
 
   const handleConfirm = (date: Date) => {
-    console.warn("A date has been picked: ", date);
     setSelectedDate(date);
     hideDatePicker();
   };
+  const formattedDate = selectedDate?.toLocaleDateString("nb-NO", {
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+  });
   const getButtonInnerContainerStyle = ({
     pressed,
   }: PressableStateCallbackType): ViewStyle => {
@@ -45,7 +56,7 @@ const DatetimePicker: React.FC = () => {
         android_ripple={{ color: "#003D6A" }}
         onPress={showDatePicker}
       >
-        <Text style={styles.buttonText}>Hendelsesdato</Text>
+        <Text style={styles.buttonText}>{formattedDate}</Text>
       </Pressable>
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
@@ -53,9 +64,7 @@ const DatetimePicker: React.FC = () => {
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
       />
-      {selectedDate && (
-        <Text>You selected: {selectedDate.toLocaleDateString()}</Text>
-      )}
+      <Text>Hendelsesdato</Text>
     </View>
   );
 };

@@ -8,13 +8,15 @@ export default function RadioButtonImage(props: {
   nameProp: any;
 }) {
   const [noSelected, setNoSelected] = useState(false);
-    const { navigation, route, nameProp } = props;
-    
-    //not resseting the radio buttons
-//   useEffect(() => {
-//     console.log("useeffect called");
-//     setNoSelected(false);
-//   }, [setNoSelected]);
+  const { navigation, route, nameProp } = props;
+
+  //not resseting the radio buttons
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      console.log("useeffect called");
+      setNoSelected(false);
+    });
+  }, [navigation]);
   const showSendButton = () => {
     setNoSelected(true);
   };
