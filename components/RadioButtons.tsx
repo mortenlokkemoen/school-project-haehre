@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 export default function RadioButtons() {
   const [value, setValue] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [isNoChecked, setIsNoChecked] = useState(false);
   const [textInputValue, setTextInputValue] = useState("");
-
+  const navigation = useNavigation();
   useEffect(() => {
-    console.log("useeffect called");
-    setIsChecked(false);
-    setIsNoChecked(false);
-  }, []);
+    navigation.addListener("focus", () => {
+      console.log("useeffect called");
+      setIsChecked(false);
+      setIsNoChecked(false);
+      setValue("");
+      setTextInputValue("");
+    });
+  }, [navigation]);
   const handlePress = (newValue: string) => {
     setValue(newValue);
     setIsChecked(newValue === "yes");
