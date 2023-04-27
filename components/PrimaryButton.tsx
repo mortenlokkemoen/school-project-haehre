@@ -6,15 +6,21 @@ import {
   StyleSheet,
   PressableStateCallbackType,
   ViewStyle,
+  StyleProp,
 } from "react-native";
 // import { useNavigation } from "@react-navigation/native";
 
 interface PrimaryButtonProps {
   children: React.ReactNode;
   onPress: () => void;
+  style?: StyleProp<ViewStyle>;
 }
 
-function PrimaryButton({ children, onPress }: PrimaryButtonProps): JSX.Element {
+function PrimaryButton({
+  children,
+  onPress,
+  style,
+}: PrimaryButtonProps): JSX.Element {
   const getButtonInnerContainerStyle = ({
     pressed,
   }: PressableStateCallbackType): ViewStyle => {
@@ -55,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#003d6a",
   },
   buttonText: {
-    fontFamily:'Barlow_600SemiBold',
+    fontFamily: "Barlow_600SemiBold",
     color: "#ffff",
     fontWeight: "900",
     fontSize: 16,
