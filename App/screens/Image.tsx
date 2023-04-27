@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, View, Text, StyleSheet, ScrollView } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
 import Geolocation from "../../components/Geolocation";
 import Map from "../../components/Map";
 import PrimaryButton from "../../components/PrimaryButton";
+import { useNavigation } from "@react-navigation/native";
 
 const ImageScreen: React.FunctionComponent = () => {
   const [image, setImage] = useState("");
+  const [imageSelected, setImageSelected] = useState(false);
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      setImageSelected(false);
+    });
+  });
+
+  useEffect(() => {
+    if (image !== "") {
+      setImageSelected(true);
+    }
+  }, [image]);
 
   const handleUpload = async (image: any) => {
     const formData = new FormData();
@@ -49,7 +63,7 @@ const ImageScreen: React.FunctionComponent = () => {
       );
       setImage(result.assets[0].uri);
       const newFile = {
-        uri,
+        uri: "",
         type: "image/jpeg",
         name: "image.jpg",
       };
@@ -99,6 +113,11 @@ const ImageScreen: React.FunctionComponent = () => {
         <PrimaryButton onPress={selectCamera}>
           <Text>Take a picture</Text>
         </PrimaryButton>
+        {imageSelected ? (
+          <PrimaryButton onPress={() => alert("report has been sent")}>
+            <Text>Send</Text>
+          </PrimaryButton>
+        ) : null}
         <Geolocation />
         <Map />
       </View>
