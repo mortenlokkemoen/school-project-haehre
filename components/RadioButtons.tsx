@@ -61,19 +61,13 @@ export default function RadioButtons() {
           placeholder="Skriv inn strakstiltak"
         />
       )}
-      {/* <View
-        style={{
-          borderBottomColor: "black",
-          borderBottomWidth: StyleSheet.hairlineWidth,
-        }}
-      /> */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
+    // marginVertical: 10,
   },
   radioButtonsContainer: {
     flexDirection: "row",
@@ -102,6 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     // width: "150%",
     height: 100,
-    padding: 15,
+    padding: 10,
+    textAlignVertical: "top",
   },
 });

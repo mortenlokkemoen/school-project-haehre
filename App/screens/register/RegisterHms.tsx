@@ -96,8 +96,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     width: "70%",
     height: 100,
-    padding: 10,
     marginBottom: 15,
+    padding: 10,
+    textAlignVertical: "top",
   },
 
   dateContainer: {
