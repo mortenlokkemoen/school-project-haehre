@@ -3,65 +3,85 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   TextInput,
-  SafeAreaView,
   Image,
 } from "react-native";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
+import { TriangleUp } from "../../../components/TriangleUp";
 
 const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { navigation, route, nameProp } = props;
   console.log({ navigation, route, nameProp });
 
   return (
-    <SafeAreaView style={styles.main}>
-      <View style={styles.container}>
-        <View style={styles.wFull}>
-          <Image
-            source={require("../../../assets/Logo_Haehre_HiRes.png")}
-            style={{
-              width: 200,
-              height: 200,
-              resizeMode: "contain",
-              alignSelf: "center",
-            }}
-          />
+    <>
+      <ScrollView style={styles.scrollContainer}>
+        <View style={styles.container}>
+          <View style={styles.wFull}>
+            <Image
+              source={require("../../../assets/Logo_Haehre_HiRes.png")}
+              style={{
+                width: 250,
+                height: 250,
+                resizeMode: "contain",
+                alignSelf: "center",
+              }}
+            />
 
-          <TextInput style={styles.input} placeholder="E-post" />
-          <TextInput style={styles.input} placeholder="Passord" />
-          <Text>LA MEG VÆRE INNLOGGET</Text>
-
-          <PrimaryButton onPress={() => navigation.navigate("HomeScreen")}>
-            <Text>LOGG INN</Text>
-          </PrimaryButton>
+            <TextInput style={styles.input} placeholder="E-post" />
+            <TextInput style={styles.input} placeholder="Passord" />
+            <Text>LA MEG VÆRE INNLOGGET</Text>
+            {/* <View style={styles.primaryButtonContainer}> */}
+            <PrimaryButton
+              style={{ marginTop: 60 }}
+              onPress={() => navigation.navigate("HomeScreen")}
+            >
+              <Text>LOGG INN</Text>
+            </PrimaryButton>
+            {/* </View> */}
+          </View>
         </View>
+      </ScrollView>
+      <View style={styles.triangleContainer}>
+        <TriangleUp />
       </View>
-    </SafeAreaView>
+    </>
   );
 };
 
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  main: {
+  scrollContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 16,
+    backgroundColor: "#DCE0E6",
   },
+
   container: {
     padding: 15,
     width: "100%",
-    position: "relative",
-    flex: 1,
+    // position: "relative",
+    // flex: 1,
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ecedee",
+    // justifyContent: "center",
+    // gap: 40,
+    // backgroundColor: "#DCE0E6",
+  },
+  triangleContainer: {
+    backgroundColor: "#DCE0E6",
+    marginBottom: 0,
+  },
+  primaryButtonContainer: {
+    marginTop: 30,
   },
   input: {
     borderWidth: 1,
     borderColor: "#003d6a",
+    backgroundColor: "white",
+    width: "80%",
+
     padding: 15,
     marginVertical: 10,
     borderRadius: 5,
@@ -71,6 +91,9 @@ const styles = StyleSheet.create({
 
   wFull: {
     width: "100%",
+    textAlign: "center",
+    alignItems: "center",
+    marginTop: 60,
   },
 
   loginTxt: {
