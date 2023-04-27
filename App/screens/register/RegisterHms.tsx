@@ -28,7 +28,6 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
       <TriangleDown />
       <View style={styles.maincontainer}>
         <Title>HMS hendelse</Title>
-
         <TextInput
           style={styles.textinputContainer}
           placeholder="Beskrive Hendelse"
@@ -37,7 +36,6 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
           onChangeText={handleTextInput}
           value={descriptionText}
         />
-
         <DatetimePicker />
         <View
           style={{
@@ -71,26 +69,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#ecedee",
     height: "auto",
   },
-
-  textContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 40,
-    marginHorizontal: 24,
-    padding: 16,
-  },
-
   paragraph: {
     fontSize: 18,
     marginTop: 15,
     marginBottom: 25,
-  },
-  paragraphContainer: {
-    // width: "140%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderBottomColor: "black",
-    borderBottomWidth: 1,
   },
   textinputContainer: {
     backgroundColor: "white",
@@ -99,15 +81,5 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     padding: 10,
     textAlignVertical: "top",
-  },
-
-  dateContainer: {
-    backgroundColor: "white",
-    // width: "100%",
-    height: 100,
-    padding: 15,
-  },
-  dateStyle: {
-    fontSize: 16,
   },
 });
