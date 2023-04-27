@@ -15,7 +15,7 @@ const Drawer = createDrawerNavigator();
 SplashScreen.preventAutoHideAsync();
 
 const DrawerNavigator = () => {
-  const excludedRoutes = ["Register", "ForgotPassword"];
+  const excludedRoutes = [""];
 
   const [fontsLoaded] = useFonts({
     Barlow_600SemiBold,
