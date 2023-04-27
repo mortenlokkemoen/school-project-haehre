@@ -45,9 +45,9 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
             borderBottomWidth: StyleSheet.hairlineWidth,
           }}
         />
-        <Title>Gjennomført strakstiltak?</Title>
+        <Text style={styles.paragraph}>Er det gjennomført strakstiltak?</Text>
         <RadioButtons />
-        <Title>Vil du ta bilde?</Title>
+        <Text style={styles.paragraph}>Vil du ta bilde?</Text>
         <RadioButtonImage
           navigation={navigation}
           route={route}
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   textinputContainer: {
     backgroundColor: "white",
-    width: "70%",
+    width: "80%",
     height: 100,
     marginBottom: 15,
     padding: 10,

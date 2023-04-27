@@ -28,7 +28,7 @@ export default function RadioButtons() {
   };
 
   return (
-    <View style={styles.container}>
+    <>
       <View style={styles.radioButtonsContainer}>
         <TouchableOpacity
           style={[
@@ -61,14 +61,11 @@ export default function RadioButtons() {
           placeholder="Skriv inn strakstiltak"
         />
       )}
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    // marginVertical: 10,
-  },
   radioButtonsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -94,7 +91,7 @@ const styles = StyleSheet.create({
   textInput: {
     fontFamily: "Barlow_600SemiBold",
     backgroundColor: "white",
-    // width: "150%",
+    width: "80%",
     height: 100,
     padding: 10,
     textAlignVertical: "top",
