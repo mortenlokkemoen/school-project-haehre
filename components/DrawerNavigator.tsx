@@ -6,12 +6,9 @@ import {
   DrawerToggleButton,
 } from "@react-navigation/drawer";
 import routes from "../src/config/routes";
-import { useFonts, Barlow_600SemiBold } from '@expo-google-fonts/barlow';
-import * as SplashScreen from 'expo-splash-screen';
-import { useCallback } from 'react';
-
-
-
+import { useFonts, Barlow_600SemiBold } from "@expo-google-fonts/barlow";
+import * as SplashScreen from "expo-splash-screen";
+import { useCallback } from "react";
 
 // Async font to load in before app
 const Drawer = createDrawerNavigator();
@@ -23,28 +20,27 @@ const DrawerNavigator = () => {
   const [fontsLoaded] = useFonts({
     Barlow_600SemiBold,
   });
-  
+
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreen.hideAsync();
     }
-  },[fontsLoaded])
-  
-  if(!fontsLoaded) {
-    return null
-  }
+  }, [fontsLoaded]);
 
+  if (!fontsLoaded) {
+    return null;
+  }
 
   const filteredRoutes = routes.filter(
     (route) => !excludedRoutes.includes(route.name)
   );
-  
-  
+
   return (
     <Drawer.Navigator
       initialRouteName={"HomeScreen"}
       drawerContent={(props) => <DrawerContent {...props} />}
-      screenOptions={{
+      screenOptions={({ route }) => ({
+        headerShown: route.name !== "Login",
         headerStyle: { backgroundColor: "#003D6A", height: 120 },
         headerTintColor: "#003d6a",
         drawerContentContainerStyle: { backgroundColor: "#DCE0E6" },
@@ -58,7 +54,7 @@ const DrawerNavigator = () => {
             />
           </View>
         ),
-      }}
+      })}
       backBehavior="history"
     >
       {filteredRoutes.map((r, i) => (
@@ -70,7 +66,13 @@ const DrawerNavigator = () => {
                 event: props.route?.params || undefined,
               },
             };
-            return <r.component nameProp={r.name} navigation={props.navigation} route={route} />;
+            return (
+              <r.component
+                nameProp={r.name}
+                navigation={props.navigation}
+                route={route}
+              />
+            );
           }}
         </Drawer.Screen>
       ))}
