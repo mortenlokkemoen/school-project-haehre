@@ -9,22 +9,18 @@ import Map from "../../components/Map";
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { navigation, route, nameProp } = props;
-  //console.log({navigation, route, nameProp})
   return (
-    <>
-      <View style={styles.container}>
-        <TriangleDown />
-        <Title>Hei "navn"</Title>
-        <PrimaryButton onPress={() => navigation.navigate("RegisterEvents")}>
-          <Text>Registrer hendelse</Text>
-        </PrimaryButton>
-        <PrimaryButton onPress={() => navigation.navigate("Checklist")}>
-          <Text>Sjekklister</Text>
-        </PrimaryButton>
-        <Text style={styles.dateStyle}>{Date()}</Text>
-        <Map />
-      </View>
-    </>
+    <View style={styles.container}>
+      <TriangleDown />
+      <Title>Hei "navn"</Title>
+      <PrimaryButton onPress={() => navigation.navigate("RegisterEvents")}>
+        <Text>Registrer hendelse</Text>
+      </PrimaryButton>
+      <PrimaryButton onPress={() => navigation.navigate("Checklist")}>
+        <Text>Sjekklister</Text>
+      </PrimaryButton>
+      <Map />
+    </View>
   );
 };
 

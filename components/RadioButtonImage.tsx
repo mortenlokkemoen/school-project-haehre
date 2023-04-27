@@ -38,7 +38,7 @@ export default function RadioButtonImage(props: {
   //   setNoSelected(true);
   // };
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.radioButtonsContainer}>
         <Pressable
           style={[styles.roundButton, isChecked && styles.roundButtonChecked]}
@@ -51,18 +51,20 @@ export default function RadioButtonImage(props: {
         />
         <Text style={styles.radioButtonText}>Nei</Text>
       </View>
-      <View style={styles.buttonOuterContainer}>
-        {noSelected ? (
-          <PrimaryButton onPress={() => alert("report has been sent")}>
-            <Text>Send</Text>
-          </PrimaryButton>
-        ) : null}
-      </View>
+      {noSelected ? (
+        <PrimaryButton onPress={() => alert("report has been sent")}>
+          <Text>Send</Text>
+        </PrimaryButton>
+      ) : null}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    alignItems: "center",
+  },
   radioButtonsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -86,9 +88,9 @@ const styles = StyleSheet.create({
   },
   buttonOuterContainer: {
     borderRadius: 5,
-    margin: 10,
-    alignItems: "center",
-    overflow: "hidden",
+    // margin: 10,
+    // alignItems: "center",
+    // overflow: "hidden",
     width: "100%",
   },
 });
