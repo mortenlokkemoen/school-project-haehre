@@ -61,6 +61,12 @@ export default function RadioButtons() {
           placeholder="Skriv inn strakstiltak"
         />
       )}
+      {/* <View
+        style={{
+          borderBottomColor: "black",
+          borderBottomWidth: StyleSheet.hairlineWidth,
+        }}
+      /> */}
     </View>
   );
 }
@@ -94,7 +100,7 @@ const styles = StyleSheet.create({
   textInput: {
     fontFamily: "Barlow_600SemiBold",
     backgroundColor: "white",
-    width: "150%",
+    // width: "150%",
     height: 100,
     padding: 15,
   },

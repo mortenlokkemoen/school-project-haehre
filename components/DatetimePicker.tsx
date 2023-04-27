@@ -65,6 +65,12 @@ const DatetimePicker: React.FC = () => {
         onCancel={hideDatePicker}
       />
       <Text>Hendelsesdato</Text>
+      <View
+        style={{
+          borderBottomColor: "black",
+          borderBottomWidth: StyleSheet.hairlineWidth,
+        }}
+      />
     </View>
   );
 };

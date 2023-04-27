@@ -6,6 +6,7 @@ import DatetimePicker from "../../../components/DatetimePicker";
 import { TriangleDown } from "../../../components/TriangleDown";
 import RadioButtonImage from "../../../components/RadioButtonImage";
 import { useEffect, useState } from "react";
+import Title from "../../../components/Title";
 
 const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   props
@@ -26,8 +27,7 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
     <ScrollView style={styles.container}>
       <TriangleDown />
       <View style={styles.maincontainer}>
-        <Text style={styles.dateStyle}>{Date()}</Text>
-        <Text style={styles.paragraph}>HMS hendelse</Text>
+        <Title>HMS hendelse</Title>
 
         <TextInput
           style={styles.textinputContainer}
@@ -39,17 +39,20 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
         />
 
         <DatetimePicker />
-
-        <View style={styles.paragraphContainer}>
-          <Text style={styles.paragraph}>Er det gjennomført strakstiltak?</Text>
-          <RadioButtons />
-          <Text style={styles.paragraph}>Vil du ta bilde?</Text>
-          <RadioButtonImage
-            navigation={navigation}
-            route={route}
-            nameProp={nameProp}
-          />
-        </View>
+        <View
+          style={{
+            borderBottomColor: "black",
+            borderBottomWidth: StyleSheet.hairlineWidth,
+          }}
+        />
+        <Title>Gjennomført strakstiltak?</Title>
+        <RadioButtons />
+        <Title>Vil du ta bilde?</Title>
+        <RadioButtonImage
+          navigation={navigation}
+          route={route}
+          nameProp={nameProp}
+        />
       </View>
     </ScrollView>
   );
