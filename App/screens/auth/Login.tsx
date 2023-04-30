@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,6 +7,7 @@ import {
   TextInput,
   Image,
 } from "react-native";
+import Checkbox from "expo-checkbox";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { TriangleUp } from "../../../components/TriangleUp";
@@ -14,6 +15,7 @@ import { TriangleUp } from "../../../components/TriangleUp";
 const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { navigation, route, nameProp } = props;
   console.log({ navigation, route, nameProp });
+  const [isChecked, setIsChecked] = useState(false);
 
   return (
     <>
@@ -32,15 +34,17 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
 
             <TextInput style={styles.input} placeholder="E-post" />
             <TextInput style={styles.input} placeholder="Passord" />
-            <Text>LA MEG VÆRE INNLOGGET</Text>
-            {/* <View style={styles.primaryButtonContainer}> */}
+            <View style={styles.checkboxContainer}>
+              <Checkbox value={isChecked} onValueChange={setIsChecked} />
+              <Text>LA MEG VÆRE INNLOGGET</Text>
+            </View>
+
             <PrimaryButton
               style={{ marginTop: 60 }}
               onPress={() => navigation.navigate("HomeScreen")}
             >
               <Text>LOGG INN</Text>
             </PrimaryButton>
-            {/* </View> */}
           </View>
         </View>
       </ScrollView>
@@ -73,9 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#DCE0E6",
     marginBottom: 0,
   },
-  primaryButtonContainer: {
-    marginTop: 30,
-  },
+
   input: {
     borderWidth: 1,
     borderColor: "#003d6a",
@@ -100,5 +102,10 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "500",
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 20,
   },
 });

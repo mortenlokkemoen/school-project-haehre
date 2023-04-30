@@ -11,6 +11,7 @@
   "dependencies": {
     "@expo-google-fonts/barlow": "^0.2.3",
     "@expo/ngrok": "^4.1.0",
+    "@react-native-community/checkbox": "^0.5.15",
     "@react-native-community/datetimepicker": "6.7.3",
     "@react-navigation/drawer": "^6.6.2",
     "@react-navigation/native": "^6.1.6",
@@ -39,7 +40,8 @@
     "react-native-web": "~0.18.10",
     "react-redux": "^8.0.5",
     "reanimated": "^0.0.1-alpha",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "expo-checkbox": "~2.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
