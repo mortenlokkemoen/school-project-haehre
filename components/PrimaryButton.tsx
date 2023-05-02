@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: "Barlow_600SemiBold",
-    color: "#ffff",
-    fontWeight: "900",
-    fontSize: 16,
+    color: "white",
+    // fontWeight: "900",
+    fontSize: 18,
     textTransform: "uppercase",
   },
   pressed: {
