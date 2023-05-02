@@ -6,31 +6,12 @@ import {
   DrawerToggleButton,
 } from "@react-navigation/drawer";
 import routes from "../src/config/routes";
-import { useFonts, Barlow_600SemiBold } from "@expo-google-fonts/barlow";
-import * as SplashScreen from "expo-splash-screen";
-import { useCallback } from "react";
 import BackButton from "../components/BackButton";
 
-// Async font to load in before app
 const Drawer = createDrawerNavigator();
-SplashScreen.preventAutoHideAsync();
 
 const DrawerNavigator = () => {
   const excludedRoutes = [""];
-
-  const [fontsLoaded] = useFonts({
-    Barlow_600SemiBold,
-  });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
 
   const filteredRoutes = routes.filter(
     (route) => !excludedRoutes.includes(route.name)
@@ -49,7 +30,7 @@ const DrawerNavigator = () => {
         headerLeft: () => <BackButton />,
         headerRight: () => <DrawerToggleButton tintColor="white" />,
         headerTitle: () => (
-          <View style={styles.logoContainer} onLayout={onLayoutRootView}>
+          <View style={styles.logoContainer}>
             <Image
               source={require("../assets/hæhrelogo-hvit.png")}
               style={styles.logo}
