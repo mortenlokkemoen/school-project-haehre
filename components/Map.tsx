@@ -37,16 +37,6 @@ export default function showMap() {
   };
   console.log("workSiteLocations", workSiteLocation);
   const showWorkSiteLocation = () => {
-    // return workSiteLocation.map((item, index) => {
-    //   return (
-    //     <Marker
-    //       key={index}
-    //       coordinate={item.location}
-    //       title={item.title}
-    //       description={item.description}
-    //     />
-    //   );
-    // });
     const markers = workSiteLocation.map((item, index) => {
       return (
         <Marker
