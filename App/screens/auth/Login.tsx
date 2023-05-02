@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
+  Dimensions,
   ScrollView,
   TextInput,
   Image,
@@ -16,11 +17,13 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { navigation, route, nameProp } = props;
   console.log({ navigation, route, nameProp });
   const [isChecked, setIsChecked] = useState(false);
+  const screenHeight = Dimensions.get("window").height;
+  const marginHeight = screenHeight * 0.12;
 
   return (
     <>
-      <ScrollView style={styles.scrollContainer}>
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <ScrollView style={styles.scrollContainer}>
           <View style={styles.wFull}>
             <Image
               source={require("../../../assets/Logo_Haehre_HiRes.png")}
@@ -51,10 +54,10 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
               <Text>LOGG INN</Text>
             </PrimaryButton>
           </View>
-        </View>
-      </ScrollView>
-      <View style={styles.triangleContainer}>
-        <TriangleUp />
+          <View style={[styles.triangleContainer, { marginTop: marginHeight }]}>
+            <TriangleUp />
+          </View>
+        </ScrollView>
       </View>
     </>
   );
@@ -65,17 +68,18 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
+    width: "100%",
     backgroundColor: "#DCE0E6",
   },
-
   container: {
-    padding: 15,
-    width: "100%",
-    alignItems: "center",
+    flex: 1,
   },
+
   triangleContainer: {
     backgroundColor: "#DCE0E6",
     marginBottom: 0,
+    marginTop: 0,
+    width: "100%",
   },
 
   input: {
