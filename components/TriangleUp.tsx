@@ -1,10 +1,10 @@
 import { StyleSheet, View, Image } from "react-native";
 
-export const TriangleDown = () => {
+export const TriangleUp = () => {
   return (
     <View style={styles.triangleContainer}>
       <Image
-        source={require("../assets/TriangleDown.png")}
+        source={require("../assets/TriangleUp.png")}
         style={styles.triangle}
       />
     </View>
@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
   triangleContainer: {
     alignItems: "center",
     justifyContent: "center",
-    marginTop: -20,
   },
   triangle: {
     width: 100,
