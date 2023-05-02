@@ -35,7 +35,12 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
             <TextInput style={styles.input} placeholder="E-post" />
             <TextInput style={styles.input} placeholder="Passord" />
             <View style={styles.checkboxContainer}>
-              <Checkbox value={isChecked} onValueChange={setIsChecked} />
+              <Checkbox
+                style={styles.checkbox}
+                value={isChecked}
+                onValueChange={setIsChecked}
+                color="#003d6a"
+              />
               <Text>LA MEG VÆRE INNLOGGET</Text>
             </View>
 
@@ -66,12 +71,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 15,
     width: "100%",
-    // position: "relative",
-    // flex: 1,
     alignItems: "center",
-    // justifyContent: "center",
-    // gap: 40,
-    // backgroundColor: "#DCE0E6",
   },
   triangleContainer: {
     backgroundColor: "#DCE0E6",
@@ -106,6 +106,12 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 20,
+    margin: 25,
+  },
+  checkbox: {
+    marginRight: 20,
+    backgroundColor: "white",
+    width: 25,
+    height: 25,
   },
 });
