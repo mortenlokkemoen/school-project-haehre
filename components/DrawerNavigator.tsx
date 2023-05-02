@@ -9,6 +9,7 @@ import routes from "../src/config/routes";
 import { useFonts, Barlow_600SemiBold } from "@expo-google-fonts/barlow";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
+import BackButton from "../components/BackButton";
 
 // Async font to load in before app
 const Drawer = createDrawerNavigator();
@@ -45,6 +46,7 @@ const DrawerNavigator = () => {
         headerTintColor: "#003d6a",
         drawerContentContainerStyle: { backgroundColor: "#DCE0E6" },
         drawerPosition: "right",
+        headerLeft: () => <BackButton />,
         headerRight: () => <DrawerToggleButton tintColor="white" />,
         headerTitle: () => (
           <View style={styles.logoContainer} onLayout={onLayoutRootView}>
