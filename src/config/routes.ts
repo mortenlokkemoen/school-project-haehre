@@ -16,63 +16,55 @@ import PrevEventScreen from "../../App/screens/PreviousEvents";
 import EventDetailsScreen from "../../App/screens/EventDetails";
 
 const routes: IRouteProps[] = [
-    {
-        name: 'HomeScreen',
-        component: HomeScreen
-    },
-    {
-        name:'Login',
-        component: LoginScreen
-    },
-    {
-        name: 'ForgotPassword',
-        component: ForgotPasswordScreen
-    },
-    {
-        name: 'Register',
-        component: RegisterScreen
-    },
-    
-    {
-        name: 'ImageScreen',
-        component: ImageScreen
-    },
-    {
-        name: 'RegisterEvents',
-        component: RegisterEventScreen
-    },
-    {
-        name: 'Checklist',
-        component: ChecklistScreen
-    },
-    {
-        name: 'RegisterEnvironment',
-        component: RegisterEnvironmentScreen
-    },
-    {
-        name: 'RegisterHms',
-        component: RegisterHmsScreen
-    },
-    {
-        name: 'RegMachAndEquip',
-        component: RegMachinesAndEquipScreen
-    },
-    {
-        name: 'RegisterOther',
-        component: RegisterOtherScreen
-    },
-    {
-        name: 'RegisterQuality',
-        component: RegisterQualityScreen
-    },
-    {
-        name: 'PreviousEvent',
-        component: PrevEventScreen
-    },
-    {
-        name: 'EventDetails',
-        component: EventDetailsScreen
-    }
-]
+  {
+    name: "Login",
+    component: LoginScreen,
+  },
+  {
+    name: "HomeScreen",
+    component: HomeScreen,
+  },
+
+  {
+    name: "ImageScreen",
+    component: ImageScreen,
+  },
+  {
+    name: "RegisterEvents",
+    component: RegisterEventScreen,
+  },
+  {
+    name: "Checklist",
+    component: ChecklistScreen,
+  },
+  {
+    name: "RegisterEnvironment",
+    component: RegisterEnvironmentScreen,
+  },
+  {
+    name: "RegisterHms",
+    component: RegisterHmsScreen,
+  },
+  {
+    name: "RegMachAndEquip",
+    component: RegMachinesAndEquipScreen,
+  },
+  {
+    name: "RegisterOther",
+    component: RegisterOtherScreen,
+  },
+  {
+    name: "RegisterQuality",
+    component: RegisterQualityScreen,
+  },
+  {
+    name: "PreviousEvent",
+    component: PrevEventScreen,
+  },
+  {
+    name: "EventDetails",
+    component: EventDetailsScreen,
+  },
+];
 
 export default routes;
