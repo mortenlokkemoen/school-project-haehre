@@ -35,18 +35,31 @@ export default function showMap() {
   const onRegionChange = (region: any) => {
     console.log(region);
   };
-
+  console.log("workSiteLocations", workSiteLocation);
   const showWorkSiteLocation = () => {
-    return workSiteLocation.map((item, index) => {
+    // return workSiteLocation.map((item, index) => {
+    //   return (
+    //     <Marker
+    //       key={index}
+    //       coordinate={item.location}
+    //       title={item.title}
+    //       description={item.description}
+    //     />
+    //   );
+    // });
+    const markers = workSiteLocation.map((item, index) => {
       return (
         <Marker
           key={index}
           coordinate={item.location}
           title={item.title}
           description={item.description}
+          pinColor={"blue"}
+          style={{ transform: [{ rotate: "0deg" }] }}
         />
       );
     });
+    return markers;
   };
 
   return (
