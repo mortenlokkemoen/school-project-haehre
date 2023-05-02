@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { View, Image, StyleSheet } from "react-native";
 import {
   DrawerContent,
@@ -8,9 +8,8 @@ import {
 import routes from "../src/config/routes";
 import { useFonts, Barlow_600SemiBold } from "@expo-google-fonts/barlow";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback } from "react";
+import { HeaderBackButton } from "@react-navigation/native-stack";
 
-// Async font to load in before app
 const Drawer = createDrawerNavigator();
 SplashScreen.preventAutoHideAsync();
 
@@ -39,7 +38,7 @@ const DrawerNavigator = () => {
     <Drawer.Navigator
       initialRouteName={"HomeScreen"}
       drawerContent={(props) => <DrawerContent {...props} />}
-      screenOptions={({ route }) => ({
+      screenOptions={({ route, navigation }) => ({
         headerShown: route.name !== "Login",
         headerStyle: { backgroundColor: "#003D6A", height: 120 },
         headerTintColor: "#003d6a",
@@ -53,6 +52,9 @@ const DrawerNavigator = () => {
               style={styles.logo}
             />
           </View>
+        ),
+        headerLeft: (props) => (
+          <HeaderBackButton {...props} onPress={() => navigation.goBack()} />
         ),
       })}
       backBehavior="history"
