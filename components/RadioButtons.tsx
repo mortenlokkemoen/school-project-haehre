@@ -52,7 +52,6 @@ export default function RadioButtons() {
         </TouchableOpacity>
         <Text style={styles.radioButtonText}>Nei</Text>
       </View>
-
       {value === "yes" && (
         <TextInput
           style={styles.textInput}
@@ -61,6 +60,7 @@ export default function RadioButtons() {
           placeholder="Skriv inn strakstiltak"
         />
       )}
+      <View style={styles.horizontalLine} />
     </>
   );
 }
@@ -95,5 +95,11 @@ const styles = StyleSheet.create({
     height: 100,
     padding: 10,
     textAlignVertical: "top",
+  },
+  horizontalLine: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#003d6a",
+    width: "100%",
+    marginVertical: 10,
   },
 });

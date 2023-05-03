@@ -64,7 +64,7 @@ const DatetimePicker: React.FC = () => {
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
       />
-      <Text>Hendelsesdato</Text>
+      <Text style={{ textAlign: "center" }}>Hendelsesdato</Text>
       <View
         style={{
           borderBottomColor: "black",

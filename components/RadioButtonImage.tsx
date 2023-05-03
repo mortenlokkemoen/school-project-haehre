@@ -56,6 +56,7 @@ export default function RadioButtonImage(props: {
           <Text>Send</Text>
         </PrimaryButton>
       ) : null}
+      <View style={styles.horizontalLine} />
     </View>
   );
 }
@@ -88,9 +89,12 @@ const styles = StyleSheet.create({
   },
   buttonOuterContainer: {
     borderRadius: 5,
-    // margin: 10,
-    // alignItems: "center",
-    // overflow: "hidden",
     width: "100%",
+  },
+  horizontalLine: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#003d6a",
+    width: "100%",
+    marginVertical: 10,
   },
 });
