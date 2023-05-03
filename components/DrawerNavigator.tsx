@@ -16,7 +16,7 @@ const Drawer = createDrawerNavigator();
 SplashScreen.preventAutoHideAsync();
 
 const DrawerNavigator = () => {
-  const excludedRoutes = [""];
+  const excludedRoutes = ["Checklist"];
 
   const [fontsLoaded] = useFonts({
     Barlow_600SemiBold,
