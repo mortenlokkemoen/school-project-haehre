@@ -1,39 +1,85 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TextInput, ScrollView } from "react-native";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
+import RadioButtons from "../../../components/RadioButtons";
+import DatetimePicker from "../../../components/DatetimePicker";
 
+import { TriangleDown } from "../../../components/TriangleDown";
+import RadioButtonImage from "../../../components/RadioButtonImage";
+import { useEffect, useState } from "react";
+import Title from "../../../components/Title";
 
-const RegMachinesAndEquipScreen: React.FunctionComponent<IStackScreenProps> = props => {
+const RegMachinesAndEquipScreen: React.FunctionComponent<IStackScreenProps> = (
+  props
+) => {
+  const { navigation, route, nameProp } = props;
+  const [descriptionText, setDescriptionText] = useState("");
 
-    const { navigation, route, nameProp } = props;
-    console.log({navigation, route, nameProp})
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      setDescriptionText("");
+    });
+  });
 
-    return (
-        <View style={styles.inputContainer}>
-          <View style={styles.buttonsContainer}>
-            <View style={styles.buttonContainer}>
-              <Text>MASKINER OG UTSTYR</Text>
-            </View>
-          </View>
-        </View>
-      );
-}
+  const handleTextInput = (text: string) => {
+    setDescriptionText(text);
+  };
+  return (
+    <ScrollView style={styles.container}>
+      <TriangleDown />
+      <View style={styles.maincontainer}>
+        <Title>HMS hendelse</Title>
+        <TextInput
+          style={styles.textinputContainer}
+          placeholder="Beskrive Hendelse"
+          multiline
+          numberOfLines={4}
+          onChangeText={handleTextInput}
+          value={descriptionText}
+        />
+        <DatetimePicker />
+        <View
+          style={{
+            borderBottomColor: "black",
+            borderBottomWidth: StyleSheet.hairlineWidth,
+          }}
+        />
+        <Text style={styles.paragraph}>Er det gjennomført strakstiltak?</Text>
+        <RadioButtons />
+        <Text style={styles.paragraph}>Vil du ta bilde?</Text>
+        <RadioButtonImage
+          navigation={navigation}
+          route={route}
+          nameProp={nameProp}
+        />
+      </View>
+    </ScrollView>
+  );
+};
 
 export default RegMachinesAndEquipScreen;
 
 const styles = StyleSheet.create({
-    inputContainer: {
-      // justifyContent: "center",
-      // alignItems: "center",
-      // marginTop: 100,
-      // marginHorizontal: 24,
-      // padding: 16,
-    },
-  
-    buttonsContainer: {
-      // flexDirection: "row",
-    },
-    buttonContainer: {
-      // flex: 1,
-    },
-  });
-  
+  container: {
+    flex: 1,
+    backgroundColor: "#ecedee",
+  },
+  maincontainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#ecedee",
+    height: "auto",
+  },
+  paragraph: {
+    fontSize: 18,
+    marginTop: 15,
+    marginBottom: 25,
+  },
+  textinputContainer: {
+    backgroundColor: "white",
+    width: "80%",
+    height: 100,
+    marginBottom: 15,
+    padding: 10,
+    textAlignVertical: "top",
+  },
+});
