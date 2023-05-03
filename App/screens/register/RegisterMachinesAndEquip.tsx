@@ -27,7 +27,7 @@ const RegMachinesAndEquipScreen: React.FunctionComponent<IStackScreenProps> = (
     <ScrollView style={styles.container}>
       <TriangleDown />
       <View style={styles.maincontainer}>
-        <Title>HMS hendelse</Title>
+        <Title>Maskin og Utstyr</Title>
         <TextInput
           style={styles.textinputContainer}
           placeholder="Beskrive Hendelse"
