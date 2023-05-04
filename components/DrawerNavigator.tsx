@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, Text } from "react-native";
 import {
   DrawerContent,
   createDrawerNavigator,
@@ -34,7 +34,23 @@ const DrawerNavigator = () => {
 
   const filteredRoutes = routes.filter(
     (route) => !excludedRoutes.includes(route.name)
+    // !routes.hideFromDrawer
   );
+
+  const customDrawerLabel = (route: any) => {
+    let color = "#000000"; // default color
+
+    // check if this route should have a custom text style
+    if (route.name !== "ImageScreen" && route.name !== "Login") {
+      color = "black"; // apply a red color
+    }
+
+    return (
+      <Text style={{ color: color }}>
+        {route.params?.drawerLabel || route.name}
+      </Text>
+    );
+  };
 
   return (
     <Drawer.Navigator
@@ -56,11 +72,26 @@ const DrawerNavigator = () => {
             />
           </View>
         ),
+        drawerItemStyle: { opacity: 1 },
+        drawerLabelStyle: { fontWeight: "bold", fontSize: 16 },
       })}
       backBehavior="history"
     >
       {filteredRoutes.map((r, i) => (
-        <Drawer.Screen key={i} name={r.name}>
+        <Drawer.Screen
+          key={i}
+          name={r.name}
+          // options={{
+          //   drawerLabel: ({ focused }) =>
+          //     customDrawerLabel({
+          //       color: focused ? "red" : "black",
+          //       label: r.name,
+          //     }),
+          //   drawerItemStyle: {
+          //     opacity: excludedRoutes.includes(r.name) ? 0 : 1,
+          //   },
+          // }}
+        >
           {(props) => {
             const route = {
               ...props.route,

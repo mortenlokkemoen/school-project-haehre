@@ -19,15 +19,19 @@ const routes: IRouteProps[] = [
   {
     name: "Login",
     component: LoginScreen,
+    drawerLabel: "Login",
   },
   {
     name: "HomeScreen",
     component: HomeScreen,
+    drawerLabel: "Login",
   },
 
   {
     name: "ImageScreen",
     component: ImageScreen,
+    // hideFromDrawer: true,
+    drawerLabel: "Login",
   },
   {
     name: "RegisterEvents",
