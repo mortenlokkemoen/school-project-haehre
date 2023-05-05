@@ -13,7 +13,7 @@ import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { TriangleUp } from "../../../components/TriangleUp";
 
-const LoginNew: React.FunctionComponent<IStackScreenProps> = (props) => {
+const Login: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { navigation, route, nameProp } = props;
   console.log({ navigation, route, nameProp });
   const [isChecked, setIsChecked] = useState(false);
@@ -63,7 +63,7 @@ const LoginNew: React.FunctionComponent<IStackScreenProps> = (props) => {
   );
 };
 
-export default LoginNew;
+export default Login;
 
 const styles = StyleSheet.create({
   scrollContainer: {
