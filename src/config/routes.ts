@@ -1,7 +1,7 @@
 import { IRouteProps } from "../library/RouteProp";
 import { IEventDetailsProps } from "../library/StackScreenProps";
 import HomeScreen from "../../App/screens/Home";
-import LoginScreen from "../../App/screens/auth/Login";
+
 import ImageScreen from "../../App/screens/Image";
 import LoginNew from "../../App/screens/register/LoginNew";
 import RegisterEventScreen from "../../App/screens/register/RegisterEvents";
@@ -13,16 +13,17 @@ import RegisterOtherScreen from "../../App/screens/register/RegisterOther";
 import RegisterQualityScreen from "../../App/screens/register/RegisterQuality";
 import PrevEventScreen from "../../App/screens/PreviousEvents";
 import EventDetailsScreen from "../../App/screens/EventDetails";
+import LoginScreen from "../../App/screens/auth/Login";
 
 const routes: IRouteProps[] = [
   {
     name: "LoginNew",
     component: LoginNew,
   },
-  // {
-  //   name: "Login",
-  //   component: LoginScreen,
-  // },
+  {
+    name: "Login",
+    component: LoginScreen,
+  },
   {
     name: "HomeScreen",
     component: HomeScreen,
