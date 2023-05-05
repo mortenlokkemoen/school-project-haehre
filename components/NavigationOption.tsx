@@ -4,26 +4,28 @@ import { DrawerToggleButton } from "@react-navigation/drawer";
 import BackButton from "./BackButton";
 import * as SplashScreen from "expo-splash-screen";
 
-const onLayoutRootView = useCallback(async () => {
-  await SplashScreen.hideAsync();
-}, []);
+const NavigationOptions = () => {
+  const onLayoutRootView = useCallback(async () => {
+    await SplashScreen.hideAsync();
+  }, []);
 
-const NavigationOptions = {
-  headerShown: true,
-  headerStyle: { backgroundColor: "#003D6A", height: 120 },
-  headerTintColor: "#003d6a",
-  drawerContentContainerStyle: { backgroundColor: "#DCE0E6" },
-  drawerPosition: "right",
-  headerLeft: () => <BackButton />,
-  headerRight: () => <DrawerToggleButton tintColor="white" />,
-  headerTitle: () => (
-    <View style={styles.logoContainer} onLayout={onLayoutRootView}>
-      <Image
-        source={require("../assets/hæhrelogo-hvit.png")}
-        style={styles.logo}
-      />
-    </View>
-  ),
+  return {
+    headerShown: true,
+    headerStyle: { backgroundColor: "#003D6A", height: 120 },
+    headerTintColor: "#003d6a",
+    drawerContentContainerStyle: { backgroundColor: "#DCE0E6" },
+    drawerPosition: "right",
+    headerLeft: () => <BackButton />,
+    headerRight: () => <DrawerToggleButton tintColor="white" />,
+    headerTitle: () => (
+      <View style={styles.logoContainer} onLayout={onLayoutRootView}>
+        <Image
+          source={require("../assets/hæhrelogo-hvit.png")}
+          style={styles.logo}
+        />
+      </View>
+    ),
+  };
 };
 
 const styles = StyleSheet.create({
