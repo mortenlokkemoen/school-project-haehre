@@ -38,7 +38,7 @@ const DrawerNavigator = () => {
 
   return (
     <Drawer.Navigator
-      initialRouteName={"LoginNew"}
+      initialRouteName="LoginNew"
       drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={({ route }) => ({
         headerShown: route.name !== "LoginNew",
