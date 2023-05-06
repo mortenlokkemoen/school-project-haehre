@@ -45,10 +45,7 @@ const DrawerNavigator = () => {
 
   return (
     <Drawer.Navigator
-
       initialRouteName={"Hjem"}
-
-      initialRouteName="LoginNew"
       drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={({ route }) => ({
         headerStyle: { backgroundColor: "#003D6A", height: 120 },

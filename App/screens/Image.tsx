@@ -108,10 +108,10 @@ const ImageScreen: React.FunctionComponent = () => {
       <View style={styles.maincontainer}>
         <Image source={{ uri: image }} style={styles.img} />
         <PrimaryButton onPress={gallerySelect}>
-          <Text>Upload from gallery</Text>
+          <Text>Hent fra bildegallery</Text>
         </PrimaryButton>
         <PrimaryButton onPress={selectCamera}>
-          <Text>Take a picture</Text>
+          <Text>Ta bilde</Text>
         </PrimaryButton>
         {imageSelected ? (
           <PrimaryButton onPress={() => alert("report has been sent")}>
