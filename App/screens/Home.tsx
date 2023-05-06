@@ -13,7 +13,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     <View style={styles.container}>
       <TriangleDown />
       <Title>Hei "navn"</Title>
-      <PrimaryButton onPress={() => navigation.navigate("RegisterEvents")}>
+      <PrimaryButton onPress={() => navigation.navigate("Registrer Hendelse")}>
         <Text>Registrer hendelse</Text>
       </PrimaryButton>
       <PrimaryButton onPress={() => navigation.navigate("Checklist")}>

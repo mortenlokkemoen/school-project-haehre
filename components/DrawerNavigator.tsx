@@ -13,10 +13,19 @@ import BackButton from "../components/BackButton";
 
 // Async font to load in before app
 const Drawer = createDrawerNavigator();
-SplashScreen.preventAutoHideAsync();
 
 const DrawerNavigator = () => {
-  const excludedRoutes = ["Checklist"];
+  const excludedRoutes = [
+    "Checklist",
+    "Login",
+    "ImageScreen",
+    "RegisterEnvironment",
+    "RegisterHms",
+    "RegMachAndEquip",
+    "RegisterOther",
+    "RegisterQuality",
+    "EventDetails",
+  ];
 
   const [fontsLoaded] = useFonts({
     Barlow_600SemiBold,
@@ -32,29 +41,11 @@ const DrawerNavigator = () => {
     return null;
   }
 
-  const filteredRoutes = routes.filter(
-    (route) => !excludedRoutes.includes(route.name)
-    // !routes.hideFromDrawer
-  );
-
-  const customDrawerLabel = (route: any) => {
-    let color = "#000000"; // default color
-
-    // check if this route should have a custom text style
-    if (route.name !== "ImageScreen" && route.name !== "Login") {
-      color = "black"; // apply a red color
-    }
-
-    return (
-      <Text style={{ color: color }}>
-        {route.params?.drawerLabel || route.name}
-      </Text>
-    );
-  };
+  // const filteredRoutes = routes.filter((route) => !route.hideFromDrawer);
 
   return (
     <Drawer.Navigator
-      initialRouteName={"HomeScreen"}
+      initialRouteName={"Hjem"}
       drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={({ route }) => ({
         headerShown: route.name !== "Login",
@@ -77,20 +68,15 @@ const DrawerNavigator = () => {
       })}
       backBehavior="history"
     >
-      {filteredRoutes.map((r, i) => (
+      {routes.map((r, i) => (
         <Drawer.Screen
           key={i}
           name={r.name}
-          // options={{
-          //   drawerLabel: ({ focused }) =>
-          //     customDrawerLabel({
-          //       color: focused ? "red" : "black",
-          //       label: r.name,
-          //     }),
-          //   drawerItemStyle: {
-          //     opacity: excludedRoutes.includes(r.name) ? 0 : 1,
-          //   },
-          // }}
+          options={{
+            drawerItemStyle: excludedRoutes.includes(r.name)
+              ? { display: "none" }
+              : { backgroundColor: "lightgray" },
+          }}
         >
           {(props) => {
             const route = {

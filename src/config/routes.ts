@@ -1,9 +1,6 @@
 import { IRouteProps } from "../library/RouteProp";
-import { IEventDetailsProps } from "../library/StackScreenProps";
 import HomeScreen from "../../App/screens/Home";
-import ForgotPasswordScreen from "../../App/screens/auth/ForgotPassword";
 import LoginScreen from "../../App/screens/auth/Login";
-import RegisterScreen from "../../App/screens/auth/Register";
 import ImageScreen from "../../App/screens/Image";
 import RegisterEventScreen from "../../App/screens/register/RegisterEvents";
 import ChecklistScreen from "../../App/screens/Checklist";
@@ -19,22 +16,18 @@ const routes: IRouteProps[] = [
   {
     name: "Login",
     component: LoginScreen,
-    drawerLabel: "Login",
   },
   {
-    name: "HomeScreen",
+    name: "Hjem",
     component: HomeScreen,
-    drawerLabel: "Login",
   },
 
   {
     name: "ImageScreen",
     component: ImageScreen,
-    // hideFromDrawer: true,
-    drawerLabel: "Login",
   },
   {
-    name: "RegisterEvents",
+    name: "Registrer Hendelse",
     component: RegisterEventScreen,
   },
   {
@@ -62,7 +55,7 @@ const routes: IRouteProps[] = [
     component: RegisterQualityScreen,
   },
   {
-    name: "PreviousEvent",
+    name: "Tidlige Hendelser",
     component: PrevEventScreen,
   },
   {
