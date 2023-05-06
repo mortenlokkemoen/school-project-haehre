@@ -45,10 +45,12 @@ const DrawerNavigator = () => {
 
   return (
     <Drawer.Navigator
+
       initialRouteName={"Hjem"}
+
+      initialRouteName="LoginNew"
       drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={({ route }) => ({
-        headerShown: route.name !== "Login",
         headerStyle: { backgroundColor: "#003D6A", height: 120 },
         headerTintColor: "#003d6a",
         drawerContentContainerStyle: { backgroundColor: "#DCE0E6" },
@@ -75,7 +77,7 @@ const DrawerNavigator = () => {
           options={{
             drawerItemStyle: excludedRoutes.includes(r.name)
               ? { display: "none" }
-              : { backgroundColor: "lightgray" },
+              : { opacity: 1 },
           }}
         >
           {(props) => {
