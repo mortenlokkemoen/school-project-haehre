@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, Text } from "react-native";
 import {
   DrawerContent,
   createDrawerNavigator,
@@ -13,10 +13,19 @@ import BackButton from "../components/BackButton";
 
 // Async font to load in before app
 const Drawer = createDrawerNavigator();
-SplashScreen.preventAutoHideAsync();
 
 const DrawerNavigator = () => {
-  const excludedRoutes = ["Checklist"];
+  const excludedRoutes = [
+    "Checklist",
+    "Login",
+    "ImageScreen",
+    "RegisterEnvironment",
+    "RegisterHms",
+    "RegMachAndEquip",
+    "RegisterOther",
+    "RegisterQuality",
+    "EventDetails",
+  ];
 
   const [fontsLoaded] = useFonts({
     Barlow_600SemiBold,
@@ -32,16 +41,16 @@ const DrawerNavigator = () => {
     return null;
   }
 
-  const filteredRoutes = routes.filter(
-    (route) => !excludedRoutes.includes(route.name)
-  );
+  // const filteredRoutes = routes.filter((route) => !route.hideFromDrawer);
 
   return (
     <Drawer.Navigator
+
+      initialRouteName={"Hjem"}
+
       initialRouteName="LoginNew"
       drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={({ route }) => ({
-        headerShown: route.name !== "LoginNew",
         headerStyle: { backgroundColor: "#003D6A", height: 120 },
         headerTintColor: "#003d6a",
         drawerContentContainerStyle: { backgroundColor: "#DCE0E6" },
@@ -56,11 +65,21 @@ const DrawerNavigator = () => {
             />
           </View>
         ),
+        drawerItemStyle: { opacity: 1 },
+        drawerLabelStyle: { fontWeight: "bold", fontSize: 16 },
       })}
       backBehavior="history"
     >
-      {filteredRoutes.map((r, i) => (
-        <Drawer.Screen key={i} name={r.name}>
+      {routes.map((r, i) => (
+        <Drawer.Screen
+          key={i}
+          name={r.name}
+          options={{
+            drawerItemStyle: excludedRoutes.includes(r.name)
+              ? { display: "none" }
+              : { opacity: 1 },
+          }}
+        >
           {(props) => {
             const route = {
               ...props.route,

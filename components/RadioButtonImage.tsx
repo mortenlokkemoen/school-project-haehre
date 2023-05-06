@@ -27,6 +27,7 @@ export default function RadioButtonImage(props: {
     if (newValue === "yes") {
       setIsChecked(true);
       setIsNoChecked(false);
+      // console.log(props.navigation.dangerouslyGetState());
       navigation.navigate("ImageScreen");
     } else if (newValue === "no") {
       setIsNoChecked(true);

@@ -49,7 +49,9 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
 
             <PrimaryButton
               style={{ marginTop: 60 }}
-              onPress={() => navigation.navigate("HomeScreen")}
+              onPress={() =>
+                navigation.navigate("MainScreen", { screen: "Hjem" })
+              }
             >
               <Text>LOGG INN</Text>
             </PrimaryButton>
