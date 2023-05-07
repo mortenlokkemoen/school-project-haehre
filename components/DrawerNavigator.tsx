@@ -41,7 +41,7 @@ const DrawerNavigator = () => {
       initialRouteName="Login"
       drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={({ route }) => ({
-        headerShown: route.name !== "Login",
+        headerShown: route.name !== "Login" ? true : false,
         headerStyle: { backgroundColor: "#003D6A", height: 120 },
         headerTintColor: "#003d6a",
         drawerContentContainerStyle: { backgroundColor: "#DCE0E6" },
