@@ -7,6 +7,8 @@ import { TriangleDown } from "../../../components/TriangleDown";
 import RadioButtonImage from "../../../components/RadioButtonImage";
 import { useEffect, useState } from "react";
 import Title from "../../../components/Title";
+import { colors, fonts } from "../../../src/theme";
+
 const RegisterOtherScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
@@ -60,16 +62,17 @@ export default RegisterOtherScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ecedee",
+    backgroundColor: colors.background,
   },
   maincontainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ecedee",
+    backgroundColor: colors.background,
     height: "auto",
   },
   paragraph: {
-    fontSize: 18,
+    fontSize: 20,
+    fontFamily: fonts.regular,
     marginTop: 15,
     marginBottom: 25,
   },

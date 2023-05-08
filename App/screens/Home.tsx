@@ -4,7 +4,7 @@ import { IStackScreenProps } from "../../src/library/StackScreenProps";
 import PrimaryButton from "../../components/PrimaryButton";
 import { TriangleDown } from "../../components/TriangleDown";
 import Title from "../../components/Title";
-import colors from "../../src/constants/colors";
+import { colors } from "../../src/theme";
 import Map from "../../components/Map";
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
@@ -29,17 +29,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#dce0e6",
+    backgroundColor: colors.background,
   },
-  title: {
-    fontWeight: "bold",
-    fontSize: 26,
-    color: "#003d6a",
-    marginBottom: 50,
-  },
-  dateStyle: {
-    color: "#003d6a",
-    fontWeight: "600",
-    fontSize: 16,
-  },
+
+  // dateStyle: {
+  //   color: "#003d6a",
+  //   fontWeight: "600",
+  //   fontSize: 16,
+  // },
 });
