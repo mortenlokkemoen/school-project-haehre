@@ -10,7 +10,7 @@ const EventDetailsScreen: React.FC<IStackScreenProps> = ({ route }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: event.img }}
+        source={{ uri: event.imageAddress }}
         style={{
           height: 250,
           width: 350,
@@ -21,11 +21,12 @@ const EventDetailsScreen: React.FC<IStackScreenProps> = ({ route }) => {
         contentFit="cover"
       />
       <View style={styles.midContainer}>
-        <Text style={styles.dateStyle}>{event.date}</Text>
+        <Text style={styles.dateStyle}>{event.dateOfSubmission}</Text>
       </View>
-      <Text style={styles.title}>{event.title}</Text>
-      <Text style={styles.locationStyle}>{event.location}</Text>
-      <Text style={styles.descStyle}>{event.description}</Text>
+      <Text style={styles.title}>{event.reportType}</Text>
+      <Text style={styles.locationStyle}>{event.projectLocationLongitude}</Text>
+      <Text style={styles.locationStyle}>{event.projectLocationLatitude}</Text>
+      <Text style={styles.descStyle}>{event.projectDescription}</Text>
     </View>
   );
 };

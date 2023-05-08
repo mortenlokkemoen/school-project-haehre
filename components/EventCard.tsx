@@ -18,14 +18,13 @@ const EventCard = ({ event }: { event: Report }) => {
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{event.reportType}</Text>
-        <Text style={styles.description}>{event.immidiateActionTaken}</Text>
+        <Text style={styles.description}>
+          Strakstiltak: {event.immediateActionTaken}
+        </Text>
         <Text style={styles.date}>{event.dateOfEvent}</Text>
-        <Text style={styles.description}>
-          {event.location.projectLoactionLongitude}
-        </Text>
-        <Text style={styles.description}>
-          {event.location.projectLoactionLongitude}
-        </Text>
+        <Text style={styles.description}>{event.projectDescription}</Text>
+        {/* <Text style={styles.description}>{event.projectLocationLongitude}</Text>
+        <Text style={styles.description}>{event.projectLocationLatitude}</Text> */}
       </View>
     </View>
   );
