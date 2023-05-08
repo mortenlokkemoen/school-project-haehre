@@ -10,58 +10,70 @@ import React, { useState, useEffect } from "react";
 import { SearchBar } from "react-native-elements";
 import EventCard from "../../components/EventCard";
 import { SearchBarBaseProps } from "react-native-elements/dist/searchbar/SearchBar";
-import { EventType } from "../../src/types/EventType";
+// import { EventType } from "../../src/types/EventType";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
+import { Report } from "../../src/types/Report";
 
 // Apparently type definition seem to be broken with React native elements so you need
 // to change the baseprops to unknown.
-const SafeSearchBar = SearchBar as unknown as React.FC<SearchBarBaseProps>;
+// const SafeSearchBar = SearchBar as unknown as React.FC<unknown>;
+
+interface SafeSearchBarProps {
+  placeholder: string;
+  value: string;
+  onChangeText: (search: string) => void;
+  platform: "default" | "ios" | "android";
+  containerStyle: {
+    width: string;
+    borderRadius: number;
+    borderColor: string;
+    borderWidth: number;
+    marginBottom: number;
+  };
+  inputContainerStyle: {};
+  inputStyle: {
+    // add any styles you need for the input text
+  };
+}
+
+const SafeSearchBar = SearchBar as React.FC<SafeSearchBarProps>;
 
 const PrevEventScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { navigation, route, nameProp } = props;
 
   const [search, setSearch] = useState<string>("");
-  const [events, setEvents] = useState<EventType[]>([
-    {
-      id: 1,
-      title: "Event - Bamle Miljoprosjekt",
-      img: "https://res.cloudinary.com/dvfczxum7/image/upload/v1680794099/testimg_fnzfqy.png",
-      date: "05/01/2023",
-      description: "Stein falt av dumper",
-      location: "Bamle - Telemark",
-    },
-    {
-      id: 2,
-      title: "Event - Svea MiljoProsjekt",
-      img: "https://res.cloudinary.com/dvfczxum7/image/upload/v1680794099/testimg_fnzfqy.png",
-      date: "20/01/2023",
-      description: "Yre hendelse, tre veltet",
-      location: "Svea",
-    },
-    {
-      id: 3,
-      title: "Event - Åsen",
-      img: "https://res.cloudinary.com/dvfczxum7/image/upload/v1680794099/testimg_fnzfqy.png",
-      date: "18/02/2023",
-      description: "Bensinslange brudd",
-      location: "Åsen",
-    },
-    {
-      id: 4,
-      title: "Event - Hamar",
-      img: "https://res.cloudinary.com/dvfczxum7/image/upload/v1680794099/testimg_fnzfqy.png",
-      date: "21/03/2023",
-      description: "Stein i vegbanen",
-      location: "Hamar",
-    },
-  ]);
+  const [events, setEvents] = useState<Report[]>([]);
 
-  const [selectedEvent, setSelectedEvent] = useState<EventType | undefined>(
-    undefined
+  // const [selectedEvent, setSelectedEvent] = useState<EventType | undefined>(
+  //   undefined
+  // );
+  const filteredEvents = events.filter(
+    (event) => event.reportType && event.reportType.includes(search)
   );
-  const filteredEvents = events.filter((event) => event.title.includes(search));
 
-  const showPreviousEvents = ({ item }: { item: EventType }) => {
+  // const getData = (employeeId: number) => {
+  //   fetch(`https://school-project-hahre.herokuapp.com/reports/${employeeId}`)
+  //     .then((response) => response.json())
+  //     .then((data) => setEvents(data));
+  // };
+  const getData = async (employeeId: number) => {
+    try {
+      const response = await fetch(
+        `https://school-project-hahre.herokuapp.com/reports/${employeeId}`
+      );
+      const data = await response.json();
+      setEvents(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (search === "") {
+      getData(3);
+    }
+  }, [search]);
+  const showPreviousEvents = ({ item }: { item: Report }) => {
     return (
       <Pressable onPress={() => navigateToDetailsScreen(item)}>
         <EventCard event={item} />
@@ -69,7 +81,7 @@ const PrevEventScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     );
   };
 
-  const navigateToDetailsScreen = (event: EventType) => {
+  const navigateToDetailsScreen = (event: Report) => {
     navigation.navigate("EventDetails", { event });
   };
 
@@ -83,7 +95,9 @@ const PrevEventScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
         <SafeSearchBar
           placeholder="Søk etter hendelser.."
           value={search}
-          onChangeText={updateSearch}
+          onChangeText={(text: string) => {
+            updateSearch(text);
+          }}
           platform="android"
           containerStyle={styles.searchbarContainer}
           inputContainerStyle={styles.inputContainer}
