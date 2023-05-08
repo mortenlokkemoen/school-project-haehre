@@ -1,127 +1,103 @@
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  Pressable,
-} from "react-native";
 import React, { useState, useEffect } from "react";
-import { SearchBar } from "react-native-elements";
+import { StyleSheet, TextInput, View, FlatList, Pressable } from "react-native";
 import EventCard from "../../components/EventCard";
-import { SearchBarBaseProps } from "react-native-elements/dist/searchbar/SearchBar";
-import { EventType } from "../../src/types/EventType";
+import { Report } from "../../src/types/Report";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
-import { colors, fonts } from "../../src/theme";
 
-// Apparently type definition seem to be broken with React native elements so you need
-// to change the baseprops to unknown.
-const SafeSearchBar = SearchBar as unknown as React.FC<SearchBarBaseProps>;
-
-const PrevEventScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
+const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
+  const [allReports, setAllReports] = useState<Report[]>([]);
+  const [filteredReports, setFilteredReports] = useState<Report[]>([]);
+  const [searchText, setSearchText] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const { navigation, route, nameProp } = props;
+  const employeeId = 3; // supposed to be coming with props
 
-  const [search, setSearch] = useState<string>("");
-  const [events, setEvents] = useState<EventType[]>([
-    {
-      id: 1,
-      title: "Event - Bamle Miljoprosjekt",
-      img: "https://res.cloudinary.com/dvfczxum7/image/upload/v1680794099/testimg_fnzfqy.png",
-      date: "05/01/2023",
-      description: "Stein falt av dumper",
-      location: "Bamle - Telemark",
-    },
-    {
-      id: 2,
-      title: "Event - Svea MiljoProsjekt",
-      img: "https://res.cloudinary.com/dvfczxum7/image/upload/v1680794099/testimg_fnzfqy.png",
-      date: "20/01/2023",
-      description: "Yre hendelse, tre veltet",
-      location: "Svea",
-    },
-    {
-      id: 3,
-      title: "Event - Åsen",
-      img: "https://res.cloudinary.com/dvfczxum7/image/upload/v1680794099/testimg_fnzfqy.png",
-      date: "18/02/2023",
-      description: "Bensinslange brudd",
-      location: "Åsen",
-    },
-    {
-      id: 4,
-      title: "Event - Hamar",
-      img: "https://res.cloudinary.com/dvfczxum7/image/upload/v1680794099/testimg_fnzfqy.png",
-      date: "21/03/2023",
-      description: "Stein i vegbanen",
-      location: "Hamar",
-    },
-  ]);
+  useEffect(() => {
+    const fetchReportList = async () => {
+      try {
+        const response = await fetch(
+          `https://school-project-hahre.herokuapp.com/reports/`
+        );
+        const json = await response.json();
+        console.log("json response", json);
+        setAllReports(json);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  const [selectedEvent, setSelectedEvent] = useState<EventType | undefined>(
-    undefined
-  );
-  const filteredEvents = events.filter((event) => event.title.includes(search));
+    fetchReportList();
+  }, [employeeId]);
 
-  const showPreviousEvents = ({ item }: { item: EventType }) => {
-    return (
-      <Pressable onPress={() => navigateToDetailsScreen(item)}>
-        <EventCard event={item} />
-      </Pressable>
+  useEffect(() => {
+    setFilteredReports(
+      allReports.filter(
+        (report) =>
+          (report.projectDescription
+            .toLowerCase()
+            .includes(searchText.toLowerCase()) ||
+            report.reportType
+              .toLowerCase()
+              .includes(searchText.toLowerCase())) &&
+          report.submittedBy === employeeId
+      )
     );
-  };
+  }, [allReports, searchText, employeeId]);
 
-  const navigateToDetailsScreen = (event: EventType) => {
+  const renderItem = ({ item }: { item: Report }) => (
+    <Pressable onPress={() => navigateToDetailsScreen(item)}>
+      <EventCard event={item} />
+    </Pressable>
+  );
+  const navigateToDetailsScreen = (event: Report) => {
     navigation.navigate("EventDetails", { event });
   };
-
-  const updateSearch = (search: string) => {
-    setSearch(search);
-  };
-
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <SafeSearchBar
-          placeholder="Søk etter hendelser.."
-          value={search}
-          onChangeText={updateSearch}
-          platform="android"
-          containerStyle={styles.searchbarContainer}
-          inputContainerStyle={styles.inputContainer}
-          inputStyle={styles.inputStyle}
-        />
-        <FlatList
-          data={filteredEvents}
-          renderItem={showPreviousEvents}
-          keyExtractor={(event) => event.id.toString()}
-        />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <TextInput
+        style={styles.searchBar}
+        placeholder="Search reports..."
+        onChangeText={(text) => setSearchText(text)}
+        value={searchText}
+      />
+      <FlatList
+        data={filteredReports}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id.toString()}
+      />
+    </View>
   );
 };
 
-export default PrevEventScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    marginTop: 25,
-    backgroundColor: colors.background,
+    backgroundColor: "#fff",
   },
-  itemStyle: {
-    padding: 10,
+  item: {
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
   },
-  searchbarContainer: {
-    width: "80%",
-    borderRadius: 2,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 10,
+  title: {
+    fontSize: 16,
+    fontWeight: "bold",
   },
-  inputContainer: {},
-  inputStyle: {
-    fontFamily: fonts.regular,
-    padding: 1,
-    borderColor: "gray",
+  description: {
+    fontSize: 14,
+  },
+  searchBar: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    fontSize: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
   },
 });
+
+export default PrevEventScreen;
