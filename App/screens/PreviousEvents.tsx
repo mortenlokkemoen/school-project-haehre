@@ -13,6 +13,7 @@ import { SearchBarBaseProps } from "react-native-elements/dist/searchbar/SearchB
 // import { EventType } from "../../src/types/EventType";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
 import { Report } from "../../src/types/Report";
+import { colors, fonts } from "../../src/theme";
 
 // Apparently type definition seem to be broken with React native elements so you need
 // to change the baseprops to unknown.
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     marginTop: 25,
-    backgroundColor: "#ecedee",
+    backgroundColor: colors.background,
   },
   itemStyle: {
     padding: 10,
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {},
   inputStyle: {
-    fontFamily: "Barlow_600SemiBold",
+    fontFamily: fonts.regular,
     padding: 1,
     borderColor: "gray",
   },

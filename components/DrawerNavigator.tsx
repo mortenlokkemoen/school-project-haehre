@@ -6,9 +6,12 @@ import {
   DrawerToggleButton,
 } from "@react-navigation/drawer";
 import routes from "../src/config/routes";
-import { useFonts, Barlow_600SemiBold } from "@expo-google-fonts/barlow";
-import * as SplashScreen from "expo-splash-screen";
-import { useCallback } from "react";
+// import {
+//   useFonts,
+//   BarlowSemiCondensed_600SemiBold,
+// } from "@expo-google-fonts/barlow-semi-condensed";
+// import * as SplashScreen from "expo-splash-screen";
+// import { useCallback } from "react";
 import BackButton from "../components/BackButton";
 
 // Async font to load in before app
@@ -27,19 +30,19 @@ const DrawerNavigator = () => {
     "EventDetails",
   ];
 
-  const [fontsLoaded] = useFonts({
-    Barlow_600SemiBold,
-  });
+  // const [fontsLoaded] = useFonts({
+  //   BarlowSemiCondensed_600SemiBold,
+  // });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (fontsLoaded) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
 
   // const filteredRoutes = routes.filter((route) => !route.hideFromDrawer);
 
@@ -55,7 +58,7 @@ const DrawerNavigator = () => {
         headerLeft: () => <BackButton />,
         headerRight: () => <DrawerToggleButton tintColor="white" />,
         headerTitle: () => (
-          <View style={styles.logoContainer} onLayout={onLayoutRootView}>
+          <View style={styles.logoContainer}>
             <Image
               source={require("../assets/hæhrelogo-hvit.png")}
               style={styles.logo}

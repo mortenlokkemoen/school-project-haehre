@@ -4,6 +4,7 @@ import { Image } from "expo-image";
 import { IStackScreenProps } from "../src/library/StackScreenProps";
 // import { EventType } from "../src/types/EventType";
 import { Report } from "../src/types/Report";
+import { colors, fonts } from "../src/theme";
 
 const EventCard = ({ event }: { event: Report }) => {
   return (
@@ -32,7 +33,7 @@ const EventCard = ({ event }: { event: Report }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     width: "100%",
     paddingLeft: 40,
     paddingRight: 40,
@@ -42,26 +43,28 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderBottomColor: "gray",
     borderBottomWidth: 1,
-    fontFamily: "Barlow_600SemiBold",
+    fontFamily: fonts.semiBold,
   },
   imageContainer: {
     marginRight: 10,
   },
   infoContainer: {},
   title: {
-    color: "#003d6a",
+    color: colors.primary,
     fontSize: 18,
     fontWeight: "800",
     marginBottom: 5,
-    fontFamily: "Barlow_600SemiBold",
+    fontFamily: fonts.semiBold,
   },
   description: {
-    fontSize: 16,
+    fontSize: 17,
     marginBottom: 5,
+    fontFamily: fonts.regular,
   },
   date: {
-    fontSize: 14,
+    fontSize: 15,
     color: "gray",
+    fontFamily: fonts.light,
   },
 });
 
