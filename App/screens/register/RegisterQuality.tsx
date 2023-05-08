@@ -2,11 +2,11 @@ import { View, StyleSheet, Text, TextInput, ScrollView } from "react-native";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import RadioButtons from "../../../components/RadioButtons";
 import DatetimePicker from "../../../components/DatetimePicker";
-
 import { TriangleDown } from "../../../components/TriangleDown";
 import RadioButtonImage from "../../../components/RadioButtonImage";
 import { useEffect, useState } from "react";
 import Title from "../../../components/Title";
+import { colors, fonts } from "../../../src/theme";
 
 const RegisterQualityScreen: React.FunctionComponent<IStackScreenProps> = (
   props
@@ -61,16 +61,17 @@ export default RegisterQualityScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ecedee",
+    backgroundColor: colors.background,
   },
   maincontainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ecedee",
+    backgroundColor: colors.background,
     height: "auto",
   },
   paragraph: {
-    fontSize: 18,
+    fontSize: 20,
+    fontFamily: fonts.regular,
     marginTop: 15,
     marginBottom: 25,
   },

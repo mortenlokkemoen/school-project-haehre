@@ -4,6 +4,7 @@ import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import Title from "../../../components/Title";
 import { TriangleDown } from "../../../components/TriangleDown";
+import { colors, fonts } from "../../../src/theme";
 
 const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
   props
@@ -49,9 +50,10 @@ const styles = StyleSheet.create({
   },
 
   paragraph: {
-    fontSize: 18,
+    fontSize: 20,
     marginTop: 15,
     marginBottom: 25,
+    fontFamily: fonts.regular,
   },
   buttonsContainer: {
     width: "95%",

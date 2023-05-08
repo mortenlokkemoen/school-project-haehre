@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useFonts, Barlow_600SemiBold } from "@expo-google-fonts/barlow";
+import { colors, fonts } from "../src/theme";
 
 interface TitleProps {
   children: React.ReactNode;
@@ -21,12 +21,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#003d6a",
+    fontSize: 26,
+    color: colors.primary,
     textAlign: "center",
     padding: 12,
-    fontFamily: "Barlow_600SemiBold",
+    fontFamily: fonts.semiBold,
   },
 });
 
