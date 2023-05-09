@@ -30,17 +30,19 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userName: username, password: password }),
+          body: JSON.stringify({
+            userName: "oskar@hæhre.no",
+            password: "oskar123",
+          }),
         }
       );
-      console.log("username", username);
-      console.log("password", password);
+
       console.log("response", response);
-      // if (response.ok) {
-      //   navigation.navigate("MainScreen", { screen: "Hjem" });
-      // } else {
-      //   Alert.alert("Feil brukernavn eller passord");
-      // }
+      if (response.status === 200) {
+        navigation.navigate("MainScreen", { screen: "Hjem" });
+      } else {
+        Alert.alert("Feil brukernavn eller passord");
+      }
     } catch (error) {
       console.error(error);
     }
