@@ -7,6 +7,7 @@ import {
   ScrollView,
   TextInput,
   Image,
+  Alert,
 } from "react-native";
 import Checkbox from "expo-checkbox";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
@@ -15,10 +16,35 @@ import { TriangleUp } from "../../../components/TriangleUp";
 
 const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { navigation, route, nameProp } = props;
-  console.log({ navigation, route, nameProp });
+  // console.log({ navigation, route, nameProp });
   const [isChecked, setIsChecked] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const screenHeight = Dimensions.get("window").height;
   const marginHeight = screenHeight * 0.12;
+
+  const handleLoginPress = async () => {
+    try {
+      const response = await fetch(
+        "https://school-project-hahre.herokuapp.com/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userName: username, password: password }),
+        }
+      );
+      console.log("username", username);
+      console.log("password", password);
+      console.log("response", response);
+      if (response) {
+        navigation.navigate("MainScreen", { screen: "Hjem" });
+      } else {
+        Alert.alert("Feil brukernavn eller passord");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -35,8 +61,19 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
               }}
             />
 
-            <TextInput style={styles.input} placeholder="E-post" />
-            <TextInput style={styles.input} placeholder="Passord" />
+            <TextInput
+              style={styles.input}
+              placeholder="E-post"
+              value={username}
+              onChangeText={(text) => setUsername(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Passord"
+              secureTextEntry={true}
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+            />
             <View style={styles.checkboxContainer}>
               <Checkbox
                 style={styles.checkbox}
@@ -47,12 +84,7 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
               <Text>LA MEG VÆRE INNLOGGET</Text>
             </View>
 
-            <PrimaryButton
-              style={{ marginTop: 60 }}
-              onPress={() =>
-                navigation.navigate("MainScreen", { screen: "Hjem" })
-              }
-            >
+            <PrimaryButton style={{ marginTop: 60 }} onPress={handleLoginPress}>
               <Text>LOGG INN</Text>
             </PrimaryButton>
           </View>
