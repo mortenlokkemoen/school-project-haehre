@@ -39,7 +39,11 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     <View style={styles.container}>
       <TriangleDown />
       <Title>Hei {employeeData && employeeData.employee_Name}</Title>
-      <PrimaryButton onPress={() => navigation.navigate("Registrer Hendelse")}>
+      <PrimaryButton
+        onPress={() =>
+          navigation.navigate("Registrer Hendelse", { employeeData })
+        }
+      >
         <Text>Registrer hendelse</Text>
       </PrimaryButton>
       <PrimaryButton onPress={() => navigation.navigate("Checklist")}>
