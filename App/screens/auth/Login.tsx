@@ -36,8 +36,8 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
           }),
         }
       );
-
-      console.log("response", response);
+      let employee = await response.json();
+      console.log("response", employee);
       if (response.status === 200) {
         navigation.navigate("MainScreen", { screen: "Hjem" });
       } else {
