@@ -1,6 +1,5 @@
 import { ParamListBase, RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-// import { EventType } from '../types/EventType';
 import { EmployeeType } from "../types/EmployeeType";
 
 export interface IStackScreenProps {
