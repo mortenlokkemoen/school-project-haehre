@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { Pressable, View, Text, StyleSheet } from "react-native";
+import { useContext, useEffect, useState } from "react";
+import { Pressable, View, Text, StyleSheet, Alert } from "react-native";
 import PrimaryButton from "./PrimaryButton";
+import { GlobalStateContext } from "../App/screens/GlobalState";
 
 export default function RadioButtonImage(props: {
   navigation: any;
@@ -12,9 +13,9 @@ export default function RadioButtonImage(props: {
   const [isChecked, setIsChecked] = useState(false);
   const [isNoChecked, setIsNoChecked] = useState(false);
   const { navigation, route, nameProp } = props;
+  const { employeeData, reportData, setReportData } =
+    useContext(GlobalStateContext);
 
-  console.log("route:", route);
-  //not resseting the radio buttons
   useEffect(() => {
     navigation.addListener("focus", () => {
       setNoSelected(false);
@@ -28,7 +29,6 @@ export default function RadioButtonImage(props: {
     if (newValue === "yes") {
       setIsChecked(true);
       setIsNoChecked(false);
-      // console.log(props.navigation.dangerouslyGetState());
       navigation.navigate("ImageScreen");
     } else if (newValue === "no") {
       setIsNoChecked(true);
@@ -36,9 +36,37 @@ export default function RadioButtonImage(props: {
       setNoSelected(true);
     }
   };
-  // const showSendButton = () => {
-  //   setNoSelected(true);
-  // };
+  const handleSendPress = async () => {
+    console.log("Report data on send button", reportData);
+    try {
+      const response = await fetch(
+        "https://school-project-hahre.herokuapp.com/reports",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            reportType: reportData.reportType,
+            dateOfEvent: reportData.dateOfEvent,
+            submittedTo: reportData.submittedTo,
+            submittedBy: reportData.submittedBy,
+            immediateActionTaken: reportData.immediateActionTaken,
+            imageAddress: "",
+            projectId: reportData.projectId,
+            projectLocationLongitude: "",
+            projectLocationLatitude: "",
+            projectDescription: reportData.projectDescription,
+          }),
+        }
+      );
+      let result = await response.json();
+      console.log("response", result);
+      if (response.status === 200) {
+        Alert.alert("Din rapport har blitt sendt!");
+      }
+    } catch (error) {
+      Alert.alert("Det opsto et feil!");
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.radioButtonsContainer}>
@@ -54,7 +82,7 @@ export default function RadioButtonImage(props: {
         <Text style={styles.radioButtonText}>Nei</Text>
       </View>
       {noSelected ? (
-        <PrimaryButton onPress={() => alert("report has been sent")}>
+        <PrimaryButton onPress={handleSendPress}>
           <Text>Send</Text>
         </PrimaryButton>
       ) : null}

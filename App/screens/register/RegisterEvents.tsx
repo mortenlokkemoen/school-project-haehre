@@ -17,7 +17,8 @@ const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
   const handlePress = (reportType: string) => {
     let submittedBy = employeeData.employee_Id;
     let submittedTo = employeeData.current_Manager;
-    setReportData({ reportType, submittedBy, submittedTo });
+    let projectId = employeeData.current_Project;
+    setReportData({ reportType, submittedBy, submittedTo, projectId });
 
     switch (reportType) {
       case "Hms":

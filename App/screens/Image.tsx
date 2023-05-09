@@ -9,10 +9,12 @@ import { useNavigation } from "@react-navigation/native";
 import { GlobalStateContext } from "./GlobalState";
 
 const ImageScreen: React.FunctionComponent = () => {
-  const { employeeData } = useContext(GlobalStateContext);
   const [image, setImage] = useState("");
   const [imageSelected, setImageSelected] = useState(false);
   const navigation = useNavigation();
+  const { employeeData, reportData, setReportData } =
+    useContext(GlobalStateContext);
+
   useEffect(() => {
     navigation.addListener("focus", () => {
       setImageSelected(false);

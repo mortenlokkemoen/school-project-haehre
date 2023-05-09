@@ -12,7 +12,8 @@ import { GlobalStateContext } from "../GlobalState";
 const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
-  const { employeeData, reportData } = useContext(GlobalStateContext);
+  const { employeeData, reportData, setReportData } =
+    useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
   const [descriptionText, setDescriptionText] = useState("");
   console.log("reportData", reportData);
@@ -24,6 +25,7 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
 
   const handleTextInput = (text: string) => {
     setDescriptionText(text);
+    setReportData({ ...reportData, projectDescription: descriptionText });
   };
   return (
     <ScrollView style={styles.container}>
