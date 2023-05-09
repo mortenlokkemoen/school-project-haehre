@@ -1,8 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, TextInput, View, FlatList, Pressable } from "react-native";
+import React, { useState, useEffect, useContext } from "react";
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  FlatList,
+  Pressable,
+  Text,
+} from "react-native";
 import EventCard from "../../components/EventCard";
 import { Report } from "../../src/types/Report";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
+import { GlobalStateContext } from "./GlobalState";
+import { colors, fonts } from "../../src/theme";
 
 const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
   const [allReports, setAllReports] = useState<Report[]>([]);
@@ -11,7 +20,8 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { navigation, route, nameProp } = props;
-  const employeeId = 3; // supposed to be coming with props
+  const { employeeData } = useContext(GlobalStateContext);
+  const employeeId = employeeData.employee_Id;
 
   useEffect(() => {
     const fetchReportList = async () => {
@@ -57,6 +67,9 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
   };
   return (
     <View style={styles.container}>
+      <Text style={styles.paragraph}>
+        {employeeData.employee_Name}, dine tidlige hendelser
+      </Text>
       <TextInput
         style={styles.searchBar}
         placeholder="Search reports..."
@@ -97,6 +110,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
+  },
+  paragraph: {
+    fontSize: 20,
+    marginTop: 15,
+    marginBottom: 25,
+    fontFamily: fonts.regular,
+    textAlign: "center",
   },
 });
 

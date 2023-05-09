@@ -7,6 +7,8 @@ import DrawerNavigator from "./components/DrawerNavigator";
 import LoginScreen from "./App/screens/auth/Login";
 import { fonts } from "./src/theme";
 
+import { GlobalStateProvider } from "./App/screens/GlobalState";
+
 const Stack = createNativeStackNavigator();
 
 export default function App(): JSX.Element {
@@ -21,19 +23,21 @@ export default function App(): JSX.Element {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen as React.ComponentType<any>}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="MainScreen"
-          component={DrawerNavigator}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <GlobalStateProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen as React.ComponentType<any>}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="MainScreen"
+            component={DrawerNavigator}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GlobalStateProvider>
   );
 }

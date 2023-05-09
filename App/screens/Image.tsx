@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Image, View, Text, StyleSheet, ScrollView } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
@@ -6,8 +6,10 @@ import Geolocation from "../../components/Geolocation";
 import Map from "../../components/Map";
 import PrimaryButton from "../../components/PrimaryButton";
 import { useNavigation } from "@react-navigation/native";
+import { GlobalStateContext } from "./GlobalState";
 
 const ImageScreen: React.FunctionComponent = () => {
+  const { employeeData } = useContext(GlobalStateContext);
   const [image, setImage] = useState("");
   const [imageSelected, setImageSelected] = useState(false);
   const navigation = useNavigation();

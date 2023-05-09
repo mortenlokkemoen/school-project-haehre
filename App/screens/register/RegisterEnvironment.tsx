@@ -5,13 +5,15 @@ import DatetimePicker from "../../../components/DatetimePicker";
 
 import { TriangleDown } from "../../../components/TriangleDown";
 import RadioButtonImage from "../../../components/RadioButtonImage";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Title from "../../../components/Title";
 import { colors, fonts } from "../../../src/theme";
+import { GlobalStateContext } from "../GlobalState";
 
 const RegisterEnvironmentScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
+  const { employeeData } = useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
   const [descriptionText, setDescriptionText] = useState("");
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -14,14 +14,14 @@ import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { TriangleUp } from "../../../components/TriangleUp";
 import { EmployeeType } from "../../../src/types/EmployeeType";
+import { GlobalStateContext } from "../GlobalState";
 
 const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
+  const { setEmployeeData } = useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
-  // console.log({ navigation, route, nameProp });
   const [isChecked, setIsChecked] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [employeeData, setEmployeeData] = useState<EmployeeType | null>(null);
   const screenHeight = Dimensions.get("window").height;
   const marginHeight = screenHeight * 0.12;
 
@@ -33,8 +33,8 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            userName: "oskar@hæhre.no",
-            password: "oskar123",
+            userName: username,
+            password: password,
           }),
         }
       );
@@ -42,10 +42,8 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
       console.log("response", result);
       if (response.status === 200) {
         setEmployeeData(result);
-        // console.log("current employee", result);
         navigation.navigate("MainScreen", {
           screen: "Hjem",
-          result,
         });
       } else {
         Alert.alert("Feil brukernavn eller passord");

@@ -1,21 +1,22 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import Title from "../../../components/Title";
 import { TriangleDown } from "../../../components/TriangleDown";
 import { colors, fonts } from "../../../src/theme";
+import { GlobalStateContext } from "../GlobalState";
 
 const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
+  const { employeeData } = useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
-  console.log({ navigation, route, nameProp });
   return (
     <View>
       <TriangleDown />
       <View style={styles.textContainer}>
-        <Title>Hei Morten</Title>
+        <Title>Hei {employeeData && employeeData.employee_Name}</Title>
         <Text style={styles.paragraph}>Registrer hendelser og avvik</Text>
       </View>
       <View style={styles.buttonsContainer}>
