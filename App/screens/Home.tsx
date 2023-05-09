@@ -9,41 +9,16 @@ import Map from "../../components/Map";
 import { EmployeeType } from "../../src/types/EmployeeType";
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
-  const [employeeData, setEmployeeData] = useState<EmployeeType | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const { navigation, route, nameProp } = props;
 
-  let employeeId = 3; // supposed to be coming with props from login page
-
-  useEffect(() => {
-    const fetchReportList = async () => {
-      try {
-        const response = await fetch(
-          `https://school-project-hahre.herokuapp.com/employees/${employeeId}`
-        );
-        const json = await response.json();
-        console.log("json response", json);
-        setEmployeeData(json);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchReportList();
-  }, [employeeId]);
-
+  console.log("props", props.route.params.event);
   return (
     <View style={styles.container}>
       <TriangleDown />
-      <Title>Hei {employeeData && employeeData.employee_Name}</Title>
-      <PrimaryButton
-        onPress={() =>
-          navigation.navigate("Registrer Hendelse", { employeeData })
-        }
-      >
+      {/* <Title>Hei {employeeData && employeeData.employee_Name}</Title> */}
+      <PrimaryButton onPress={() => navigation.navigate("Registrer Hendelse")}>
         <Text>Registrer hendelse</Text>
       </PrimaryButton>
       <PrimaryButton onPress={() => navigation.navigate("Checklist")}>

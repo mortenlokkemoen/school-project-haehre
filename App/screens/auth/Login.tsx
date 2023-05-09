@@ -13,6 +13,7 @@ import Checkbox from "expo-checkbox";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { TriangleUp } from "../../../components/TriangleUp";
+import { EmployeeType } from "../../../src/types/EmployeeType";
 
 const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { navigation, route, nameProp } = props;
@@ -20,6 +21,7 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const [isChecked, setIsChecked] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [employeeData, setEmployeeData] = useState<EmployeeType | null>(null);
   const screenHeight = Dimensions.get("window").height;
   const marginHeight = screenHeight * 0.12;
 
@@ -36,10 +38,15 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
           }),
         }
       );
-      let employee = await response.json();
-      console.log("response", employee);
+      let result = await response.json();
+      console.log("response", result);
       if (response.status === 200) {
-        navigation.navigate("MainScreen", { screen: "Hjem" });
+        setEmployeeData(result);
+        // console.log("current employee", result);
+        navigation.navigate("MainScreen", {
+          screen: "Hjem",
+          result,
+        });
       } else {
         Alert.alert("Feil brukernavn eller passord");
       }
