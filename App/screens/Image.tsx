@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Image, View, Text, StyleSheet, ScrollView } from "react-native";
+import { Image, View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
 import Geolocation from "../../components/Geolocation";
@@ -9,10 +9,12 @@ import { useNavigation } from "@react-navigation/native";
 import { GlobalStateContext } from "./GlobalState";
 
 const ImageScreen: React.FunctionComponent = () => {
-  const { employeeData } = useContext(GlobalStateContext);
   const [image, setImage] = useState("");
   const [imageSelected, setImageSelected] = useState(false);
   const navigation = useNavigation();
+  const { employeeData, reportData, setReportData } =
+    useContext(GlobalStateContext);
+
   useEffect(() => {
     navigation.addListener("focus", () => {
       setImageSelected(false);
@@ -105,6 +107,37 @@ const ImageScreen: React.FunctionComponent = () => {
     }
   };
 
+  const handleSendPress = async () => {
+    try {
+      const response = await fetch(
+        "https://school-project-hahre.herokuapp.com/reports",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            reportType: "",
+            dateOfEvent: "",
+            submittedTo: 1,
+            submittedBy: employeeData.employee_Id,
+            immediateActionTaken: "",
+            imageAddress: "",
+            projectId: 1,
+            projectLocationLongitude: "",
+            projectLocationLatitude: "",
+            projectDescription: "",
+          }),
+        }
+      );
+      let result = await response.json();
+      console.log("response", result);
+      if (response.status === 200) {
+        Alert.alert("Din rapport har blitt sendt!");
+      }
+    } catch (error) {
+      Alert.alert("Det opsto et feil!");
+    }
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.maincontainer}>
@@ -116,7 +149,7 @@ const ImageScreen: React.FunctionComponent = () => {
           <Text>Ta bilde</Text>
         </PrimaryButton>
         {imageSelected ? (
-          <PrimaryButton onPress={() => alert("report has been sent")}>
+          <PrimaryButton onPress={handleSendPress}>
             <Text>Send</Text>
           </PrimaryButton>
         ) : null}

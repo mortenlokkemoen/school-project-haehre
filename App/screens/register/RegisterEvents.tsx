@@ -10,8 +10,37 @@ import { GlobalStateContext } from "../GlobalState";
 const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
-  const { employeeData } = useContext(GlobalStateContext);
+  const { employeeData, setReportData, reportData } =
+    useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
+
+  const handlePress = (reportType: string) => {
+    let submittedBy = employeeData.employee_Id;
+    let submittedTo = employeeData.current_Manager;
+    let projectId = employeeData.current_Project;
+    setReportData({ reportType, submittedBy, submittedTo, projectId });
+
+    switch (reportType) {
+      case "Hms":
+        navigation.navigate("RegisterHms");
+        break;
+      case "Ytre Miljø":
+        navigation.navigate("RegisterEnvironment");
+        break;
+      case "Kvalitet":
+        navigation.navigate("RegisterQuality");
+        break;
+      case "Maskin og Utstyr":
+        navigation.navigate("RegMachAndEquip");
+        break;
+      case "Annet":
+        navigation.navigate("RegisterOther");
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <View>
       <TriangleDown />
@@ -20,21 +49,19 @@ const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
         <Text style={styles.paragraph}>Registrer hendelser og avvik</Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <PrimaryButton onPress={() => navigation.navigate("RegisterHms")}>
+        <PrimaryButton onPress={() => handlePress("Hms")}>
           <Text>HMS</Text>
         </PrimaryButton>
-        <PrimaryButton
-          onPress={() => navigation.navigate("RegisterEnvironment")}
-        >
+        <PrimaryButton onPress={() => handlePress("Ytre Miljø")}>
           <Text>YTRE MILJØ</Text>
         </PrimaryButton>
-        <PrimaryButton onPress={() => navigation.navigate("RegisterQuality")}>
+        <PrimaryButton onPress={() => handlePress("Kvalitet")}>
           <Text>KVALITET</Text>
         </PrimaryButton>
-        <PrimaryButton onPress={() => navigation.navigate("RegMachAndEquip")}>
+        <PrimaryButton onPress={() => handlePress("Maskin og Utstyr")}>
           <Text>MASKINER OG UTSTYR</Text>
         </PrimaryButton>
-        <PrimaryButton onPress={() => navigation.navigate("RegisterOther")}>
+        <PrimaryButton onPress={() => handlePress("Annet")}>
           <Text>ANNET</Text>
         </PrimaryButton>
       </View>
