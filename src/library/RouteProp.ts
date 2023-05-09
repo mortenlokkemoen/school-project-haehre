@@ -4,6 +4,4 @@ export interface IRouteProps {
   params?: any;
   component: React.FunctionComponent<IStackScreenProps>;
   name: string;
-  // drawerLabel?: string;
-  hideFromDrawer?: boolean;
 }

@@ -1,18 +1,20 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
 import PrimaryButton from "../../components/PrimaryButton";
 import { TriangleDown } from "../../components/TriangleDown";
 import Title from "../../components/Title";
 import { colors } from "../../src/theme";
 import Map from "../../components/Map";
+import { GlobalStateContext } from "./GlobalState";
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
+  const { employeeData } = useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
   return (
     <View style={styles.container}>
       <TriangleDown />
-      <Title>Hei "navn"</Title>
+      <Title>Hei {employeeData && employeeData.employee_Name}</Title>
       <PrimaryButton onPress={() => navigation.navigate("Registrer Hendelse")}>
         <Text>Registrer hendelse</Text>
       </PrimaryButton>
@@ -31,10 +33,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.background,
   },
-
-  // dateStyle: {
-  //   color: "#003d6a",
-  //   fontWeight: "600",
-  //   fontSize: 16,
-  // },
 });
