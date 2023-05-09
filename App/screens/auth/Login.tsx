@@ -45,11 +45,9 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
         navigation.navigate("MainScreen", {
           screen: "Hjem",
         });
-      } else {
-        Alert.alert("Feil brukernavn eller passord");
       }
     } catch (error) {
-      console.error(error);
+      Alert.alert("Feil brukernavn eller passord");
     }
   };
 
