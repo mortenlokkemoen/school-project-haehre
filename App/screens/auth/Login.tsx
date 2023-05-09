@@ -36,11 +36,11 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
       console.log("username", username);
       console.log("password", password);
       console.log("response", response);
-      if (response) {
-        navigation.navigate("MainScreen", { screen: "Hjem" });
-      } else {
-        Alert.alert("Feil brukernavn eller passord");
-      }
+      // if (response.ok) {
+      //   navigation.navigate("MainScreen", { screen: "Hjem" });
+      // } else {
+      //   Alert.alert("Feil brukernavn eller passord");
+      // }
     } catch (error) {
       console.error(error);
     }
