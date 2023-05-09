@@ -12,10 +12,10 @@ import { GlobalStateContext } from "../GlobalState";
 const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
-  const { employeeData } = useContext(GlobalStateContext);
+  const { employeeData, reportData } = useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
   const [descriptionText, setDescriptionText] = useState("");
-
+  console.log("reportData", reportData);
   useEffect(() => {
     navigation.addListener("focus", () => {
       setDescriptionText("");

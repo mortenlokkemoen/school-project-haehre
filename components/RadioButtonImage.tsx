@@ -13,6 +13,7 @@ export default function RadioButtonImage(props: {
   const [isNoChecked, setIsNoChecked] = useState(false);
   const { navigation, route, nameProp } = props;
 
+  console.log("route:", route);
   //not resseting the radio buttons
   useEffect(() => {
     navigation.addListener("focus", () => {
