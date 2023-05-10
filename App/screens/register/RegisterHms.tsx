@@ -28,9 +28,10 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
           month: "numeric",
           year: "numeric",
         }),
+        immediateActionTaken: "nei",
       });
     });
-  }, [navigation]);
+  }, [navigation, descriptionText]);
 
   const handleTextInput = (text: string) => {
     setDescriptionText(text);

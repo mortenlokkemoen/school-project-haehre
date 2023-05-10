@@ -19,7 +19,6 @@ export default function RadioButtons() {
       setIsNoChecked(false);
       setValue("");
       setTextInputValue("");
-      setReportData({ ...reportData, immediateActionTaken: "" });
     });
   });
   const handlePress = (newValue: string) => {
