@@ -1,14 +1,17 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
+import Map from "../../components/Map";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
 import PrimaryButton from "../../components/PrimaryButton";
 import { TriangleDown } from "../../components/TriangleDown";
 import Title from "../../components/Title";
 import { colors } from "../../src/theme";
-import Map from "../../components/Map";
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
-  const { navigation, route, nameProp } = props;
+  const { navigation } = props;
+  const isTablet = false;
+  const mapWidth = Dimensions.get("window").width * 0.8;
+
   return (
     <View style={styles.container}>
       <TriangleDown />
@@ -19,22 +22,17 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
       <PrimaryButton onPress={() => navigation.navigate("Checklist")}>
         <Text>Sjekklister</Text>
       </PrimaryButton>
-      <Map />
+      <Map isTablet={isTablet} mapWidth={mapWidth} />
     </View>
   );
 };
 
 export default HomeScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     backgroundColor: colors.background,
   },
-
-  // dateStyle: {
-  //   color: "#003d6a",
-  //   fontWeight: "600",
-  //   fontSize: 16,
-  // },
 });

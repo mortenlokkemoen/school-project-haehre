@@ -42,7 +42,8 @@
     "react-native-web": "~0.18.10",
     "react-redux": "^8.0.5",
     "reanimated": "^0.0.1-alpha",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "expo-screen-orientation": "~5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

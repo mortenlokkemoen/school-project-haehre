@@ -1,20 +1,14 @@
 import React from "react";
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
 import {
   DrawerContent,
   createDrawerNavigator,
   DrawerToggleButton,
 } from "@react-navigation/drawer";
 import routes from "../src/config/routes";
-// import {
-//   useFonts,
-//   BarlowSemiCondensed_600SemiBold,
-// } from "@expo-google-fonts/barlow-semi-condensed";
-// import * as SplashScreen from "expo-splash-screen";
-// import { useCallback } from "react";
+
 import BackButton from "../components/BackButton";
 
-// Async font to load in before app
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
@@ -30,22 +24,6 @@ const DrawerNavigator = () => {
     "EventDetails",
   ];
 
-  // const [fontsLoaded] = useFonts({
-  //   BarlowSemiCondensed_600SemiBold,
-  // });
-
-  // const onLayoutRootView = useCallback(async () => {
-  //   if (fontsLoaded) {
-  //     await SplashScreen.hideAsync();
-  //   }
-  // }, [fontsLoaded]);
-
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
-
-  // const filteredRoutes = routes.filter((route) => !route.hideFromDrawer);
-
   return (
     <Drawer.Navigator
       initialRouteName={"Hjem"}
@@ -57,13 +35,12 @@ const DrawerNavigator = () => {
         drawerPosition: "right",
         headerLeft: () => <BackButton />,
         headerRight: () => <DrawerToggleButton tintColor="white" />,
+        headerTitleAlign: "center",
         headerTitle: () => (
-          <View style={styles.logoContainer}>
-            <Image
-              source={require("../assets/hæhrelogo-hvit.png")}
-              style={styles.logo}
-            />
-          </View>
+          <Image
+            source={require("../assets/hæhrelogo-hvit.png")}
+            style={styles.logo}
+          />
         ),
         drawerItemStyle: { opacity: 1 },
         drawerLabelStyle: { fontWeight: "bold", fontSize: 16 },
@@ -104,11 +81,11 @@ const DrawerNavigator = () => {
 export default DrawerNavigator;
 
 const styles = StyleSheet.create({
-  logoContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  // logoContainer: {
+  //   flex: 1,
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // },
   logo: {
     width: 100,
     height: 100,
