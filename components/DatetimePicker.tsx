@@ -23,7 +23,6 @@ const DatetimePicker: React.FC = () => {
   useEffect(() => {
     navigation.addListener("focus", () => {
       setSelectedDate(new Date());
-      setReportData({ ...reportData, dateOfEvent: formattedDate });
     });
   }, [navigation]);
 

@@ -20,7 +20,15 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   useEffect(() => {
     navigation.addListener("focus", () => {
       setDescriptionText("");
-      setReportData({ ...reportData, projectDescription: descriptionText });
+      setReportData({
+        ...reportData,
+        projectDescription: descriptionText,
+        dateOfEvent: new Date().toLocaleDateString("nb-NO", {
+          day: "numeric",
+          month: "numeric",
+          year: "numeric",
+        }),
+      });
     });
   }, [navigation]);
 
