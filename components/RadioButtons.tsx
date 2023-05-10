@@ -4,6 +4,8 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalStateContext } from "../App/screens/GlobalState";
 
+import { colors, fonts } from "../src/theme";
+
 export default function RadioButtons() {
   const [value, setValue] = useState("");
   const [isChecked, setIsChecked] = useState(false);
@@ -17,12 +19,9 @@ export default function RadioButtons() {
       setIsNoChecked(false);
       setValue("");
       setTextInputValue("");
-      setReportData({
-        ...reportData,
-        immediateActionTaken: value,
-      });
+      setReportData({ ...reportData, immediateActionTaken: "" });
     });
-  }, [navigation]);
+  });
   const handlePress = (newValue: string) => {
     setValue(newValue);
     setIsChecked(newValue === "yes");
@@ -96,7 +95,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   textInput: {
-    fontFamily: "Barlow_600SemiBold",
+    fontFamily: fonts.semiBold,
     backgroundColor: "white",
     width: "80%",
     height: 100,

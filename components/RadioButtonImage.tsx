@@ -45,16 +45,16 @@ export default function RadioButtonImage(props: {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            reportType: "Sikkerhet",
-            dateOfEvent: "10.05.2023",
-            submittedTo: 1,
-            submittedBy: 5,
-            immediateActionTaken: "no",
+            reportType: reportData.reportType,
+            dateOfEvent: reportData.dateOfEvent,
+            submittedTo: reportData.submittedTo,
+            submittedBy: reportData.submittedBy,
+            immediateActionTaken: reportData.immediateActionTaken,
             imageAddress: "",
-            projectId: 1,
+            projectId: reportData.projectId,
             projectLocationLongitude: "10.234523",
             projectLocationLatitude: "45.565656",
-            projectDescription: "test post request from frontend",
+            projectDescription: reportData.projectDescription,
           }),
         }
       );
@@ -65,6 +65,7 @@ export default function RadioButtonImage(props: {
       }
     } catch (error) {
       Alert.alert("Det opsto et feil!");
+      console.log("catch error error", error);
     }
   };
   return (

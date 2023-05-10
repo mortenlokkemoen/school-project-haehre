@@ -20,8 +20,9 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   useEffect(() => {
     navigation.addListener("focus", () => {
       setDescriptionText("");
+      setReportData({ ...reportData, projectDescription: descriptionText });
     });
-  });
+  }, [navigation]);
 
   const handleTextInput = (text: string) => {
     setDescriptionText(text);
