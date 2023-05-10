@@ -36,6 +36,7 @@ const RegisterEnvironmentScreen: React.FunctionComponent<IStackScreenProps> = (
 
   const handleTextInput = (text: string) => {
     setDescriptionText(text);
+    setReportData({ ...reportData, projectDescription: descriptionText });
   };
   return (
     <ScrollView style={styles.container}>
