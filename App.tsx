@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 export default function App(): JSX.Element {
   const [fontsLoaded] = useFonts({
     [fonts.regular]: require("./assets/fonts/BarlowSemiCondensed-Regular.ttf"),
-    [fonts.semiBold]: require("./assets/fonts/BarlowSemiCondensed-SemiBold.ttf"),
+    [fonts.semiBold]: require("./assets/fonts/BarlowSemiCondensed-Bold.ttf"),
     [fonts.light]: require("./assets/fonts/BarlowSemiCondensed-Light.ttf"),
   });
 
