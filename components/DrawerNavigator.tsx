@@ -6,12 +6,6 @@ import {
   DrawerToggleButton,
 } from "@react-navigation/drawer";
 import routes from "../src/config/routes";
-// import {
-//   useFonts,
-//   BarlowSemiCondensed_600SemiBold,
-// } from "@expo-google-fonts/barlow-semi-condensed";
-// import * as SplashScreen from "expo-splash-screen";
-// import { useCallback } from "react";
 import BackButton from "../components/BackButton";
 
 // Async font to load in before app
@@ -29,22 +23,6 @@ const DrawerNavigator = () => {
     "RegisterQuality",
     "EventDetails",
   ];
-
-  // const [fontsLoaded] = useFonts({
-  //   BarlowSemiCondensed_600SemiBold,
-  // });
-
-  // const onLayoutRootView = useCallback(async () => {
-  //   if (fontsLoaded) {
-  //     await SplashScreen.hideAsync();
-  //   }
-  // }, [fontsLoaded]);
-
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
-
-  // const filteredRoutes = routes.filter((route) => !route.hideFromDrawer);
 
   return (
     <Drawer.Navigator

@@ -7,14 +7,27 @@ import { Report } from "../src/types/Report";
 import { colors, fonts } from "../src/theme";
 
 const EventCard = ({ event }: { event: Report }) => {
+  const isURLValid = (url: string) => {
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    return urlRegex.test(url);
+  };
+
+  const isValidURL = isURLValid(event.imageAddress);
   return (
     <View style={styles.card}>
       <View style={styles.imageContainer}>
-        <Image
-          source={{ uri: event.imageAddress }}
-          style={{ height: 100, width: 100, borderRadius: 2, marginBottom: 8 }}
-          contentFit="cover"
-        />
+        {isValidURL ? (
+          <Image
+            source={{ uri: event.imageAddress }}
+            style={{
+              height: 100,
+              width: 100,
+              borderRadius: 2,
+              marginBottom: 8,
+            }}
+            contentFit="cover"
+          />
+        ) : null}
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{event.reportType}</Text>

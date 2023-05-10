@@ -13,18 +13,30 @@ import { GlobalStateContext } from "../GlobalState";
 const RegisterEnvironmentScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
-  const { employeeData } = useContext(GlobalStateContext);
+  const { employeeData, reportData, setReportData } =
+    useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
   const [descriptionText, setDescriptionText] = useState("");
 
   useEffect(() => {
     navigation.addListener("focus", () => {
       setDescriptionText("");
+      setReportData({
+        ...reportData,
+        projectDescription: descriptionText,
+        dateOfEvent: new Date().toLocaleDateString("nb-NO", {
+          day: "numeric",
+          month: "numeric",
+          year: "numeric",
+        }),
+        immediateActionTaken: "nei",
+      });
     });
-  });
+  }, [navigation]);
 
   const handleTextInput = (text: string) => {
     setDescriptionText(text);
+    setReportData({ ...reportData, projectDescription: descriptionText });
   };
   return (
     <ScrollView style={styles.container}>

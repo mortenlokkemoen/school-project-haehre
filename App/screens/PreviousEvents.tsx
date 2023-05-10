@@ -57,11 +57,18 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
     );
   }, [allReports, searchText, employeeId]);
 
-  const renderItem = ({ item }: { item: Report }) => (
-    <Pressable onPress={() => navigateToDetailsScreen(item)}>
-      <EventCard event={item} />
-    </Pressable>
-  );
+  const isURLValid = (url: string) => {
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    return urlRegex.test(url);
+  };
+  const renderItem = ({ item }: { item: Report }) => {
+    // const isValidURL = isURLValid(item.imageAddress);
+    return (
+      <Pressable onPress={() => navigateToDetailsScreen(item)}>
+        <EventCard event={item} />
+      </Pressable>
+    );
+  };
   const navigateToDetailsScreen = (event: Report) => {
     navigation.navigate("EventDetails", { event });
   };

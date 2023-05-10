@@ -29,15 +29,26 @@ export default function RadioButtonImage(props: {
     if (newValue === "yes") {
       setIsChecked(true);
       setIsNoChecked(false);
-      navigation.navigate("ImageScreen");
+      if (reportData.projectDescription === "") {
+        Alert.alert("Skriv inn beskrivelsen!");
+      } else {
+        navigation.navigate("ImageScreen");
+      }
     } else if (newValue === "no") {
       setIsNoChecked(true);
       setIsChecked(false);
       setNoSelected(true);
     }
   };
+
+  const handleDataInput = () => {
+    if (reportData.projectDescription === "") {
+      Alert.alert("Skriv inn beskrivelsen!");
+    } else {
+      handleSendPress;
+    }
+  };
   const handleSendPress = async () => {
-    console.log("Report data on send button", reportData);
     try {
       const response = await fetch(
         "https://school-project-hahre.herokuapp.com/reports",
@@ -52,8 +63,8 @@ export default function RadioButtonImage(props: {
             immediateActionTaken: reportData.immediateActionTaken,
             imageAddress: "",
             projectId: reportData.projectId,
-            projectLocationLongitude: "",
-            projectLocationLatitude: "",
+            projectLocationLongitude: "10.234523",
+            projectLocationLatitude: "45.565656",
             projectDescription: reportData.projectDescription,
           }),
         }
@@ -65,6 +76,7 @@ export default function RadioButtonImage(props: {
       }
     } catch (error) {
       Alert.alert("Det opsto et feil!");
+      console.log("catch error error", error);
     }
   };
   return (
@@ -82,7 +94,7 @@ export default function RadioButtonImage(props: {
         <Text style={styles.radioButtonText}>Nei</Text>
       </View>
       {noSelected ? (
-        <PrimaryButton onPress={handleSendPress}>
+        <PrimaryButton onPress={handleDataInput}>
           <Text>Send</Text>
         </PrimaryButton>
       ) : null}
