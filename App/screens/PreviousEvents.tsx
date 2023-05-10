@@ -62,10 +62,10 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
     return urlRegex.test(url);
   };
   const renderItem = ({ item }: { item: Report }) => {
-    const isValidURL = isURLValid(item.imageAddress);
+    // const isValidURL = isURLValid(item.imageAddress);
     return (
       <Pressable onPress={() => navigateToDetailsScreen(item)}>
-        {isValidURL ? <EventCard event={item} /> : null}
+        <EventCard event={item} />
       </Pressable>
     );
   };
