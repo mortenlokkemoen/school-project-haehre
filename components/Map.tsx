@@ -60,6 +60,8 @@ export default function showMap() {
           longitude: 10.4388753,
           longitudeDelta: 10.98123,
         }}
+        showsUserLocation={true}
+        followsUserLocation={true}
       >
         {showWorkSiteLocation()}
       </MapView>
