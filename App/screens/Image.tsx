@@ -24,6 +24,7 @@ const ImageScreen: React.FunctionComponent = () => {
   useEffect(() => {
     if (image !== "") {
       setImageSelected(true);
+      setReportData({ ...reportData, imageAddress: image });
     }
   }, [image]);
 
@@ -115,16 +116,16 @@ const ImageScreen: React.FunctionComponent = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            reportType: "",
-            dateOfEvent: "",
-            submittedTo: 1,
-            submittedBy: employeeData.employee_Id,
-            immediateActionTaken: "",
-            imageAddress: "",
-            projectId: 1,
+            reportType: reportData.reportType,
+            dateOfEvent: reportData.dateOfEvent,
+            submittedTo: reportData.submittedTo,
+            submittedBy: reportData.submittedBy,
+            immediateActionTaken: reportData.immediateActionTaken,
+            imageAddress: reportData.imageAddress,
+            projectId: reportData.projectId,
             projectLocationLongitude: "",
             projectLocationLatitude: "",
-            projectDescription: "",
+            projectDescription: reportData.projectDescription,
           }),
         }
       );

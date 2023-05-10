@@ -29,7 +29,11 @@ export default function RadioButtonImage(props: {
     if (newValue === "yes") {
       setIsChecked(true);
       setIsNoChecked(false);
-      navigation.navigate("ImageScreen");
+      if (reportData.projectDescription === "") {
+        Alert.alert("Skriv inn beskrivelsen!");
+      } else {
+        navigation.navigate("ImageScreen");
+      }
     } else if (newValue === "no") {
       setIsNoChecked(true);
       setIsChecked(false);

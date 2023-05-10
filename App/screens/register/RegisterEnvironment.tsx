@@ -32,7 +32,7 @@ const RegisterEnvironmentScreen: React.FunctionComponent<IStackScreenProps> = (
         immediateActionTaken: "nei",
       });
     });
-  });
+  }, [navigation]);
 
   const handleTextInput = (text: string) => {
     setDescriptionText(text);

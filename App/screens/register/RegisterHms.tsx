@@ -31,7 +31,7 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
         immediateActionTaken: "nei",
       });
     });
-  }, [navigation, descriptionText]);
+  }, [navigation]);
 
   const handleTextInput = (text: string) => {
     setDescriptionText(text);
