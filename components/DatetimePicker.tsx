@@ -23,7 +23,7 @@ const DatetimePicker: React.FC = () => {
   useEffect(() => {
     navigation.addListener("focus", () => {
       setSelectedDate(new Date());
-      setReportData({ ...reportData, selectedDate });
+      setReportData({ ...reportData, dateOfEvent: formattedDate });
     });
   });
 
@@ -37,7 +37,7 @@ const DatetimePicker: React.FC = () => {
 
   const handleConfirm = (date: Date) => {
     setSelectedDate(date);
-    setReportData({ ...reportData, dateOfEvent: selectedDate });
+    setReportData({ ...reportData, dateOfEvent: formattedDate });
     hideDatePicker();
   };
   const formattedDate = selectedDate?.toLocaleDateString("nb-NO", {
