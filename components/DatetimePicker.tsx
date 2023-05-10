@@ -25,7 +25,7 @@ const DatetimePicker: React.FC = () => {
       setSelectedDate(new Date());
       setReportData({ ...reportData, dateOfEvent: formattedDate });
     });
-  });
+  }, [navigation]);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
