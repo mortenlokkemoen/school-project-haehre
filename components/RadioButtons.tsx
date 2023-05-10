@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
+import { colors, fonts } from "../src/theme";
 
 export default function RadioButtons() {
   const [value, setValue] = useState("");
@@ -33,7 +34,7 @@ export default function RadioButtons() {
         <TouchableOpacity
           style={[
             styles.radioButton,
-            { backgroundColor: !isChecked ? "white" : "#003d6a" },
+            { backgroundColor: !isChecked ? "white" : colors.primary },
           ]}
           onPress={() => handlePress("yes")}
         >
@@ -44,7 +45,7 @@ export default function RadioButtons() {
         <TouchableOpacity
           style={[
             styles.radioButton,
-            { backgroundColor: !isNoChecked ? "white" : "#003d6a" },
+            { backgroundColor: !isNoChecked ? "white" : colors.primary },
           ]}
           onPress={() => handlePress("no")}
         >
@@ -77,7 +78,8 @@ const styles = StyleSheet.create({
   },
   radioButton: {
     borderWidth: 2,
-    borderColor: "#003d6a",
+
+    borderColor: colors.primary,
     borderRadius: 50,
     width: 30,
     height: 30,
@@ -85,11 +87,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   radioButtonChecked: {
-    backgroundColor: "#003d6a",
     borderRadius: 50,
   },
   textInput: {
-    fontFamily: "Barlow_600SemiBold",
+    fontFamily: fonts.semiBold,
     backgroundColor: "white",
     width: "80%",
     height: 100,
@@ -98,7 +99,6 @@ const styles = StyleSheet.create({
   },
   horizontalLine: {
     borderBottomWidth: 1,
-    borderBottomColor: "#003d6a",
     width: "100%",
     marginVertical: 10,
   },

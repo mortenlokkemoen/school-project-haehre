@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Pressable, View, Text, StyleSheet } from "react-native";
 import PrimaryButton from "./PrimaryButton";
+import { colors } from "../src/theme";
 
 export default function RadioButtonImage(props: {
   navigation: any;
@@ -79,10 +80,10 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: "#fff",
     borderWidth: 2,
-    borderColor: "#003d6a",
+    borderColor: colors.primary,
   },
   roundButtonChecked: {
-    backgroundColor: "#003d6a",
+    backgroundColor: colors.primary,
     borderRadius: 50,
   },
   radioButtonText: {
@@ -94,7 +95,6 @@ const styles = StyleSheet.create({
   },
   horizontalLine: {
     borderBottomWidth: 1,
-    borderBottomColor: "#003d6a",
     width: "100%",
     marginVertical: 10,
   },
