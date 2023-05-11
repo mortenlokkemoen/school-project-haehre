@@ -45,7 +45,7 @@ export default function RadioButtonImage(props: {
     if (reportData.projectDescription === "") {
       Alert.alert("Skriv inn beskrivelsen!");
     } else {
-      handleSendPress;
+      handleSendPress();
     }
   };
   const handleSendPress = async () => {
