@@ -73,6 +73,7 @@ export default function RadioButtonImage(props: {
       console.log("response", result);
       if (response.status === 200) {
         Alert.alert("Din rapport har blitt sendt!");
+        navigation.navigate("Hjem");
       }
     } catch (error) {
       Alert.alert("Det opsto et feil!");

@@ -29,7 +29,7 @@ export default function RadioButtons() {
 
   const handleTextInput = (text: string) => {
     setTextInputValue(text);
-    setReportData({ ...reportData, immediateActionTaken: textInputValue });
+    setReportData({ ...reportData, immediateActionTaken: text });
   };
 
   return (

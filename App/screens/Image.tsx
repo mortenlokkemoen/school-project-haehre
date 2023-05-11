@@ -73,9 +73,9 @@ const ImageScreen: React.FunctionComponent = () => {
         [{ resize: { width: 200, height: 200 } }],
         { compress: 0.8, format: ImageManipulator.SaveFormat.JPEG }
       );
-      setImage(result.assets[0].uri);
+      setImage(uri);
       const newFile = {
-        uri: "",
+        uri,
         base64: "",
         type: "image/jpeg",
         name: "image.jpg",

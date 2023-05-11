@@ -35,7 +35,7 @@ const RegisterOtherScreen: React.FunctionComponent<IStackScreenProps> = (
 
   const handleTextInput = (text: string) => {
     setDescriptionText(text);
-    setReportData({ ...reportData, projectDescription: descriptionText });
+    setReportData({ ...reportData, projectDescription: text });
   };
   return (
     <ScrollView style={styles.container}>
