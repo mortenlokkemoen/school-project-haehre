@@ -39,17 +39,24 @@ const ImageScreen: React.FunctionComponent = () => {
     formData.append("upload_preset", "haehre-app");
     formData.append("cloud_name", "dvfczxum7");
 
-    fetch("https://api.cloudinary.com/v1_1/dvfczxum7/image/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("File uploaded to cloudinary", data);
-      })
-      .catch((error) => {
-        console.error("Error uploading file to cloudinary:", error);
+  
+    try {
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dvfczxum7/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await res.json();
+      console.log("File uploaded to cloudinary", data);
+      setReportData({
+        ...reportData,
+        imageAddress: data.secure_url,
       });
+    } catch (error) {
+      console.error("Error uploading file to cloudinary:", error);
+    }
   };
 
   const gallerySelect = async () => {
@@ -69,6 +76,7 @@ const ImageScreen: React.FunctionComponent = () => {
       setImage(result.assets[0].uri);
       const newFile = {
         uri: "",
+        base64: "",
         type: "image/jpeg",
         name: "image.jpg",
       };
