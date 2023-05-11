@@ -6,20 +6,28 @@ import { colors, fonts } from "../../src/theme";
 
 const EventDetailsScreen: React.FC<IStackScreenProps> = ({ route }) => {
   const event = route.params.event.event;
+  const isURLValid = (url: string) => {
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    return urlRegex.test(url);
+  };
+
+  const isValidURL = isURLValid(event.imageAddress);
 
   return (
     <View style={styles.container}>
-      <Image
-        source={{ uri: event.imageAddress }}
-        style={{
-          height: 250,
-          width: 350,
-          borderRadius: 2,
-          marginBottom: 8,
-          marginTop: 20,
-        }}
-        contentFit="cover"
-      />
+      {isValidURL ? (
+        <Image
+          source={{ uri: event.imageAddress }}
+          style={{
+            height: 250,
+            width: 350,
+            borderRadius: 2,
+            marginBottom: 8,
+            marginTop: 20,
+          }}
+          contentFit="cover"
+        />
+      ) : null}
       <View style={styles.midContainer}>
         <Text style={styles.dateStyle}>{event.dateOfSubmission}</Text>
       </View>
