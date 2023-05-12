@@ -16,7 +16,6 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
     useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
   const [descriptionText, setDescriptionText] = useState("");
-  console.log("reportData", reportData);
   useEffect(() => {
     navigation.addListener("focus", () => {
       setDescriptionText("");
@@ -31,17 +30,17 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
         immediateActionTaken: "nei",
       });
     });
-  }, [navigation]);
+  }, [navigation, reportData]);
 
   const handleTextInput = (text: string) => {
     setDescriptionText(text);
-    setReportData({ ...reportData, projectDescription: text });
+    setReportData({ ...reportData, projectDescription: descriptionText });
   };
   return (
     <ScrollView style={styles.container}>
       <TriangleDown />
       <View style={styles.maincontainer}>
-        <Title>HMS hendelse</Title>
+        <Title>{reportData.reportType}</Title>
         <TextInput
           style={styles.textinputContainer}
           placeholder="Beskrive Hendelse"
