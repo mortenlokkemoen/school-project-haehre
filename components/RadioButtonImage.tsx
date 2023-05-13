@@ -3,7 +3,6 @@ import { Pressable, View, Text, StyleSheet, Alert } from "react-native";
 import PrimaryButton from "./PrimaryButton";
 import { GlobalStateContext } from "../App/screens/GlobalState";
 
-
 export default function RadioButtonImage(props: {
   navigation: any;
   route: any;
@@ -56,28 +55,30 @@ export default function RadioButtonImage(props: {
   // you would select to: json.stringify(useremail)
   const sendEmail = async () => {
     try {
-      const response = await fetch('https://school-project-hahre.herokuapp.com/reports/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          to: 'Haehrerepport@gmail.com',
-          from: "Haehrerepport@gmail.com",
-          subject: 'Report Data',
-          body: "This is a test",
-          text: JSON.stringify(reportData),
-        }),
+      const response = await fetch(
+        "https://school-project-hahre.herokuapp.com/reports/send-email",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            to: "Haehrerepport@gmail.com",
+            from: "Haehrerepport@gmail.com",
+            subject: "Report Data",
+            body: "This is a test",
+            text: JSON.stringify(reportData),
+          }),
+        }
+      );
+      let result = await response.json();
+      console.log("Email response", result);
+      if (response.ok) {
+        console.log("Email sent successfully!");
       }
-    );
-    let result = await response.json()
-    console.log("Email response", result);
-    if (response.ok) {
-      console.log('Email sent successfully!');
-     } 
     } catch (error) {
-        Alert.alert("Det opsto et feil!");
-        console.log("catch error error", error);
+      Alert.alert("Det opsto et feil!");
+      console.log("catch error error", error);
+    }
   };
-  }
 
   const handleSendPress = async () => {
     try {
