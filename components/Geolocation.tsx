@@ -1,13 +1,15 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Button } from "react-native";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import * as Location from "expo-location";
 import { TextInput } from "react-native-gesture-handler";
+import { GlobalStateContext } from "../App/screens/GlobalState";
 
 export default function showGeolocation() {
   const [location, setLocation] = useState({});
   const [errorMsg, setErrorMsg] = useState("");
   const [address, setAddress] = useState("");
+
+  const { reportData, setReportData } = useContext(GlobalStateContext);
 
   useEffect(() => {
     const getPermission = async () => {
@@ -18,6 +20,11 @@ export default function showGeolocation() {
       }
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
+      setReportData({
+        ...reportData,
+        projectLocationLongitude: location.coords.longitude,
+        projectLocationLatitude: location.coords.latitude,
+      });
     };
     getPermission();
   }, []);
@@ -37,12 +44,12 @@ export default function showGeolocation() {
 
   return (
     <View style={styles.container}>
-      <TextInput
+      {/* <TextInput
         placeholder="Adress"
         value={address}
         onChangeText={setAddress}
       />
-      <Button title="Geocode Adress" onPress={geocode}></Button>
+      <Button title="Geocode Adress" onPress={geocode}></Button> */}
     </View>
   );
 }

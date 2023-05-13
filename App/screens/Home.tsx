@@ -7,6 +7,7 @@ import Title from "../../components/Title";
 import { colors } from "../../src/theme";
 import Map from "../../components/Map";
 import { GlobalStateContext } from "./GlobalState";
+import Geolocation from "../../components/Geolocation";
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { employeeData } = useContext(GlobalStateContext);
@@ -21,6 +22,9 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
       <PrimaryButton onPress={() => navigation.navigate("Checklist")}>
         <Text>Sjekklister</Text>
       </PrimaryButton>
+      <View style={styles.geolocator}>
+        <Geolocation />
+      </View>
       <Map />
     </View>
   );
@@ -32,5 +36,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: colors.background,
+  },
+  geolocator: {
+    display: "none",
   },
 });
