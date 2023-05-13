@@ -26,7 +26,7 @@ const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
       submittedTo,
       projectId,
     });
-    navigation.navigate("RegisterHms");
+    navigation.navigate("Register");
   };
 
   return (

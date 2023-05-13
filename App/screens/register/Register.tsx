@@ -9,9 +9,7 @@ import Title from "../../../components/Title";
 import { colors, fonts } from "../../../src/theme";
 import { GlobalStateContext } from "../GlobalState";
 
-const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
-  props
-) => {
+const RegisterScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { employeeData, reportData, setReportData } =
     useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
@@ -69,7 +67,7 @@ const RegisterHmsScreen: React.FunctionComponent<IStackScreenProps> = (
   );
 };
 
-export default RegisterHmsScreen;
+export default RegisterScreen;
 
 const styles = StyleSheet.create({
   container: {

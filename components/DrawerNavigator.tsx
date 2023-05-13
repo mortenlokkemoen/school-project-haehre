@@ -17,7 +17,7 @@ const DrawerNavigator = () => {
     "Login",
     "ImageScreen",
     "RegisterEnvironment",
-    "RegisterHms",
+    "Register",
     "RegMachAndEquip",
     "RegisterOther",
     "RegisterQuality",
