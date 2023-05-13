@@ -93,10 +93,8 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
               <Text>LOGG INN</Text>
             </PrimaryButton>
           </View>
-          <View style={[styles.triangleContainer, { marginTop: marginHeight }]}>
-            <TriangleUp />
-          </View>
         </ScrollView>
+        <TriangleUp />
       </View>
     </>
   );
@@ -112,13 +110,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-  },
-
-  triangleContainer: {
-    backgroundColor: "#DCE0E6",
-    marginBottom: 0,
-    marginTop: 0,
-    width: "100%",
   },
 
   input: {
