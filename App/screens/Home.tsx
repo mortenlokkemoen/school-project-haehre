@@ -10,7 +10,7 @@ import { GlobalStateContext } from "./GlobalState";
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { employeeData } = useContext(GlobalStateContext);
-  const { navigation, route, nameProp } = props;
+  const { navigation } = props;
   return (
     <View style={styles.container}>
       <TriangleDown />

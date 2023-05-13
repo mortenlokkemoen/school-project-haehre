@@ -1,18 +1,18 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React, { useContext, useState } from "react";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import Title from "../../../components/Title";
 import { TriangleDown } from "../../../components/TriangleDown";
-import { colors, fonts } from "../../../src/theme";
+import { fonts } from "../../../src/theme";
 import { GlobalStateContext } from "../GlobalState";
 
 const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
-  const { employeeData, setReportData, reportData } =
+  const { employeeData, setReportData } =
     useContext(GlobalStateContext);
-  const { navigation, route, nameProp } = props;
+  const { navigation } = props;
   const [reportText, setReportText] = useState("");
 
   const handlePress = (text: string) => {

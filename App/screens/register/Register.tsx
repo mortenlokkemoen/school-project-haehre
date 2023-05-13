@@ -10,7 +10,7 @@ import { colors, fonts } from "../../../src/theme";
 import { GlobalStateContext } from "../GlobalState";
 
 const RegisterScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
-  const { employeeData, reportData, setReportData } =
+  const { reportData, setReportData } =
     useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
   const [descriptionText, setDescriptionText] = useState("");
@@ -41,7 +41,7 @@ const RegisterScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
         <Title>{reportData.reportType}</Title>
         <TextInput
           style={styles.textinputContainer}
-          placeholder="Beskrive Hendelse"
+          placeholder="Beskriv Hendelse"
           multiline
           numberOfLines={4}
           onChangeText={handleTextInput}

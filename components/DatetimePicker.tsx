@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
-  Button,
   Text,
   View,
   StyleSheet,
-  TouchableHighlight,
   Pressable,
   PressableStateCallbackType,
   ViewStyle,

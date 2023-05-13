@@ -5,7 +5,6 @@ import * as ImageManipulator from "expo-image-manipulator";
 import Geolocation from "../../components/Geolocation";
 import Map from "../../components/Map";
 import PrimaryButton from "../../components/PrimaryButton";
-import { useNavigation } from "@react-navigation/native";
 import { GlobalStateContext } from "./GlobalState";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
 
@@ -16,12 +15,9 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
 }) => {
   const [image, setImage] = useState("");
   const [imageSelected, setImageSelected] = useState(false);
-  // const navigation = useNavigation();
-  const { employeeData, reportData, setReportData } =
-    useContext(GlobalStateContext);
-  const { navigation, route, nameProp } = props;
+  const { reportData, setReportData } = useContext(GlobalStateContext);
+  const { navigation } = props;
 
-  console.log("navigation props", navigation);
   useEffect(() => {
     navigation.addListener("focus", () => {
       setImageSelected(false);
@@ -55,7 +51,6 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
         }
       );
       const data = await res.json();
-      console.log("File uploaded to cloudinary", data);
       setReportData({
         ...reportData,
         imageAddress: data.secure_url,
@@ -175,7 +170,6 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
         }
       );
       let result = await response.json();
-      console.log("response", result);
       if (response.status === 200) {
         Alert.alert("Din rapport har blitt sendt!");
         sendEmail();
@@ -226,22 +220,5 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     margin: 20,
     backgroundColor: "#fff",
-  },
-  btnStyle: {
-    textAlign: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "70%",
-    borderRadius: 8,
-    padding: 20,
-    backgroundColor: "#003d6a",
-    marginBottom: 10,
-  },
-  btnText: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "white",
   },
 });

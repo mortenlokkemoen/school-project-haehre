@@ -13,12 +13,11 @@ import Checkbox from "expo-checkbox";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { TriangleUp } from "../../../components/TriangleUp";
-import { EmployeeType } from "../../../src/types/EmployeeType";
 import { GlobalStateContext } from "../GlobalState";
 
 const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { setEmployeeData } = useContext(GlobalStateContext);
-  const { navigation, route, nameProp } = props;
+  const { navigation } = props;
   const [isChecked, setIsChecked] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -39,7 +38,6 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
         }
       );
       let result = await response.json();
-      console.log("response", result);
       if (response.status === 200) {
         setEmployeeData(result);
         navigation.navigate("MainScreen", {
@@ -52,53 +50,51 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   };
 
   return (
-    <>
-      <View style={styles.container}>
-        <ScrollView style={styles.scrollContainer}>
-          <View style={styles.wFull}>
-            <Image
-              source={require("../../../assets/Logo_Haehre_HiRes.png")}
-              style={{
-                width: 250,
-                height: 250,
-                resizeMode: "contain",
-                alignSelf: "center",
-              }}
-            />
+    <View style={styles.container}>
+      <ScrollView style={styles.scrollContainer}>
+        <View style={styles.wFull}>
+          <Image
+            source={require("../../../assets/Logo_Haehre_HiRes.png")}
+            style={{
+              width: 250,
+              height: 250,
+              resizeMode: "contain",
+              alignSelf: "center",
+            }}
+          />
 
-            <TextInput
-              style={styles.input}
-              placeholder="E-post"
-              value={username}
-              onChangeText={(text) => setUsername(text)}
+          <TextInput
+            style={styles.input}
+            placeholder="E-post"
+            value={username}
+            onChangeText={(text) => setUsername(text)}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Passord"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+          <View style={styles.checkboxContainer}>
+            <Checkbox
+              style={styles.checkbox}
+              value={isChecked}
+              onValueChange={setIsChecked}
+              color="#003d6a"
             />
-            <TextInput
-              style={styles.input}
-              placeholder="Passord"
-              secureTextEntry={true}
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-            />
-            <View style={styles.checkboxContainer}>
-              <Checkbox
-                style={styles.checkbox}
-                value={isChecked}
-                onValueChange={setIsChecked}
-                color="#003d6a"
-              />
-              <Text>LA MEG VÆRE INNLOGGET</Text>
-            </View>
+            <Text>LA MEG VÆRE INNLOGGET</Text>
+          </View>
 
-            <PrimaryButton style={{ marginTop: 60 }} onPress={handleLoginPress}>
-              <Text>LOGG INN</Text>
-            </PrimaryButton>
-          </View>
-          <View style={[styles.triangleContainer, { marginTop: marginHeight }]}>
-            <TriangleUp />
-          </View>
-        </ScrollView>
-      </View>
-    </>
+          <PrimaryButton style={{ marginTop: 60 }} onPress={handleLoginPress}>
+            <Text>LOGG INN</Text>
+          </PrimaryButton>
+        </View>
+        <View style={[styles.triangleContainer, { marginTop: marginHeight }]}>
+          <TriangleUp />
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 

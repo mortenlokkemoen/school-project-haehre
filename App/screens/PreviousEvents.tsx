@@ -11,7 +11,7 @@ import EventCard from "../../components/EventCard";
 import { Report } from "../../src/types/Report";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
 import { GlobalStateContext } from "./GlobalState";
-import { colors, fonts } from "../../src/theme";
+import { fonts } from "../../src/theme";
 
 const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
   const [allReports, setAllReports] = useState<Report[]>([]);
@@ -19,7 +19,7 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
   const [searchText, setSearchText] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const { navigation, route, nameProp } = props;
+  const { navigation } = props;
   const { employeeData } = useContext(GlobalStateContext);
   const employeeId = employeeData.employee_Id;
 
@@ -57,12 +57,7 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
     );
   }, [allReports, searchText, employeeId]);
 
-  const isURLValid = (url: string) => {
-    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
-    return urlRegex.test(url);
-  };
   const renderItem = ({ item }: { item: Report }) => {
-    // const isValidURL = isURLValid(item.imageAddress);
     return (
       <Pressable onPress={() => navigateToDetailsScreen(item)}>
         <EventCard event={item} />
@@ -103,10 +98,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: "bold",
   },
   description: {
     fontSize: 14,

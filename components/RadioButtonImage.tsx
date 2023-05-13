@@ -12,9 +12,8 @@ export default function RadioButtonImage(props: {
   const [value, setValue] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [isNoChecked, setIsNoChecked] = useState(false);
-  const { navigation, route, nameProp } = props;
-  const { employeeData, reportData, setReportData } =
-    useContext(GlobalStateContext);
+  const { navigation } = props;
+  const { reportData, setReportData } = useContext(GlobalStateContext);
 
   useEffect(() => {
     navigation.addListener("focus", () => {
@@ -162,10 +161,6 @@ const styles = StyleSheet.create({
   },
   radioButtonText: {
     margin: 15,
-  },
-  buttonOuterContainer: {
-    borderRadius: 5,
-    width: "100%",
   },
   horizontalLine: {
     borderBottomWidth: 1,
