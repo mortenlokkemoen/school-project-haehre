@@ -2,7 +2,6 @@ import { View, StyleSheet, Text, TextInput, ScrollView } from "react-native";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import RadioButtons from "../../../components/RadioButtons";
 import DatetimePicker from "../../../components/DatetimePicker";
-
 import { TriangleDown } from "../../../components/TriangleDown";
 import RadioButtonImage from "../../../components/RadioButtonImage";
 import { useContext, useEffect, useState } from "react";
@@ -10,14 +9,11 @@ import Title from "../../../components/Title";
 import { colors, fonts } from "../../../src/theme";
 import { GlobalStateContext } from "../GlobalState";
 
-const RegisterEnvironmentScreen: React.FunctionComponent<IStackScreenProps> = (
-  props
-) => {
-  const { employeeData, reportData, setReportData } =
+const RegisterScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
+  const { reportData, setReportData } =
     useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
   const [descriptionText, setDescriptionText] = useState("");
-
   useEffect(() => {
     navigation.addListener("focus", () => {
       setDescriptionText("");
@@ -32,7 +28,7 @@ const RegisterEnvironmentScreen: React.FunctionComponent<IStackScreenProps> = (
         immediateActionTaken: "nei",
       });
     });
-  }, [navigation]);
+  }, [navigation, reportData]);
 
   const handleTextInput = (text: string) => {
     setDescriptionText(text);
@@ -42,10 +38,10 @@ const RegisterEnvironmentScreen: React.FunctionComponent<IStackScreenProps> = (
     <ScrollView style={styles.container}>
       <TriangleDown />
       <View style={styles.maincontainer}>
-        <Title>Ytremiljø</Title>
+        <Title>{reportData.reportType}</Title>
         <TextInput
           style={styles.textinputContainer}
-          placeholder="Beskrive Hendelse"
+          placeholder="Beskriv Hendelse"
           multiline
           numberOfLines={4}
           onChangeText={handleTextInput}
@@ -71,7 +67,7 @@ const RegisterEnvironmentScreen: React.FunctionComponent<IStackScreenProps> = (
   );
 };
 
-export default RegisterEnvironmentScreen;
+export default RegisterScreen;
 
 const styles = StyleSheet.create({
   container: {

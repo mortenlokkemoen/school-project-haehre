@@ -1,44 +1,32 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import React, { useContext } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import React, { useContext, useState } from "react";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import Title from "../../../components/Title";
 import { TriangleDown } from "../../../components/TriangleDown";
-import { colors, fonts } from "../../../src/theme";
+import { fonts } from "../../../src/theme";
 import { GlobalStateContext } from "../GlobalState";
 
 const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
-  const { employeeData, setReportData, reportData } =
+  const { employeeData, setReportData } =
     useContext(GlobalStateContext);
-  const { navigation, route, nameProp } = props;
+  const { navigation } = props;
+  const [reportText, setReportText] = useState("");
 
-  const handlePress = (reportType: string) => {
+  const handlePress = (text: string) => {
     let submittedBy = employeeData.employee_Id;
     let submittedTo = employeeData.current_Manager;
     let projectId = employeeData.current_Project;
-    setReportData({ reportType, submittedBy, submittedTo, projectId });
-
-    switch (reportType) {
-      case "Hms":
-        navigation.navigate("RegisterHms");
-        break;
-      case "Ytre Miljø":
-        navigation.navigate("RegisterEnvironment");
-        break;
-      case "Kvalitet":
-        navigation.navigate("RegisterQuality");
-        break;
-      case "Maskin og Utstyr":
-        navigation.navigate("RegMachAndEquip");
-        break;
-      case "Annet":
-        navigation.navigate("RegisterOther");
-        break;
-      default:
-        break;
-    }
+    setReportText(text);
+    setReportData({
+      reportType: text,
+      submittedBy,
+      submittedTo,
+      projectId,
+    });
+    navigation.navigate("Register");
   };
 
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
 import {
   DrawerContent,
   createDrawerNavigator,
@@ -8,7 +8,6 @@ import {
 import routes from "../src/config/routes";
 import BackButton from "../components/BackButton";
 
-// Async font to load in before app
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
@@ -16,11 +15,7 @@ const DrawerNavigator = () => {
     "Checklist",
     "Login",
     "ImageScreen",
-    "RegisterEnvironment",
-    "RegisterHms",
-    "RegMachAndEquip",
-    "RegisterOther",
-    "RegisterQuality",
+    "Register",
     "EventDetails",
   ];
 

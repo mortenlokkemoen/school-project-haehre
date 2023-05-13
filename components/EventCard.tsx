@@ -1,8 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Image } from "expo-image";
-import { IStackScreenProps } from "../src/library/StackScreenProps";
-// import { EventType } from "../src/types/EventType";
 import { Report } from "../src/types/Report";
 import { colors, fonts } from "../src/theme";
 
@@ -29,15 +27,13 @@ const EventCard = ({ event }: { event: Report }) => {
           />
         ) : null}
       </View>
-      <View style={styles.infoContainer}>
+      <View>
         <Text style={styles.title}>{event.reportType}</Text>
         <Text style={styles.description}>
           Strakstiltak: {event.immediateActionTaken}
         </Text>
         <Text style={styles.date}>{event.dateOfEvent}</Text>
         <Text style={styles.description}>{event.projectDescription}</Text>
-        {/* <Text style={styles.description}>{event.projectLocationLongitude}</Text>
-        <Text style={styles.description}>{event.projectLocationLatitude}</Text> */}
       </View>
     </View>
   );
@@ -60,7 +56,6 @@ const styles = StyleSheet.create({
   imageContainer: {
     marginRight: 10,
   },
-  infoContainer: {},
   title: {
     color: colors.primary,
     fontSize: 18,

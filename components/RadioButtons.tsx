@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalStateContext } from "../App/screens/GlobalState";
 
-import { colors, fonts } from "../src/theme";
+import { fonts } from "../src/theme";
 
 export default function RadioButtons() {
   const [value, setValue] = useState("");
