@@ -30,13 +30,12 @@ const DrawerNavigator = () => {
         drawerPosition: "right",
         headerLeft: () => <BackButton />,
         headerRight: () => <DrawerToggleButton tintColor="white" />,
+        headerTitleAlign: "center",
         headerTitle: () => (
-          <View style={styles.logoContainer}>
-            <Image
-              source={require("../assets/hæhrelogo-hvit.png")}
-              style={styles.logo}
-            />
-          </View>
+          <Image
+            source={require("../assets/hæhrelogo-hvit.png")}
+            style={styles.logo}
+          />
         ),
         drawerItemStyle: { opacity: 1 },
         drawerLabelStyle: { fontWeight: "bold", fontSize: 16 },
@@ -77,11 +76,11 @@ const DrawerNavigator = () => {
 export default DrawerNavigator;
 
 const styles = StyleSheet.create({
-  logoContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  // logoContainer: {
+  //   flex: 1,
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // },
   logo: {
     width: 100,
     height: 100,
