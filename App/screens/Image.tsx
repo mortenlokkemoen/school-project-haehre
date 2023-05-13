@@ -17,8 +17,8 @@ import { useNavigation } from "@react-navigation/native";
 const ImageScreen: React.FunctionComponent = () => {
   const [image, setImage] = useState("");
   const [imageSelected, setImageSelected] = useState(false);
-  // const isTablet = false;
-  // const mapWidth = Dimensions.get("window").width * 0.8;
+  const isTablet = false;
+  const mapWidth = Dimensions.get("window").width * 0.8;
   const navigation = useNavigation();
   useEffect(() => {
     navigation.addListener("focus", () => {
@@ -128,8 +128,8 @@ const ImageScreen: React.FunctionComponent = () => {
           </PrimaryButton>
         ) : null}
         <Geolocation />
-        {/* <Map isTablet={isTablet} mapWidth={mapWidth} /> */}
-        <Map />
+        <Map isTablet={isTablet} mapWidth={mapWidth} />
+        {/* <Map /> */}
       </View>
     </ScrollView>
   );
