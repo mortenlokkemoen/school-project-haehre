@@ -1,8 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, TextInput, View, FlatList, Pressable } from "react-native";
+import React, { useState, useEffect, useContext } from "react";
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  FlatList,
+  Pressable,
+  Text,
+} from "react-native";
 import EventCard from "../../components/EventCard";
 import { Report } from "../../src/types/Report";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
+import { GlobalStateContext } from "./GlobalState";
+import { fonts } from "../../src/theme";
 
 const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
   const [allReports, setAllReports] = useState<Report[]>([]);
@@ -10,8 +19,9 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
   const [searchText, setSearchText] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const { navigation, route, nameProp } = props;
-  const employeeId = 3; // supposed to be coming with props
+  const { navigation } = props;
+  const { employeeData } = useContext(GlobalStateContext);
+  const employeeId = employeeData.employee_Id;
 
   useEffect(() => {
     const fetchReportList = async () => {
@@ -47,16 +57,21 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
     );
   }, [allReports, searchText, employeeId]);
 
-  const renderItem = ({ item }: { item: Report }) => (
-    <Pressable onPress={() => navigateToDetailsScreen(item)}>
-      <EventCard event={item} />
-    </Pressable>
-  );
+  const renderItem = ({ item }: { item: Report }) => {
+    return (
+      <Pressable onPress={() => navigateToDetailsScreen(item)}>
+        <EventCard event={item} />
+      </Pressable>
+    );
+  };
   const navigateToDetailsScreen = (event: Report) => {
     navigation.navigate("EventDetails", { event });
   };
   return (
     <View style={styles.container}>
+      <Text style={styles.paragraph}>
+        {employeeData.employee_Name}, dine tidlige hendelser
+      </Text>
       <TextInput
         style={styles.searchBar}
         placeholder="Search reports..."
@@ -84,10 +99,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
   },
-  title: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
   description: {
     fontSize: 14,
   },
@@ -97,6 +108,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
+  },
+  paragraph: {
+    fontSize: 20,
+    marginTop: 15,
+    marginBottom: 25,
+    fontFamily: fonts.regular,
+    textAlign: "center",
   },
 });
 

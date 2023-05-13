@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { Pressable, View, Text, StyleSheet } from "react-native";
+import { useContext, useEffect, useState } from "react";
+import { Pressable, View, Text, StyleSheet, Alert } from "react-native";
 import PrimaryButton from "./PrimaryButton";
 import { colors } from "../src/theme";
+import { GlobalStateContext } from "../App/screens/GlobalState";
 
 export default function RadioButtonImage(props: {
   navigation: any;
@@ -12,9 +13,9 @@ export default function RadioButtonImage(props: {
   const [value, setValue] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [isNoChecked, setIsNoChecked] = useState(false);
-  const { navigation, route, nameProp } = props;
+  const { navigation } = props;
+  const { reportData, setReportData } = useContext(GlobalStateContext);
 
-  //not resseting the radio buttons
   useEffect(() => {
     navigation.addListener("focus", () => {
       setNoSelected(false);
@@ -28,17 +29,90 @@ export default function RadioButtonImage(props: {
     if (newValue === "yes") {
       setIsChecked(true);
       setIsNoChecked(false);
-      // console.log(props.navigation.dangerouslyGetState());
-      navigation.navigate("ImageScreen");
+      if (reportData.projectDescription === "") {
+        Alert.alert("Skriv inn beskrivelsen!");
+      } else {
+        navigation.navigate("ImageScreen");
+      }
     } else if (newValue === "no") {
       setIsNoChecked(true);
       setIsChecked(false);
       setNoSelected(true);
     }
   };
-  // const showSendButton = () => {
-  //   setNoSelected(true);
-  // };
+
+  const handleDataInput = () => {
+    if (reportData.projectDescription === "") {
+      Alert.alert("Skriv inn beskrivelsen!");
+    } else {
+      handleSendPress();
+    }
+  };
+
+  // SENDGRID FUNCTION
+  // To avoid api error from or to email
+  // needs to be valid, in production
+  // you would select to: json.stringify(useremail)
+  const sendEmail = async () => {
+    try {
+      const response = await fetch(
+        "https://school-project-hahre.herokuapp.com/reports/send-email",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            to: "Haehrerepport@gmail.com",
+            from: "Haehrerepport@gmail.com",
+            subject: "Report Data",
+            body: "This is a test",
+            text: JSON.stringify(reportData),
+          }),
+        }
+      );
+      let result = await response.json();
+      console.log("Email response", result);
+      if (response.ok) {
+        console.log("Email sent successfully!");
+      }
+    } catch (error) {
+      Alert.alert("Det opsto et feil!");
+      console.log("catch error error", error);
+    }
+  };
+
+  const handleSendPress = async () => {
+    try {
+      const response = await fetch(
+        "https://school-project-hahre.herokuapp.com/reports",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            reportType: reportData.reportType,
+            dateOfEvent: reportData.dateOfEvent,
+            submittedTo: reportData.submittedTo,
+            submittedBy: reportData.submittedBy,
+            immediateActionTaken: reportData.immediateActionTaken,
+            imageAddress: "",
+            projectId: reportData.projectId,
+            projectLocationLongitude: reportData.projectLocationLongitude,
+            projectLocationLatitude: reportData.projectLocationLatitude,
+            projectDescription: reportData.projectDescription,
+          }),
+        }
+      );
+      let result = await response.json();
+      console.log("response", result);
+      if (response.status === 200) {
+        Alert.alert("Din rapport har blitt sendt!");
+        navigation.navigate("Hjem");
+        sendEmail();
+      }
+    } catch (error) {
+      Alert.alert("Det opsto et feil!");
+      console.log("catch error error", error);
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.radioButtonsContainer}>
@@ -54,7 +128,7 @@ export default function RadioButtonImage(props: {
         <Text style={styles.radioButtonText}>Nei</Text>
       </View>
       {noSelected ? (
-        <PrimaryButton onPress={() => alert("report has been sent")}>
+        <PrimaryButton onPress={handleDataInput}>
           <Text>Send</Text>
         </PrimaryButton>
       ) : null}
@@ -88,10 +162,6 @@ const styles = StyleSheet.create({
   },
   radioButtonText: {
     margin: 15,
-  },
-  buttonOuterContainer: {
-    borderRadius: 5,
-    width: "100%",
   },
   horizontalLine: {
     borderBottomWidth: 1,

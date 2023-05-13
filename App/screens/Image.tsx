@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from "react";
-import {
-  Image,
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Dimensions,
-} from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { Image, View, Text, StyleSheet, ScrollView, Alert, Dimensions } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
-import Geolocation from "../../components/Geolocation";
 import Map from "../../components/Map";
 import PrimaryButton from "../../components/PrimaryButton";
-import { useNavigation } from "@react-navigation/native";
+import { GlobalStateContext } from "./GlobalState";
+import { IStackScreenProps } from "../../src/library/StackScreenProps";
 
-const ImageScreen: React.FunctionComponent = () => {
+const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
+  navigation: any;
+  route: any;
+  nameProp: any;
+}) => {
   const [image, setImage] = useState("");
   const [imageSelected, setImageSelected] = useState(false);
+  const { reportData, setReportData } = useContext(GlobalStateContext);
+  const { navigation } = props;
   const isTablet = false;
   const mapWidth = Dimensions.get("window").width * 0.8;
-  const navigation = useNavigation();
+  
   useEffect(() => {
     navigation.addListener("focus", () => {
       setImageSelected(false);
@@ -29,6 +28,7 @@ const ImageScreen: React.FunctionComponent = () => {
   useEffect(() => {
     if (image !== "") {
       setImageSelected(true);
+      setReportData({ ...reportData, imageAddress: image });
     }
   }, [image]);
 
@@ -43,17 +43,22 @@ const ImageScreen: React.FunctionComponent = () => {
     formData.append("upload_preset", "haehre-app");
     formData.append("cloud_name", "dvfczxum7");
 
-    fetch("https://api.cloudinary.com/v1_1/dvfczxum7/image/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("File uploaded to cloudinary", data);
-      })
-      .catch((error) => {
-        console.error("Error uploading file to cloudinary:", error);
+    try {
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dvfczxum7/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await res.json();
+      setReportData({
+        ...reportData,
+        imageAddress: data.secure_url,
       });
+    } catch (error) {
+      console.error("Error uploading file to cloudinary:", error);
+    }
   };
 
   const gallerySelect = async () => {
@@ -70,9 +75,10 @@ const ImageScreen: React.FunctionComponent = () => {
         [{ resize: { width: 200, height: 200 } }],
         { compress: 0.8, format: ImageManipulator.SaveFormat.JPEG }
       );
-      setImage(result.assets[0].uri);
+      setImage(uri);
       const newFile = {
-        uri: "",
+        uri,
+        base64: "",
         type: "image/jpeg",
         name: "image.jpg",
       };
@@ -112,6 +118,69 @@ const ImageScreen: React.FunctionComponent = () => {
     }
   };
 
+  // SENDGRID FUNCTION
+  // To avoid api error from or to email
+  // needs to be valid, in production
+  // you would select to: json.stringify(useremail)
+  const sendEmail = async () => {
+    try {
+      const response = await fetch(
+        "https://school-project-hahre.herokuapp.com/reports/send-email",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            to: "Haehrerepport@gmail.com",
+            from: "Haehrerepport@gmail.com",
+            subject: "Report Data",
+            body: "This is a test",
+            text: JSON.stringify(reportData),
+          }),
+        }
+      );
+      let result = await response.json();
+      console.log("Email response", result);
+      if (response.ok) {
+        console.log("Email sent successfully!");
+      }
+    } catch (error) {
+      Alert.alert("Det opsto et feil!");
+      console.log("catch error error", error);
+    }
+  };
+
+  const handleSendPress = async () => {
+    try {
+      const response = await fetch(
+        "https://school-project-hahre.herokuapp.com/reports",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            reportType: reportData.reportType,
+            dateOfEvent: reportData.dateOfEvent,
+            submittedTo: reportData.submittedTo,
+            submittedBy: reportData.submittedBy,
+            immediateActionTaken: reportData.immediateActionTaken,
+            imageAddress: reportData.imageAddress,
+            projectId: reportData.projectId,
+            projectLocationLongitude: reportData.projectLocationLongitude,
+            projectLocationLatitude: reportData.projectLocationLatitude,
+            projectDescription: reportData.projectDescription,
+          }),
+        }
+      );
+      let result = await response.json();
+      if (response.status === 200) {
+        Alert.alert("Din rapport har blitt sendt!");
+        sendEmail();
+        navigation.navigate("Hjem");
+      }
+    } catch (error) {
+      Alert.alert("Det opsto et feil!");
+    }
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.maincontainer}>
@@ -123,13 +192,13 @@ const ImageScreen: React.FunctionComponent = () => {
           <Text>Ta bilde</Text>
         </PrimaryButton>
         {imageSelected ? (
-          <PrimaryButton onPress={() => alert("report has been sent")}>
+          <PrimaryButton onPress={handleSendPress}>
             <Text>Send</Text>
           </PrimaryButton>
         ) : null}
-        <Geolocation />
+
         <Map isTablet={isTablet} mapWidth={mapWidth} />
-        {/* <Map /> */}
+
       </View>
     </ScrollView>
   );
@@ -153,22 +222,5 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     margin: 20,
     backgroundColor: "#fff",
-  },
-  btnStyle: {
-    textAlign: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "70%",
-    borderRadius: 8,
-    padding: 20,
-    backgroundColor: "#003d6a",
-    marginBottom: 10,
-  },
-  btnText: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "white",
   },
 });

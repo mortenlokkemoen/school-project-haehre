@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,61 +7,94 @@ import {
   ScrollView,
   TextInput,
   Image,
+  Alert,
 } from "react-native";
 import Checkbox from "expo-checkbox";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { TriangleUp } from "../../../components/TriangleUp";
+import { GlobalStateContext } from "../GlobalState";
 
 const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
-  const { navigation, route, nameProp } = props;
-  console.log({ navigation, route, nameProp });
+  const { setEmployeeData } = useContext(GlobalStateContext);
+  const { navigation } = props;
   const [isChecked, setIsChecked] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const screenHeight = Dimensions.get("window").height;
   const marginHeight = screenHeight * 0.12;
 
+  const handleLoginPress = async () => {
+    try {
+      const response = await fetch(
+        "https://school-project-hahre.herokuapp.com/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userName: username,
+            password: password,
+          }),
+        }
+      );
+      let result = await response.json();
+      if (response.status === 200) {
+        setEmployeeData(result);
+        navigation.navigate("MainScreen", {
+          screen: "Hjem",
+        });
+      }
+    } catch (error) {
+      Alert.alert("Feil brukernavn eller passord");
+    }
+  };
+
   return (
-    <>
-      <View style={styles.container}>
-        <ScrollView style={styles.scrollContainer}>
-          <View style={styles.wFull}>
-            <Image
-              source={require("../../../assets/Logo_Haehre_HiRes.png")}
-              style={{
-                width: 250,
-                height: 250,
-                resizeMode: "contain",
-                alignSelf: "center",
-              }}
+    <View style={styles.container}>
+      <ScrollView style={styles.scrollContainer}>
+        <View style={styles.wFull}>
+          <Image
+            source={require("../../../assets/Logo_Haehre_HiRes.png")}
+            style={{
+              width: 250,
+              height: 250,
+              resizeMode: "contain",
+              alignSelf: "center",
+            }}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="E-post"
+            value={username}
+            onChangeText={(text) => setUsername(text)}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Passord"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+          <View style={styles.checkboxContainer}>
+            <Checkbox
+              style={styles.checkbox}
+              value={isChecked}
+              onValueChange={setIsChecked}
+              color="#003d6a"
             />
-
-            <TextInput style={styles.input} placeholder="E-post" />
-            <TextInput style={styles.input} placeholder="Passord" />
-            <View style={styles.checkboxContainer}>
-              <Checkbox
-                style={styles.checkbox}
-                value={isChecked}
-                onValueChange={setIsChecked}
-                color="#003d6a"
-              />
-              <Text>LA MEG VÆRE INNLOGGET</Text>
-            </View>
-
-            <PrimaryButton
-              style={{ marginTop: 60 }}
-              onPress={() =>
-                navigation.navigate("MainScreen", { screen: "Hjem" })
-              }
-            >
-              <Text>LOGG INN</Text>
-            </PrimaryButton>
+            <Text>LA MEG VÆRE INNLOGGET</Text>
           </View>
-          <View style={[styles.triangleContainer, { marginTop: marginHeight }]}>
-            <TriangleUp />
-          </View>
-        </ScrollView>
-      </View>
-    </>
+
+          <PrimaryButton style={{ marginTop: 60 }} onPress={handleLoginPress}>
+            <Text>LOGG INN</Text>
+          </PrimaryButton>
+        </View>
+        <View style={[styles.triangleContainer, { marginTop: marginHeight }]}>
+          <TriangleUp />
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 

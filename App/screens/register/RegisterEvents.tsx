@@ -1,39 +1,55 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import React, { useContext, useState } from "react";
 import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import Title from "../../../components/Title";
 import { TriangleDown } from "../../../components/TriangleDown";
-import { colors, fonts } from "../../../src/theme";
+import { fonts } from "../../../src/theme";
+import { GlobalStateContext } from "../GlobalState";
 
 const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
-  const { navigation, route, nameProp } = props;
-  console.log({ navigation, route, nameProp });
+  const { employeeData, setReportData, reportData } =
+    useContext(GlobalStateContext);
+  const { navigation } = props;
+  const [reportText, setReportText] = useState("");
+  const handlePress = (text: string) => {
+    let submittedBy = employeeData.employee_Id;
+    let submittedTo = employeeData.current_Manager;
+    let projectId = employeeData.current_Project;
+    setReportText(text);
+    setReportData({
+      ...reportData,
+      reportType: text,
+      submittedBy,
+      submittedTo,
+      projectId,
+    });
+    navigation.navigate("Register");
+  };
+
   return (
     <View>
       <TriangleDown />
       <View style={styles.textContainer}>
-        <Title>Hei Morten</Title>
+        <Title>Hei {employeeData && employeeData.employee_Name}</Title>
         <Text style={styles.paragraph}>Registrer hendelser og avvik</Text>
       </View>
       <View style={styles.buttonsContainer}>
-        <PrimaryButton onPress={() => navigation.navigate("RegisterHms")}>
+        <PrimaryButton onPress={() => handlePress("Hms")}>
           <Text>HMS</Text>
         </PrimaryButton>
-        <PrimaryButton
-          onPress={() => navigation.navigate("RegisterEnvironment")}
-        >
+        <PrimaryButton onPress={() => handlePress("Ytre Miljø")}>
           <Text>YTRE MILJØ</Text>
         </PrimaryButton>
-        <PrimaryButton onPress={() => navigation.navigate("RegisterQuality")}>
+        <PrimaryButton onPress={() => handlePress("Kvalitet")}>
           <Text>KVALITET</Text>
         </PrimaryButton>
-        <PrimaryButton onPress={() => navigation.navigate("RegMachAndEquip")}>
+        <PrimaryButton onPress={() => handlePress("Maskin og Utstyr")}>
           <Text>MASKINER OG UTSTYR</Text>
         </PrimaryButton>
-        <PrimaryButton onPress={() => navigation.navigate("RegisterOther")}>
+        <PrimaryButton onPress={() => handlePress("Annet")}>
           <Text>ANNET</Text>
         </PrimaryButton>
       </View>

@@ -6,7 +6,6 @@ import {
   DrawerToggleButton,
 } from "@react-navigation/drawer";
 import routes from "../src/config/routes";
-
 import BackButton from "../components/BackButton";
 
 const Drawer = createDrawerNavigator();
@@ -16,11 +15,7 @@ const DrawerNavigator = () => {
     "Checklist",
     "Login",
     "ImageScreen",
-    "RegisterEnvironment",
-    "RegisterHms",
-    "RegMachAndEquip",
-    "RegisterOther",
-    "RegisterQuality",
+    "Register",
     "EventDetails",
   ];
 

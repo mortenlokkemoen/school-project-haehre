@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
-  Button,
   Text,
   View,
   StyleSheet,
-  TouchableHighlight,
   Pressable,
   PressableStateCallbackType,
   ViewStyle,
@@ -12,8 +10,10 @@ import {
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useNavigation } from "@react-navigation/native";
+import { GlobalStateContext } from "../App/screens/GlobalState";
 
 const DatetimePicker: React.FC = () => {
+  const { reportData, setReportData } = useContext(GlobalStateContext);
   const [isDatePickerVisible, setDatePickerVisibility] =
     useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -22,7 +22,7 @@ const DatetimePicker: React.FC = () => {
     navigation.addListener("focus", () => {
       setSelectedDate(new Date());
     });
-  });
+  }, [navigation]);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -34,6 +34,7 @@ const DatetimePicker: React.FC = () => {
 
   const handleConfirm = (date: Date) => {
     setSelectedDate(date);
+    setReportData({ ...reportData, dateOfEvent: formattedDate });
     hideDatePicker();
   };
   const formattedDate = selectedDate?.toLocaleDateString("nb-NO", {
