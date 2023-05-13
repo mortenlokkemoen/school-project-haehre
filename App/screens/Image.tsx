@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Image, View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
-import Geolocation from "../../components/Geolocation";
 import Map from "../../components/Map";
 import PrimaryButton from "../../components/PrimaryButton";
 import { GlobalStateContext } from "./GlobalState";
@@ -163,8 +162,8 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
             immediateActionTaken: reportData.immediateActionTaken,
             imageAddress: reportData.imageAddress,
             projectId: reportData.projectId,
-            projectLocationLongitude: "",
-            projectLocationLatitude: "",
+            projectLocationLongitude: reportData.projectLocationLongitude,
+            projectLocationLatitude: reportData.projectLocationLatitude,
             projectDescription: reportData.projectDescription,
           }),
         }
@@ -195,7 +194,6 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
             <Text>Send</Text>
           </PrimaryButton>
         ) : null}
-        <Geolocation />
         <Map />
       </View>
     </ScrollView>

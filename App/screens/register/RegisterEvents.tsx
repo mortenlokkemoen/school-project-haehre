@@ -10,17 +10,17 @@ import { GlobalStateContext } from "../GlobalState";
 const RegisterEventScreen: React.FunctionComponent<IStackScreenProps> = (
   props
 ) => {
-  const { employeeData, setReportData } =
+  const { employeeData, setReportData, reportData } =
     useContext(GlobalStateContext);
   const { navigation } = props;
   const [reportText, setReportText] = useState("");
-
   const handlePress = (text: string) => {
     let submittedBy = employeeData.employee_Id;
     let submittedTo = employeeData.current_Manager;
     let projectId = employeeData.current_Project;
     setReportText(text);
     setReportData({
+      ...reportData,
       reportType: text,
       submittedBy,
       submittedTo,

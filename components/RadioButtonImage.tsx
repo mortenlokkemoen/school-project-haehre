@@ -94,8 +94,8 @@ export default function RadioButtonImage(props: {
             immediateActionTaken: reportData.immediateActionTaken,
             imageAddress: "",
             projectId: reportData.projectId,
-            projectLocationLongitude: "10.234523",
-            projectLocationLatitude: "45.565656",
+            projectLocationLongitude: reportData.projectLocationLongitude,
+            projectLocationLatitude: reportData.projectLocationLatitude,
             projectDescription: reportData.projectDescription,
           }),
         }
