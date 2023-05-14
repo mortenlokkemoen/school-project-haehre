@@ -82,18 +82,6 @@ export default function Map() {
       );
     });
   };
-  // const showWorkSiteLocation = () => {
-  //   return workSiteLocation.map((item, index) => {
-  //     return (
-  //       <Marker
-  //         key={index}
-  //         coordinate={item.location}
-  //         title={item.title}
-  //         description={item.description}
-  //       />
-  //     );
-  //   });
-  // };
   const handleMapPress = (event: any) => {
     const { coordinate } = event.nativeEvent;
     console.log("Tapped coordinate:", coordinate);
