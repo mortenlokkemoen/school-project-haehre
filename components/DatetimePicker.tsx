@@ -11,6 +11,7 @@ import {
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalStateContext } from "../App/screens/GlobalState";
+import { colors, fonts } from "../src/theme";
 
 const DatetimePicker: React.FC = () => {
   const { reportData, setReportData } = useContext(GlobalStateContext);
@@ -54,7 +55,7 @@ const DatetimePicker: React.FC = () => {
     <View>
       <Pressable
         style={getButtonInnerContainerStyle}
-        android_ripple={{ color: "#003D6A" }}
+        android_ripple={{ color: colors.primary }}
         onPress={showDatePicker}
       >
         <Text style={styles.buttonText}>{formattedDate}</Text>
@@ -78,17 +79,13 @@ const DatetimePicker: React.FC = () => {
 
 export default DatetimePicker;
 const styles = StyleSheet.create({
-  datePickerButton: {
-    backgroundColor: "#fff",
-    borderRadius: 20,
-  },
   buttonInnerContainer: {
     textAlign: "center",
     alignItems: "center",
     width: "85%",
     borderRadius: 5,
     padding: 20,
-    backgroundColor: "#003d6a",
+    backgroundColor: colors.primary,
   },
   buttonText: {
     color: "#ffff",
@@ -96,7 +93,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textTransform: "uppercase",
   },
+
   pressed: {
-    backgroundColor: "#64c4ae",
+    backgroundColor: colors.secondary,
   },
 });

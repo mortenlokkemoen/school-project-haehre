@@ -7,6 +7,7 @@ import {
 } from "@react-navigation/drawer";
 import routes from "../src/config/routes";
 import BackButton from "../components/BackButton";
+import { TouchableOpacity } from "react-native";
 
 const Drawer = createDrawerNavigator();
 
@@ -23,7 +24,7 @@ const DrawerNavigator = () => {
     <Drawer.Navigator
       initialRouteName={"Hjem"}
       drawerContent={(props) => <DrawerContent {...props} />}
-      screenOptions={({ route }) => ({
+      screenOptions={({ navigation, route }) => ({
         headerStyle: { backgroundColor: "#003D6A", height: 120 },
         headerTintColor: "#003d6a",
         drawerContentContainerStyle: { backgroundColor: "#DCE0E6" },
@@ -32,10 +33,12 @@ const DrawerNavigator = () => {
         headerRight: () => <DrawerToggleButton tintColor="white" />,
         headerTitleAlign: "center",
         headerTitle: () => (
-          <Image
-            source={require("../assets/hæhrelogo-hvit.png")}
-            style={styles.logo}
-          />
+          <TouchableOpacity onPress={() => navigation.navigate("Hjem")}>
+            <Image
+              source={require("../assets/hæhrelogo-hvit.png")}
+              style={styles.logo}
+            />
+          </TouchableOpacity>
         ),
         drawerItemStyle: { opacity: 1 },
         drawerLabelStyle: { fontWeight: "bold", fontSize: 16 },
@@ -76,11 +79,6 @@ const DrawerNavigator = () => {
 export default DrawerNavigator;
 
 const styles = StyleSheet.create({
-  // logoContainer: {
-  //   flex: 1,
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  // },
   logo: {
     width: 100,
     height: 100,

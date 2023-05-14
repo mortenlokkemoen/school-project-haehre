@@ -29,7 +29,7 @@ function PrimaryButton({ children, onPress }: PrimaryButtonProps): JSX.Element {
     <View style={styles.buttonOuterContainer}>
       <Pressable
         style={getButtonInnerContainerStyle}
-        android_ripple={{ color: "#003D6A" }}
+        android_ripple={{ color: colors.primary }}
         onPress={onPress}
       >
         <Text style={styles.buttonText}>{children}</Text>
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
   },
   pressed: {
     backgroundColor: colors.secondary,
-    buttonText: {
-      color: colors.primary,
-    },
+    // buttonText: {
+    //   color: colors.primary,
+    // },
   },
 });
