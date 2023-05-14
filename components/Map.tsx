@@ -1,9 +1,18 @@
+import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 
 interface Props {
   isTablet: boolean;
   mapWidth: number;
+}
+interface MarkerData {
+  title: string;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
+  description: string;
 }
 
 const workSiteLocation = [
@@ -39,12 +48,16 @@ const workSiteLocation = [
 export default function Map(props: Props) {
   const { mapWidth } = props;
 
+  const [workSiteMarkers, setWorkSiteMarkers] =
+    useState<MarkerData[]>(workSiteLocation);
+  const [userAddedMarkers, setUserAddedMarkers] = useState<MarkerData[]>([]);
+
   const onRegionChange = (region: any) => {
     console.log(region);
   };
 
-  const showWorkSiteLocation = () => {
-    return workSiteLocation.map((item, index) => {
+  const showMarkers = (markers: MarkerData[]) => {
+    return markers.map((item, index) => {
       return (
         <Marker
           key={index}
@@ -55,12 +68,38 @@ export default function Map(props: Props) {
       );
     });
   };
+  // const showWorkSiteLocation = () => {
+  //   return workSiteLocation.map((item, index) => {
+  //     return (
+  //       <Marker
+  //         key={index}
+  //         coordinate={item.location}
+  //         title={item.title}
+  //         description={item.description}
+  //       />
+  //     );
+  //   });
+  // };
+  const handleMapPress = (event: any) => {
+    const { coordinate } = event.nativeEvent;
+    console.log("Tapped coordinate:", coordinate);
+
+    const newMarker: MarkerData = {
+      title: "New Marker",
+      location: coordinate,
+      description: "This is a new marker added on map tap",
+    };
+
+    // Update the user-added markers state with the new marker
+    setUserAddedMarkers((prevMarkers) => [...prevMarkers, newMarker]);
+  };
 
   return (
     <View style={styles.container}>
       <MapView
         style={[styles.map, { width: mapWidth }]} // bruk mapWidth her for å angi bredden
         onRegionChange={onRegionChange}
+        onPress={handleMapPress}
         initialRegion={{
           latitude: 59.8105765,
           latitudeDelta: 4.917978,
@@ -70,7 +109,8 @@ export default function Map(props: Props) {
         showsUserLocation={true}
         followsUserLocation={true}
       >
-        {showWorkSiteLocation()}
+        {showMarkers(workSiteMarkers)}
+        {showMarkers(userAddedMarkers)}
       </MapView>
     </View>
   );
