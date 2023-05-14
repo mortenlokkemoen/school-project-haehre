@@ -11,6 +11,13 @@ const EventCard = ({ event }: { event: Report }) => {
   };
 
   const isValidURL = isURLValid(event.imageAddress);
+
+  const formatDescription = (description: string) => {
+    if (description.length > 50) {
+      return description.substring(0, 50) + "...";
+    }
+    return description;
+  };
   return (
     <View style={styles.card}>
       <View style={styles.imageContainer}>
@@ -27,13 +34,15 @@ const EventCard = ({ event }: { event: Report }) => {
           />
         ) : null}
       </View>
-      <View>
+      <View style={styles.textContainer}>
         <Text style={styles.title}>{event.reportType}</Text>
         <Text style={styles.description}>
           Strakstiltak: {event.immediateActionTaken}
         </Text>
         <Text style={styles.date}>{event.dateOfEvent}</Text>
-        <Text style={styles.description}>{event.projectDescription}</Text>
+        <Text style={styles.description}>
+          {formatDescription(event.projectDescription)}
+        </Text>
       </View>
     </View>
   );
@@ -55,6 +64,10 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     marginRight: 10,
+  },
+  textContainer: {
+    width: "80%",
+    paddingRight: 20,
   },
   title: {
     color: colors.primary,
