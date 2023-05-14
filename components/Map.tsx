@@ -1,7 +1,8 @@
 import { Dimensions, StyleSheet, View } from "react-native";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import MapView, { Marker } from "react-native-maps";
+import { GlobalStateContext } from "../App/screens/GlobalState";
 
 interface Props {
   isTablet: boolean;
@@ -60,11 +61,20 @@ export default function Map() {
   const screenHeight = Dimensions.get("window").height;
   const mapWidth = screenWidth * 0.8;
   const mapHeight = screenHeight * 0.4;
-
+  const { reportData, setReportData } = useContext(GlobalStateContext);
 
   const [workSiteMarkers, setWorkSiteMarkers] =
     useState<MarkerData[]>(workSiteLocation);
   const [userAddedMarkers, setUserAddedMarkers] = useState<MarkerData[]>([]);
+
+  useEffect(() => {
+    if (userAddedMarkers.length > 0)
+      setReportData({
+        ...reportData,
+        projectLocationLongitude: userAddedMarkers[0].location.longitude,
+        projectLocationLatitude: userAddedMarkers[0].location.latitude,
+      });
+  }, userAddedMarkers);
 
   const onRegionChange = (region: any) => {
     console.log(region);
@@ -87,7 +97,7 @@ export default function Map() {
     console.log("Tapped coordinate:", coordinate);
 
     const newMarker: MarkerData = {
-      title: "New Marker",
+      title: "Chosen Location",
       location: coordinate,
       description: "This is a new marker added on map tap",
     };
