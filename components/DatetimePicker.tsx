@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textTransform: "uppercase",
   },
+
   pressed: {
     backgroundColor: colors.secondary,
   },
