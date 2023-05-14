@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Map from "../../components/Map";
 import { GlobalStateContext } from "./GlobalState";
 import Geolocation from "../../components/Geolocation";
@@ -11,10 +11,7 @@ import { colors } from "../../src/theme";
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { navigation } = props;
-  const isTablet = false;
-  const mapWidth = Dimensions.get("window").width * 0.8;
   const { employeeData } = useContext(GlobalStateContext);
-
   return (
     <View style={styles.container}>
       <TriangleDown />
@@ -25,7 +22,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
       <PrimaryButton onPress={() => navigation.navigate("Checklist")}>
         <Text>Sjekklister</Text>
       </PrimaryButton>
-      <Map isTablet={isTablet} mapWidth={mapWidth} />
+      <Map />
       <View style={styles.geolocator}>
         <Geolocation />
       </View>
