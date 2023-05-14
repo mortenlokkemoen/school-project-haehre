@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Image, View, Text, StyleSheet, ScrollView, Alert, Dimensions } from "react-native";
+import { Image, View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
 import Map from "../../components/Map";
@@ -17,8 +17,7 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
   const { reportData, setReportData } = useContext(GlobalStateContext);
   const { navigation } = props;
   const isTablet = false;
-  const mapWidth = Dimensions.get("window").width * 0.8;
-  
+
   useEffect(() => {
     navigation.addListener("focus", () => {
       setImageSelected(false);
@@ -197,8 +196,7 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
           </PrimaryButton>
         ) : null}
 
-        <Map isTablet={isTablet} mapWidth={mapWidth} />
-
+        <Map />
       </View>
     </ScrollView>
   );

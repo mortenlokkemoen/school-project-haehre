@@ -1,9 +1,10 @@
-import { StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 
 interface Props {
   isTablet: boolean;
   mapWidth: number;
+  mapHeight: number;
 }
 
 const workSiteLocation = [
@@ -36,9 +37,11 @@ const workSiteLocation = [
   },
 ];
 
-export default function Map(props: Props) {
-  const { mapWidth } = props;
-
+export default function Map() {
+  const screenWidth = Dimensions.get("window").width;
+  const screenHeight = Dimensions.get("window").height;
+  const mapWidth = screenWidth * 0.8;
+  const mapHeight = screenHeight * 0.4;
   const onRegionChange = (region: any) => {
     console.log(region);
   };
@@ -59,7 +62,7 @@ export default function Map(props: Props) {
   return (
     <View style={styles.container}>
       <MapView
-        style={[styles.map, { width: mapWidth }]} // bruk mapWidth her for å angi bredden
+        style={[styles.map, { width: mapWidth, height: mapHeight }]} // bruk mapWidth her for å angi bredden
         onRegionChange={onRegionChange}
         initialRegion={{
           latitude: 59.8105765,
