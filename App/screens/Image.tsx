@@ -16,7 +16,6 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
   const [imageSelected, setImageSelected] = useState(false);
   const { reportData, setReportData } = useContext(GlobalStateContext);
   const { navigation } = props;
-  const isTablet = false;
 
   useEffect(() => {
     navigation.addListener("focus", () => {
