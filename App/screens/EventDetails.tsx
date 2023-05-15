@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Image } from "expo-image";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
+import Title from "../../components/Title";
 import { colors, fonts } from "../../src/theme";
 
 const EventDetailsScreen: React.FC<IStackScreenProps> = ({ route }) => {
@@ -31,7 +32,9 @@ const EventDetailsScreen: React.FC<IStackScreenProps> = ({ route }) => {
       <View style={styles.midContainer}>
         <Text style={styles.dateStyle}>{event.dateOfSubmission}</Text>
       </View>
-      <Text style={styles.title}>{event.reportType}</Text>
+
+      <Title>{event.reportType}</Title>
+
       <Text style={styles.locationStyle}>{event.projectLocationLongitude}</Text>
       <Text style={styles.locationStyle}>{event.projectLocationLatitude}</Text>
       <Text style={styles.descStyle}>{event.projectDescription}</Text>
@@ -47,14 +50,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.background,
   },
-  title: {
-    fontFamily: fonts.semiBold,
-    fontSize: 22,
-    color: colors.primary,
-    marginLeft: 10,
-    marginBottom: 10,
-    padding: 5,
-  },
+  // title: {
+  //   fontFamily: fonts.semiBold,
+  //   fontSize: 22,
+  //   color: colors.primary,
+  //   marginLeft: 10,
+  //   marginBottom: 10,
+  //   padding: 5,
+  // },
   midContainer: {
     flexDirection: "row",
     justifyContent: "center",
