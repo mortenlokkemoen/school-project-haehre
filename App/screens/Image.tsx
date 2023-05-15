@@ -6,6 +6,7 @@ import Map from "../../components/Map";
 import PrimaryButton from "../../components/PrimaryButton";
 import { GlobalStateContext } from "./GlobalState";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
+import { colors } from "../../src/theme";
 
 const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
   navigation: any;
@@ -205,12 +206,13 @@ export default ImageScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.background,
   },
   maincontainer: {
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ecedee",
-    height: "100%",
+    // backgroundColor: colors.background,
+    // height: "100%",
   },
   img: {
     width: 200,
@@ -218,6 +220,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignSelf: "center",
     margin: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
   },
 });

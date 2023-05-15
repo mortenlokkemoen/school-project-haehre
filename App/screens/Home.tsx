@@ -15,13 +15,16 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   return (
     <View style={styles.container}>
       <TriangleDown />
-      <Title>Hei {employeeData && employeeData.employee_Name}</Title>
+
+      <Title> Hei {employeeData && employeeData.employee_Name}</Title>
+      <View style={styles.containerUnder}></View>
       <PrimaryButton onPress={() => navigation.navigate("Registrer Hendelse")}>
         <Text>Registrer hendelse</Text>
       </PrimaryButton>
       <PrimaryButton onPress={() => navigation.navigate("Checklist")}>
         <Text>Sjekklister</Text>
       </PrimaryButton>
+
       <Map />
       <View style={styles.geolocator}>
         <Geolocation />
@@ -37,6 +40,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: colors.background,
+  },
+  containerUnder: {
+    margin: 10,
   },
   geolocator: {
     display: "none",
