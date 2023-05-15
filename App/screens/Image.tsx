@@ -225,5 +225,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     margin: 20,
     backgroundColor: "white",
+    opacity: 0.3,
   },
 });
