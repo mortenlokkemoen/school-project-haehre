@@ -149,7 +149,6 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
   };
 
   const handleSendPress = async () => {
-    console.log("handlepress");
     try {
       const response = await fetch(
         "https://school-project-hahre.herokuapp.com/reports",
