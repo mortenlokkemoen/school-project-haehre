@@ -10,8 +10,7 @@ import { colors, fonts } from "../../../src/theme";
 import { GlobalStateContext } from "../GlobalState";
 
 const RegisterScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
-  const { reportData, setReportData } =
-    useContext(GlobalStateContext);
+  const { reportData, setReportData } = useContext(GlobalStateContext);
   const { navigation, route, nameProp } = props;
   const [descriptionText, setDescriptionText] = useState("");
   useEffect(() => {
@@ -32,7 +31,7 @@ const RegisterScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
 
   const handleTextInput = (text: string) => {
     setDescriptionText(text);
-    setReportData({ ...reportData, projectDescription: descriptionText });
+    setReportData({ ...reportData, projectDescription: text });
   };
   return (
     <ScrollView style={styles.container}>
