@@ -179,10 +179,12 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
     }
   };
 
+  
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.maincontainer}>
-        <Image source={{ uri: image }} style={styles.img} />
+        <Image source={{ uri: image }} style={styles.img} defaultSource={require("../../assets/cameraicon.png")}  />
         <PrimaryButton onPress={gallerySelect}>
           <Text>Hent fra bildegallery</Text>
         </PrimaryButton>
