@@ -74,7 +74,7 @@ export default function Map() {
         projectLocationLongitude: userAddedMarkers[0].location.longitude,
         projectLocationLatitude: userAddedMarkers[0].location.latitude,
       });
-  }, userAddedMarkers);
+  }, [userAddedMarkers]);
 
   const onRegionChange = (region: any) => {
     console.log(region);
