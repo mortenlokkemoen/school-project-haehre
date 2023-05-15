@@ -14,6 +14,7 @@ import { IStackScreenProps } from "../../../src/library/StackScreenProps";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { TriangleUp } from "../../../components/TriangleUp";
 import { GlobalStateContext } from "../GlobalState";
+import { colors } from "../../../src/theme";
 
 const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   const { setEmployeeData } = useContext(GlobalStateContext);
@@ -81,7 +82,7 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
               style={styles.checkbox}
               value={isChecked}
               onValueChange={setIsChecked}
-              color="#003d6a"
+              color={colors.primary}
             />
             <Text>LA MEG VÆRE INNLOGGET</Text>
           </View>
@@ -90,7 +91,8 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
             <Text>LOGG INN</Text>
           </PrimaryButton>
         </View>
-        <View style={[styles.triangleContainer, { marginTop: marginHeight }]}>
+        <View style={[{ marginTop: marginHeight }]}>
+          {/* <View style={[styles.triangleContainer, { marginTop: marginHeight }]}></View> */}
           <TriangleUp />
         </View>
       </ScrollView>
@@ -102,24 +104,24 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    flex: 1,
-    width: "100%",
-    backgroundColor: "#DCE0E6",
+    // flex: 1,
+    // width: "100%",
+    backgroundColor: colors.background,
   },
   container: {
     flex: 1,
   },
 
-  triangleContainer: {
-    backgroundColor: "#DCE0E6",
-    marginBottom: 0,
-    marginTop: 0,
-    width: "100%",
-  },
+  // triangleContainer: {
+  //   backgroundColor: "#DCE0E6",
+  //   marginBottom: 0,
+  //   marginTop: 0,
+  //   width: "100%",
+  // },
 
   input: {
     borderWidth: 1,
-    borderColor: "#003d6a",
+    borderColor: colors.primary,
     backgroundColor: "white",
     width: "80%",
 
@@ -127,21 +129,21 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 5,
     height: 55,
-    paddingVertical: 0,
+    // paddingVertical: 0,
   },
 
   wFull: {
-    width: "100%",
-    textAlign: "center",
+    // width: "100%",
+    // textAlign: "center",
     alignItems: "center",
     marginTop: 60,
   },
 
-  loginTxt: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "500",
-  },
+  // loginTxt: {
+  //   color: colors.primary,
+  //   fontSize: 16,
+  //   fontWeight: "500",
+  // },
   checkboxContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -149,7 +151,7 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     marginRight: 20,
-    backgroundColor: "white",
+    // backgroundColor: "white",
     width: 25,
     height: 25,
   },
