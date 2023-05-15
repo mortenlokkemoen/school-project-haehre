@@ -11,7 +11,7 @@ import EventCard from "../../components/EventCard";
 import { Report } from "../../src/types/Report";
 import { IStackScreenProps } from "../../src/library/StackScreenProps";
 import { GlobalStateContext } from "./GlobalState";
-import { fonts } from "../../src/theme";
+import { colors, fonts } from "../../src/theme";
 
 const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
   const [allReports, setAllReports] = useState<Report[]>([]);
@@ -79,6 +79,7 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
         value={searchText}
       />
       <FlatList
+        style={styles.item}
         data={filteredReports}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
@@ -90,23 +91,27 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.background,
   },
   item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    marginLeft: -15,
   },
-  description: {
-    fontSize: 14,
-  },
+  // item: {
+  //   padding: 20,
+  //   marginVertical: 8,
+  //   marginHorizontal: 16,
+  //   borderBottomWidth: 1,
+  //   borderBottomColor: "#ccc",
+  // },
+  // description: {
+  //   fontSize: 14,
+  // },
   searchBar: {
     paddingHorizontal: 20,
     paddingVertical: 10,
     fontSize: 16,
     borderBottomWidth: 1,
+
     borderBottomColor: "#ccc",
   },
   paragraph: {
