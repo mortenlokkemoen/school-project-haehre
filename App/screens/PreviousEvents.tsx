@@ -74,7 +74,7 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
       </Text>
       <TextInput
         style={styles.searchBar}
-        placeholder="Search reports..."
+        placeholder="Søk rapport..."
         onChangeText={(text) => setSearchText(text)}
         value={searchText}
       />
