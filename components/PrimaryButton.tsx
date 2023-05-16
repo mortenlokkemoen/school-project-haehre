@@ -6,15 +6,9 @@ import {
   StyleSheet,
   PressableStateCallbackType,
   ViewStyle,
-  StyleProp,
 } from "react-native";
 import { colors, fonts } from "../src/theme";
-
-interface PrimaryButtonProps {
-  children: React.ReactNode;
-  onPress: () => void;
-  style?: StyleProp<ViewStyle>;
-}
+import { PrimaryButtonProps } from "../src/library/PrimaryButtonProps";
 
 function PrimaryButton({ children, onPress }: PrimaryButtonProps): JSX.Element {
   const getButtonInnerContainerStyle = ({
@@ -64,8 +58,5 @@ const styles = StyleSheet.create({
   },
   pressed: {
     backgroundColor: colors.secondary,
-    // buttonText: {
-    //   color: colors.primary,
-    // },
   },
 });

@@ -74,7 +74,7 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
       </Text>
       <TextInput
         style={styles.searchBar}
-        placeholder="Search reports..."
+        placeholder="Søk her..."
         onChangeText={(text) => setSearchText(text)}
         value={searchText}
       />
@@ -96,22 +96,11 @@ const styles = StyleSheet.create({
   item: {
     marginLeft: -15,
   },
-  // item: {
-  //   padding: 20,
-  //   marginVertical: 8,
-  //   marginHorizontal: 16,
-  //   borderBottomWidth: 1,
-  //   borderBottomColor: "#ccc",
-  // },
-  // description: {
-  //   fontSize: 14,
-  // },
   searchBar: {
     paddingHorizontal: 20,
     paddingVertical: 10,
     fontSize: 16,
     borderBottomWidth: 1,
-
     borderBottomColor: "#ccc",
   },
   paragraph: {
