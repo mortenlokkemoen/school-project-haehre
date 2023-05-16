@@ -144,7 +144,6 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
       }
     } catch (error) {
       Alert.alert("Det opsto et feil!");
-      console.log("catch error error", error);
     }
   };
 

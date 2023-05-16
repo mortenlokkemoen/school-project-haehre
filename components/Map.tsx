@@ -3,28 +3,7 @@ import { useContext, useEffect, useState } from "react";
 
 import MapView, { Marker } from "react-native-maps";
 import { GlobalStateContext } from "../App/screens/GlobalState";
-
-interface Props {
-  isTablet: boolean;
-  mapWidth: number;
-  mapHeight: number;
-}
-interface MarkerData {
-  title: string;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-  description: string;
-}
-interface MarkerData {
-  title: string;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-  description: string;
-}
+import { MarkerData } from "../src/library/MarkerDataProps";
 
 const workSiteLocation = [
   {
@@ -109,7 +88,7 @@ export default function Map() {
   return (
     <View style={styles.container}>
       <MapView
-        style={[styles.map, { width: mapWidth, height: mapHeight }]} // bruk mapWidth her for å angi bredden
+        style={[styles.map, { width: mapWidth, height: mapHeight }]}
         onRegionChange={onRegionChange}
         onPress={handleMapPress}
         initialRegion={{

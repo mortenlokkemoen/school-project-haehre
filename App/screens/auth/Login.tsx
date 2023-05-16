@@ -92,7 +92,6 @@ const LoginScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
           </PrimaryButton>
         </View>
         <View style={[{ marginTop: marginHeight }]}>
-          {/* <View style={[styles.triangleContainer, { marginTop: marginHeight }]}></View> */}
           <TriangleUp />
         </View>
       </ScrollView>
@@ -104,20 +103,11 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    // flex: 1,
-    // width: "100%",
     backgroundColor: colors.background,
   },
   container: {
     flex: 1,
   },
-
-  // triangleContainer: {
-  //   backgroundColor: "#DCE0E6",
-  //   marginBottom: 0,
-  //   marginTop: 0,
-  //   width: "100%",
-  // },
 
   input: {
     borderWidth: 1,
@@ -129,21 +119,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 5,
     height: 55,
-    // paddingVertical: 0,
   },
 
   wFull: {
-    // width: "100%",
-    // textAlign: "center",
     alignItems: "center",
     marginTop: 60,
   },
 
-  // loginTxt: {
-  //   color: colors.primary,
-  //   fontSize: 16,
-  //   fontWeight: "500",
-  // },
   checkboxContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -151,7 +133,6 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     marginRight: 20,
-    // backgroundColor: "white",
     width: 25,
     height: 25,
   },

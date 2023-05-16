@@ -11,7 +11,7 @@ import {
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useNavigation } from "@react-navigation/native";
 import { GlobalStateContext } from "../App/screens/GlobalState";
-import { colors, fonts } from "../src/theme";
+import { colors } from "../src/theme";
 
 const DatetimePicker: React.FC = () => {
   const { reportData, setReportData } = useContext(GlobalStateContext);
@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textTransform: "uppercase",
   },
-
   pressed: {
     backgroundColor: colors.secondary,
   },

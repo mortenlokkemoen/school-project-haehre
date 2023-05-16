@@ -1,10 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { colors, fonts } from "../src/theme";
-
-interface TitleProps {
-  children: React.ReactNode;
-}
+import { TitleProps } from "../src/library/TitleProps";
 
 function Title({ children }: TitleProps) {
   return (

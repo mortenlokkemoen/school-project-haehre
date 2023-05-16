@@ -50,14 +50,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.background,
   },
-  // title: {
-  //   fontFamily: fonts.semiBold,
-  //   fontSize: 22,
-  //   color: colors.primary,
-  //   marginLeft: 10,
-  //   marginBottom: 10,
-  //   padding: 5,
-  // },
   midContainer: {
     flexDirection: "row",
     justifyContent: "center",
