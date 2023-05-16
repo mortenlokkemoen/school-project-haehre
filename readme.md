@@ -1,16 +1,12 @@
-This will be the beginning of our markdown readme file.
-As time progresses this will be filled with useful information.
-
-installation process
+# INSTALL PROCESS
 
 1. npx create-expo-app my-app
 2. cd my-app
 3. Install Expo Go on apple store
-4. npx expo start or npx expo start --tunnel if your network is strict. You do get a bit slower app.
+4. Run npm install to install all dependencies
+5. npx expo start or npx expo start --tunnel if your network is strict. You do get a bit slower app.
 
-For backend we need to set up some dependencies
-
-For routing we are installing React native router for all our routing needs
+We are connecting our frontend and backend with with the use of MYSQL workbench and Heroku.
 
 1. expo install react-native-screens react-native-safe-area-context for the routes we will be using
    If we are on Mac and developing for iOS we also need to install pods to complete linking
@@ -38,6 +34,10 @@ Make sure to add an import statement aswell to the top of the file
 
 6. Our application needs a MAP component that sends data from device.
    In order to do so we can install some expo packages that makes it easier for us to ask permission and show a map.
+   We will also use the Map Marker to pin locations to our map that in turn will be used to pin work locations.
+
+7. Geolocation: In order to send the report its important that the user allows for Geolocation.
+   If not, the send button is disabled. The user can however tap the Map to put a pin and therefore send in.
 
 - npx expo install expo-location
 - npx expo install react-native-maps
@@ -64,4 +64,3 @@ We needed a easily solution to the styling of of our project aswell as fonts. Th
 Expo google fonts paired with its app-loading component which handles logic when the font is loading into our project.
 
 - npx expo install expo-app-loading
--
