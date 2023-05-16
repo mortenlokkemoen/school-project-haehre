@@ -13,7 +13,7 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
   route: any;
   nameProp: any;
 }) => {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState<null | string>(null);
   const [imageSelected, setImageSelected] = useState(false);
   const { reportData, setReportData } = useContext(GlobalStateContext);
   const { navigation } = props;
@@ -25,7 +25,7 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
   });
 
   useEffect(() => {
-    if (image !== "") {
+    if (image !== null) {
       setImageSelected(true);
       setReportData({ ...reportData, imageAddress: image });
     }
@@ -182,11 +182,18 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.maincontainer}>
-        <Image
-          source={{ uri: image }}
-          style={styles.img}
-          defaultSource={require("../../assets/cameraicon.png")}
-        />
+        {image !== null ? (
+          <Image
+            source={{ uri: image }}
+            style={styles.img}
+            defaultSource={require("../../assets/cameraicon.png")}
+          />
+        ) : (
+          <Image
+            source={require("../../assets/cameraicon.png")}
+            style={styles.img}
+          />
+        )}
         <PrimaryButton onPress={gallerySelect}>
           <Text>Hent fra bildegallery</Text>
         </PrimaryButton>
