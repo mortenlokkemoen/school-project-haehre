@@ -70,13 +70,12 @@ export default function RadioButtonImage(props: {
         }
       );
       let result = await response.json();
-      console.log("Email response", result);
       if (response.ok) {
         console.log("Email sent successfully!");
       }
     } catch (error) {
-      Alert.alert("Det opsto et feil!");
-      console.log("catch error error", error);
+      Alert.alert("Something went wrong!");
+      console.log("Error sending email:", error);
     }
   };
 
@@ -102,7 +101,6 @@ export default function RadioButtonImage(props: {
         }
       );
       let result = await response.json();
-      console.log("response", result);
       if (response.status === 200) {
         Alert.alert("Din rapport har blitt sendt!");
         navigation.navigate("Hjem");
@@ -110,7 +108,7 @@ export default function RadioButtonImage(props: {
       }
     } catch (error) {
       Alert.alert("Det opsto et feil!");
-      console.log("catch error error", error);
+      console.log("error creating raport", error);
     }
   };
   return (

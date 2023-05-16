@@ -138,7 +138,6 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
         }
       );
       let result = await response.json();
-      console.log("Email response", result);
       if (response.ok) {
         console.log("Email sent successfully!");
       }
@@ -168,7 +167,6 @@ const ImageScreen: React.FunctionComponent<IStackScreenProps> = (props: {
           }),
         }
       );
-      let result = await response.json();
       if (response.status === 200) {
         Alert.alert("Din rapport har blitt sendt!");
         sendEmail();

@@ -4,9 +4,8 @@ import { IStackScreenProps } from "../../src/library/StackScreenProps";
 
 
 const ChecklistScreen: React.FunctionComponent<IStackScreenProps> = props => {
-
 const { navigation, route, nameProp } = props;
-console.log({navigation, route, nameProp})
+
 return (
     <View style={styles.container}>
         <Text style={styles.title}>Checklist here</Text>

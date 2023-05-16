@@ -30,7 +30,6 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
           `https://school-project-hahre.herokuapp.com/reports/`
         );
         const json = await response.json();
-        console.log("json response", json);
         setAllReports(json);
       } catch (err: any) {
         setError(err.message);
@@ -38,7 +37,6 @@ const PrevEventScreen: React.FC<IStackScreenProps> = (props) => {
         setIsLoading(false);
       }
     };
-
     fetchReportList();
   }, [employeeId]);
 

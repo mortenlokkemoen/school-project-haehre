@@ -56,7 +56,7 @@ export default function Map() {
   }, [userAddedMarkers]);
 
   const onRegionChange = (region: any) => {
-    console.log(region);
+    // console.log(region);
   };
 
   const showMarkers = (markers: MarkerData[]) => {
@@ -73,7 +73,6 @@ export default function Map() {
   };
   const handleMapPress = (event: any) => {
     const { coordinate } = event.nativeEvent;
-    console.log("Tapped coordinate:", coordinate);
 
     const newMarker: MarkerData = {
       title: "Chosen Location",
