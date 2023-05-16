@@ -15,7 +15,6 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
   return (
     <View style={styles.container}>
       <TriangleDown />
-
       <Title> Hei {employeeData && employeeData.employee_Name}</Title>
       <View style={styles.containerUnder}></View>
       <PrimaryButton onPress={() => navigation.navigate("Registrer Hendelse")}>
@@ -24,7 +23,6 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
       <PrimaryButton onPress={() => navigation.navigate("Checklist")}>
         <Text>Sjekklister</Text>
       </PrimaryButton>
-
       <Map />
       <View style={styles.geolocator}>
         <Geolocation />
